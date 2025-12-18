@@ -1,0 +1,101 @@
+Francesco Bullini
+https://www.linkedin.com/in/fbullini
+fbullini@gmail.com
+06 01 10 28 58
+92100 Boulogne Billancourt, FR
+
+Directeur des Systèmes d’Information
+
+
+Expériences Professionnelles Clés
+Jan 2024 - present  CTO & AI Architect - Agenticity.ai (Paris, France)
+Progettato e implementato soluzioni Agentic AI permettedo di acquisire nuovi progetti.
+Env. Technique: Java 21, SpringBoot 3.2, Maven, python, Docker, Google Cloud, Github, React, Large Language Models, agentic frameworks and “AI specific” clouds (RunPod, HuggingFace, Mistral AI, Vertex AI, AWS bedrock), protocoles pour les agents (Model Context Protocol, Agent-2-Agent).
+
+
+May 2022 – Nov 2023  Consultant CPO/CTO - Projet européen (Paris, France)
+
+► Animé des réunions techniques entre partenaires européens (jusqu'à 15 professionnels).
+► Conception de produits et de solutions répondant aux exigences.
+► Maintien d’une vision cohérente du produit en synthétisant différents points de vue et propositions.
+► Présentations lors de conférences internationales en edTech.
+Env Technique: Figma, Figma flow, Google Workplace Suite.
+
+
+Jun 2023 – Sept 2023  Consultant CPO/CTO - Open University of Catalunya (Barcelona, Spain)
+
+► Supervision de deux professionnels dans la réalisation du prototype technique.
+► Conception d’un produit logiciel dans le domaine de l’employabilité et de l’éducation.
+► Réalisation d’une étude de faisabilité (intégration de la solution dans le système informatique universitaire)
+Env. Technique: Bubble.io, PowerBI, Snowflake, Azure.
+
+Jul 2019 – Jul 2022 Chief Technology Officer - Pixis (Paris, France)
+
+► Obtention d’un financement de 0,5 M€ grâce à la présentation d’une vision stratégique et technologique.
+► Direction d’une équipe hétérogène de jusqu’à 11 professionnels dans la construction des produits, de l’infrastructure IT et des preuves de concept en machine learning.
+► Gestion simultanée d’un maximum de 5 projets complexes pour différents clients.
+► Gestion des tableaux Kanban et direction de l’équipe en qualité de SCRUM master.
+► Management d’un groupe de 5 data scientists dans un projet de machine learning visant à exploiter les données disponibles.
+► Création, mise à jour et suivi de la réalisation de la feuille de route technique et produit.
+► Formation des employés juniors et des nouvelles recrues.
+► Recrutement d’une équipe de professionnels IT et de freelances.
+► Soutien aux activités de prévente et aux comptes clés.
+► Assistance au CEO pour la rédaction des contrats avec les partenaires et les clients B2B.
+► Recueil des besoins et conception de l’architecture logicielle.
+► Conception de nouvelles fonctionnalités et de nouveaux produits.
+Env Technique: Java, SpringBoot 2.7, Angular 14, Bootstrap, Maven, python, Docker, MySQL, Neo4J, Github, Git Actions, jolie-lang, Google Cloud, Azure, Sketch.
+
+
+Mar 2021 – Feb 2022 Agile Coach and SCRUM Master - Cosys (Paris, France)
+
+► Dispensation de sessions de coaching agile.
+► Mise en place d’un processus agile interne.
+► Création et mise à jour de la base de connaissances de l’entreprise.
+► Facilitation de la création des spécifications.
+► Création, mise à jour et suivi de la réalisation de la feuille de route technique et produit.
+Env. Technique: Vue.js, Storybook, Keycloak, Json-server, Github, DigitalOcean droplets, Pulumi, Traefik.
+
+
+Jan 2016 – June 2018 Senior Software Engineer - Eptica (Boulogne Billancourt, France)
+► Amélioration et maintenance, au sein d’une équipe SCRUM, d’une suite d’applications JEE interactives représentant environ 80 % du chiffre d’affaires de l’entreprise.
+► Conception de l’architecture, rédaction de story cards et réalisation de preuves de concept pour l’intégration de fonctionnalités à conscience linguistique (par exemple, le routage sémantique des messages) dans un CRM.
+► Conception de l’architecture et réalisation d’une preuve de concept pour un système de suivi des actions des utilisateurs à des fins d’audit de sécurité.
+► Renforcement de la sécurité des applications en les alignant sur les recommandations de l’OWASP.
+Env. technique : Java, Spring Boot, Maven, plusieurs frameworks JS, base de données Oracle, PostgreSQL, SQLServer, Docker, Git, Jenkins, ElasticSearch, moteur NLP propriétaire.
+
+Mar 2013 – Aug 2014 R&D Software Lead - Terabee (St. Genis Pouilly, France)
+Terabee collabore avec le CERN dans le domaine des drones et des capteurs innovants.
+► Coordination d’une équipe de 4 personnes dans un projet impliquant smartphones et drones dans le secteur sportif.
+► Mise en œuvre d’un ensemble de services de photogrammétrie ayant permis à l’entreprise d’initier de nouvelles lignes d’activité.
+► Conduite des premières missions de cartographie aérienne et de reconstruction 3D de terrains, d’environnements et de bâtiments.
+Env. Technique: Java, Maven, systèmes et bibliothèques pour photogrammétrie et mission planners pour les drones.
+Sep 2010 – Nov 2012 Software Architect / Project Manager - italianaSoftware (Imola, Italy)
+
+►Accompagnement des clients dans la réduction de leurs coûts en remplaçant des logiciels propriétaires par des solutions open source performantes.
+► Direction de 4 professionnels dans un projet de 5 mois visant à remplacer un système Oracle à trois niveaux par une solution open source.
+► Réalisation de missions de conseil externe en tant que responsable technique et ingénieur en assurance qualité.
+► Amélioration du langage JOLIE, en le faisant évoluer d’un prototype académique vers une application prête pour la production.
+Env. Technique: Java ecosystem, Maven, Postgresql, Github, Microsoft Dynamics, Aqualogic Service Bus.
+
+
+Jun 2011 – Jun 2012 Consultant Lead Dev / Resource Trainer - GemBB (San Marino)
+► Supervision de la mise en place de 3 applications d’Extract-Transform-Load intégrant des systèmes existants.
+► Encadrement d’un développeur via des sessions de formation et de pair programming.
+Env. Technique: Java ecosystem, Maven, bibliothèques pour IBM AS400 et l'interopérabilité java-COM.
+
+
+Oct 2009 – Aug 2010 Analyst / Developer -  Gheotech (Cattolica, Italy)
+
+► Direction de 6 projets, coordination de 3 professionnels et interaction avec les clients/revendeurs.
+► Amélioration des relations avec le principal revendeur, doublant la performance d’un serveur de vidéosurveillance et le type de caméra utilisable.
+Env. Technique: Java ecosystem, EJB, jBPM, Maven, Postgresql, bibliothèque pour vidéo-surveillance.
+Education & Qualifications
+
+Ingénieur agréé (qualification professionnelle en Italie).
+Master en ingénierie informatique - Université de Bologne, Italie.
+Spécialisation : Systèmes et applications.
+Langues
+
+Anglais   : Compétence professionnelle
+Français : Compétence professionnelle
+Italien     : Langue maternelle

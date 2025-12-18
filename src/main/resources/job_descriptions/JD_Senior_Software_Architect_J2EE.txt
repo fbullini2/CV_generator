@@ -1,0 +1,48 @@
+ Paris / proche banlieue – 3 à 4j/sem en présentiel | CDI
+
+💰 70K – 90K brut / an
+
+📅 Démarrage souhaité : asap
+
+🚀 Rejoins un pôle tech de haut niveau sur des projets à fort enjeu d’industrialisation IA et systèmes critiques.
+
+Tu travailleras dans un environnement cloud, sécurisé et distribué, au cœur d’une transformation vers une plateforme AI-native.
+
+
+🛠️ Stack Java :
+
+Java 17+, Spring Boot 3.x, Tomcat
+PostgreSQL, Redis, Spring Batch, Quartz
+Spring Data JPA, Liquibase
+Sécurité : SAML, OAuth2, Spring Security
+Tests : JUnit 5, Testcontainers (TDD)
+Cloud : AWS (S3…)
+
+🚀 Ta mission :
+
+Développement back-end sur des systèmes distribués critiques.
+Intégration d’outils IA dans des processus backend (moteurs de règles, auto-tagging, etc.).
+Participation aux choix d’archi, à la CI/CD, et à l’amélioration continue.
+Collaboration étroite avec les équipes DevOps, produit, sécurité.
+
+🎯 Profil recherché :
+
+10+ ans en Java / Spring, projets complexes / cloud-ready.
+Maîtrise des systèmes distribués et de la sécurité applicative.
+Intérêt pour les outils d’IA et les environnements augmentés.
+Expérience significative dans le monde du conseil (!)
+Appétence pour faire du vibe coding au quotidien (!!)
+
+💡 Ce que ça va t’apporter :
+
+L’opportunité de monter en puissance sur les bonnes pratiques de dev augmentées par l’IA.
+Un cadre idéal pour approfondir Spring, le cloud AWS et la sécurisation de bout en bout.
+Une expérience valorisable dans des environnements critiques / innovants.
+Des missions avec impact concret et environnement tech stimulant.
+
+🎁 Avantages :
+
+Package 70–90K€ brut, selon ton profil.
+Mutuelle, tickets restau, matériel, cadre de travail agréable.
+3 à 4 jours sur site (Paris / proche banlieue)
+Formation continue + montée en compétences IA intégrée à la mission (+certifications).
