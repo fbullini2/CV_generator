@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class WorkExperience implements Comparable<WorkExperience> {
 
-    private final String sector;
+    protected String companyBusinessSector;
     protected String companyName;
     protected String companyContext;
     protected String role;
@@ -37,7 +37,7 @@ public class WorkExperience implements Comparable<WorkExperience> {
     protected String contractType;
 
 
-    public WorkExperience(String companyName, String start_month, int start_year, String end_month, int end_year, String role, String location, int duration, List<Achievement> ach_list, List<Duty> duty_list, String sector, String contractType) {
+    public WorkExperience(String companyName, String start_month, int start_year, String end_month, int end_year, String role, String location, int duration, List<Achievement> ach_list, List<Duty> duty_list, String companyBusinessSector, String contractType) {
         this.companyName = companyName;
 
         this.duration = duration;
@@ -51,7 +51,7 @@ public class WorkExperience implements Comparable<WorkExperience> {
         this.duty_list = duty_list;
         this.contractType = contractType;
 
-        this.sector=sector;
+        this.companyBusinessSector = companyBusinessSector;
     }
 
     /**
@@ -158,6 +158,10 @@ public class WorkExperience implements Comparable<WorkExperience> {
 
     public void setContractType(String contractType) {
         this.contractType = contractType;
+    }
+
+    public String getCompanyBusinessSector() {
+        return companyBusinessSector;
     }
 
 }
