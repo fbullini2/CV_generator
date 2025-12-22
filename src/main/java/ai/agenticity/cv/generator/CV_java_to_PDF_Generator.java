@@ -57,6 +57,7 @@ public class CV_java_to_PDF_Generator {
     public static final boolean COMPETENCE_SECTION_ENABLED = false; // true = Show Key Competencies section, false = hide it
     public static final boolean TECH_ENV_SECTION_ENABLED = true; // true = Show Technical Environment for work experiences, false = hide it
     public static final boolean DISPLAY_BUSINESS_SECTOR_ENABLED = false; // true = Show company business sector, false = hide it
+    public static final boolean DUTIES_ENABLED = false; // true = Show Duties for work experiences, false = hide it
 
     public static final String CV_FILENAME = "CV_BULLINI_" +"CTO_"+ LANGUAGE + "_" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ".pdf";
 
@@ -113,6 +114,16 @@ public class CV_java_to_PDF_Generator {
         this.translations = new CVTranslations(LANGUAGE);
         CVTranslations translations = this.translations;
 
+        if (!TARGET_COMPANY_IS_A_STARTUP) {
+            if ("EN".equals(LANGUAGE)) {
+                translations.put("intro_1", "7 years as Chief Technology Officer and leader of R&D projects in SME.\n");
+            } else if ("FR".equals(LANGUAGE)) {
+                translations.put("intro_1", "7 ans d'expérience en direction technique et en pilotage d'équipes R&D dans des PME.\n");
+            }
+            // Hide intro_2 (Startups built from scratch)
+            translations.put("intro_2", "");
+        }
+
         Document document = new Document(PageSize.A4);
         FileOutputStream fos = new FileOutputStream(filename);
         PdfWriter writer = PdfWriter.getInstance(document, fos);
@@ -123,7 +134,7 @@ public class CV_java_to_PDF_Generator {
 
         // Add profile photo in top right corner
         try {
-            Image photo = Image.getInstance("src/main/resources/me_job_no_sfondo.jpg");
+            Image photo = Image.getInstance("src/main/resources/me_job_no_sfondo_conf.jpeg");
             // Scale the image to appropriate size (approximately 100x120 points)
             photo.scaleToFit(100f, 120f);
             // Position in top right corner aligned with the top of the name "Francesco Bullini"
@@ -701,6 +712,15 @@ public class CV_java_to_PDF_Generator {
                 companyContext.setIndentationLeft(10);
                 companyContext.setSpacingAfter(3);
                 parExperiences.add(companyContext);
+            }
+
+            // Duties
+            if (DUTIES_ENABLED && work_experience.getDuties() != null && !work_experience.getDuties().isEmpty()) {
+                for (Duty duty : work_experience.getDuties()) {
+                    Paragraph dutyPar = new Paragraph(duty.toString(), font_10);
+                    dutyPar.setIndentationLeft(10);
+                    parExperiences.add(dutyPar);
+                }
             }
 
             // Achievements

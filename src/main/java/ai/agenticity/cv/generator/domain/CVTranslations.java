@@ -276,12 +276,16 @@ public class CVTranslations {
         translations.put("tech_desc_graph_libraries", "bibliothèques de graphes");
         translations.put("tech_desc_drone_planners", "planificateurs de missions pour drones");
         translations.put("tech_desc_proprietary_tools_jolie", "outils propriétaires pour les langages jolie-lang");
-        translations.put("tech_desc_java_libs_legacy", "bibliothèques pour se connecter avec des technologies héritées comme :");
+        translations.put("tech_desc_java_libs_legacy", "bibliothèques pour se connecter avec des technologies comme :");
         translations.put("tech_desc_proprietary_gis", "SIG propriétaire");
     }
 
     public String get(String key) {
         return translations.getOrDefault(key, key);
+    }
+
+    public void put(String key, String value) {
+        translations.put(key, value);
     }
 
     public String getLanguage() {
