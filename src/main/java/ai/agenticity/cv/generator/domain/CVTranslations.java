@@ -175,7 +175,7 @@ public class CVTranslations {
 
 
         // Profile
-        translations.put("profile_1", "Dirigeant technologique orienté résultats, passionné par l'innovation, la cybersécurité et la transformation digitale des organisations.\n");
+        translations.put("profile_1", "Leader technologique orienté résultats, passionné par l'innovation, la cybersécurité et la transformation digitale des organisations.\n");
         translations.put("profile_2", "Curieux intellectuellement, apprenant rapide et leader d'équipe engagé, je combine une vision stratégique de la gouvernance IT (alignement métier / SI, gestion budgétaire, pilotage de la performance) avec une expertise opérationnelle en cloud, sécurité des systèmes d'information, architecture logicielle.\n");//et automatisation des processus
         translations.put("profile_3", "Habitué à conduire des projets complexes de modernisation du SI, d'intégration d'outils collaboratifs, et de migration vers des infrastructures scalables et résilientes.\n");
         translations.put("profile_4", "");

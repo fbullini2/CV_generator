@@ -35,11 +35,13 @@ public class WorkExperience implements Comparable<WorkExperience> {
     protected String language;
     protected TechnicalEnvironment technicalEnvironment;
     protected String contractType;
+    protected boolean isOneLineAchievementEnabled;
+    protected String oneLineAchievement;
 
 
-    public WorkExperience(String companyName, String start_month, int start_year, String end_month, int end_year, String role, String location, int duration, List<Achievement> ach_list, List<Duty> duty_list, String companyBusinessSector, String contractType) {
+    public WorkExperience(String companyName, String start_month, int start_year, String end_month, int end_year, String role, String location, int duration, List<Achievement> ach_list, List<Duty> duty_list, String companyBusinessSector, String contractType, boolean isOneLineAchievementEnabled, String oneLineAchievement) {
         this.companyName = companyName;
-
+        this.companyBusinessSector= companyBusinessSector;
         this.duration = duration;
         this.role = role;
         this.start_year = start_year;
@@ -50,8 +52,8 @@ public class WorkExperience implements Comparable<WorkExperience> {
         this.ach_list = ach_list;
         this.duty_list = duty_list;
         this.contractType = contractType;
-
-        this.companyBusinessSector = companyBusinessSector;
+        this.oneLineAchievement=oneLineAchievement;
+        this.isOneLineAchievementEnabled = isOneLineAchievementEnabled;
     }
 
     /**

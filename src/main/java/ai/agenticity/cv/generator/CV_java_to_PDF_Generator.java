@@ -43,7 +43,7 @@ import java.util.Date;
 public class CV_java_to_PDF_Generator {
 
     // Language parameter: "EN" for English, "FR" for French
-    public static final String LANGUAGE = "FR";
+    public static final String LANGUAGE = "EN";
     public static final String JOB_TITLE = "CHIEF TECHNOLOGY OFFICER - AI EXPERT";
 
     // Job type configuration
@@ -53,11 +53,12 @@ public class CV_java_to_PDF_Generator {
     public static final boolean TARGET_COMPANY_IS_FROM_SCRATCH = false; // true = The target company is a startup from scratch, or it's valuable to highlight my work in startups from scratch;false if it is not valuable for that company job description
     public static final boolean TARGET_SECTOR_IS_EDUCATION_OR_EMPLOYABILITY_OR_SKILLS = false; // true = The target sector is someway related to education, employability or reskilling, upskilling or human resources; false if it is not valuable for that company job description
     public static final boolean INTRO_ENABLED = true; // true = Show introduction section, false = hide it
-    public static final boolean PROFILE_ENABLED = true; // true = Show Profile section, false = hide it
+    public static final boolean PROFILE_ENABLED = false; // true = Show Profile section, false = hide it
     public static final boolean COMPETENCE_SECTION_ENABLED = false; // true = Show Key Competencies section, false = hide it
     public static final boolean TECH_ENV_SECTION_ENABLED = true; // true = Show Technical Environment for work experiences, false = hide it
     public static final boolean DISPLAY_BUSINESS_SECTOR_ENABLED = false; // true = Show company business sector, false = hide it
     public static final boolean DUTIES_ENABLED = false; // true = Show Duties for work experiences, false = hide it
+    public static final boolean COMPANY_SECTOR_ENABLED = false; // true = Show Duties for work experiences, false = hide it
 
     public static final String CV_FILENAME = "CV_BULLINI_" +"CTO_"+ LANGUAGE + "_" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ".pdf";
 
@@ -81,6 +82,7 @@ public class CV_java_to_PDF_Generator {
     public static Font font_bold_11;
     public static Font font_bold_10;
     public static Font font_bold_12;
+    private static CV_java_to_PDF_Generator CV_Generator;
 
     static {
         try {
@@ -301,7 +303,7 @@ public class CV_java_to_PDF_Generator {
             achievements1.add(new Achievement("►Designed and developed a custom ingestion component for unstructured data, including videos.", false));
         }
 
-        WorkExperience we1 = new WorkExperience("Agenticity.ai", "Jan", 2024, "Present", 2025, "CTO / AI Architect", "Paris, France", 1, achievements1, duties1, isFrench ? "Conseil en IA et IT" : "AI and IT consulting", "");
+        WorkExperience we1 = new WorkExperience("Agenticity.ai", "Jan", 2024, "Present", 2025, "CTO / AI Architect", "Paris, France", 1, achievements1, duties1, isFrench ? "Conseil en IA et IT" : "AI and IT consulting", "", false, "");
         we1.setContractType(translations.get("contract_self_employed"));
         we1.setCompanyContext(isFrench ?
             "Agenticity propose des prestations de conseil en IA et IT, en concevant et en livrant des solutions sur mesure pour des assistants IA spécialisés par domaine et des systèmes multi-agents." :
@@ -336,7 +338,7 @@ public class CV_java_to_PDF_Generator {
             achievements2.add(new Achievement("►Presented at international EdTech conferences.", false));
         }
 
-        WorkExperience we2 = new WorkExperience("EU Project D-Reskill", "May", 2022, "Nov", 2023, "Consultant CPO/CTO", "Paris, France", 1, achievements2, duties2, isFrench ? "Projet financé par la Commission européenne (Éducation/Reconversion)" : "European Commission Project (Education/Reskilling)", "");
+        WorkExperience we2 = new WorkExperience("EU Project D-Reskill", "May", 2022, "Nov", 2023, "Consultant CPO/CTO", "Paris, France", 1, achievements2, duties2, isFrench ? "Projet financé par la Commission européenne (Éducation/Reconversion)" : "European Commission Project (Education/Reskilling)", "", false, "");
         we2.setContractType("Freelance");
         we2.setCompanyContext(isFrench ?
             "\"D-Reskill at Universities\" est un projet financé par la Commission européenne visant à concevoir et élaborer une plateforme logicielle pour la reconversion des travailleurs, fondée sur une approche explicite des compétences." :
@@ -368,7 +370,7 @@ public class CV_java_to_PDF_Generator {
             achievements3.add(new Achievement("►Conducted a feasibility study for integrating the product into the university's IT ecosystem and data pipelines.", false));
         }
 
-        WorkExperience we3 = new WorkExperience("Open University of Catalonia", "Jun", 2023, "Sep", 2023, "Consultant CPO/CTO", "Barcelona, Spain", 1, achievements3, duties3, isFrench ? "Employabilité et Éducation" : "Education and Employability", "");
+        WorkExperience we3 = new WorkExperience("Open University of Catalonia", "Jun", 2023, "Sep", 2023, "Consultant CPO/CTO", "Barcelona, Spain", 1, achievements3, duties3, isFrench ? "Employabilité et Éducation" : "Education and Employability", "", false, "");
         we3.setContractType("Freelance");
         we3.setCompanyContext(isFrench ?
             "L'UOC est l'une des premières universités européennes entièrement numériques et dispense des cours à des étudiants internationaux depuis plus de 20 ans." :
@@ -401,7 +403,7 @@ public class CV_java_to_PDF_Generator {
             achievements4.add(new Achievement("►Designed authorization flows with Identity Provider (Azure AD B2C).", false));
         }
 
-        WorkExperience we4 = new WorkExperience("Pixis", "Jul", 2019, "Jul", 2022, "Chief Technology Officer", "Paris, France", 3, achievements4, duties4, isFrench ? "Éducation et Orientation professionnelle" : "Career advice and coaching", "");
+        WorkExperience we4 = new WorkExperience("Pixis", "Jul", 2019, "Jul", 2022, "Chief Technology Officer", "Paris, France", 3, achievements4, duties4, isFrench ? "Éducation et Orientation professionnelle" : "Career advice and coaching", "", false, "");
         we4.setCompanyContext(isFrench ?
             "Pixis fournit des solutions SaaS en marque blanche dans le secteur de l'éducation et de l'orientation professionnelle, en utilisant l'ontologie ESCO et les Objectifs de Développement Durable (ODD)." :
             "Pixis provides white-label SaaS solutions in the career advice and coaching sector using ontologies for skills, Sustainable Development Goals and a chatbot that guides the user in interacting with the application.");
@@ -434,7 +436,7 @@ public class CV_java_to_PDF_Generator {
             achievements5.add(new Achievement("►Created, maintained and facilitated the execution of the Roadmap.", false));
         }
 
-        WorkExperience we5 = new WorkExperience("Cosys", "Mar", 2021, "Feb", 2022, "Scrum Master and Agile Coach", "Paris, France", 1, achievements5, duties5, isFrench ? "SaaS (Construction et gestion d'entreprises à risque partagé)" : "SaaS (Shared-risk company building)", "");
+        WorkExperience we5 = new WorkExperience("Cosys", "Mar", 2021, "Feb", 2022, "Scrum Master and Agile Coach", "Paris, France", 1, achievements5, duties5, isFrench ? "SaaS (Construction et gestion d'entreprises à risque partagé)" : "SaaS (Shared-risk company building)", "", false, "");
         we5.setCompanyContext(isFrench ?
             "Le projet Flexup propose un produit SaaS destiné à instaurer un modèle de construction et de gestion d'entreprises basé sur le risque partagé entre les participants." :
             "The Flexup project proposes a SaaS product to implement a model for building and managing companies based on shared risk between participants.");
@@ -457,7 +459,7 @@ public class CV_java_to_PDF_Generator {
             achievements6.add(new Achievement("►Elicited requirements, designed the architecture and implemented a PoC of the solution.", false));
         }
 
-        WorkExperience we6 = new WorkExperience("Stealth mode startup", "Oct", 2018, "Mar", 2019, "CTO / Software Architect", "Paris, France", 1, achievements6, duties6, isFrench ? "Bancaire" : "Banking", "");
+        WorkExperience we6 = new WorkExperience("Stealth mode startup", "Oct", 2018, "Mar", 2019, "CTO / Software Architect", "Paris, France", 1, achievements6, duties6, isFrench ? "Bancaire" : "Banking", "", false, "");
         we6.setCompanyContext(isFrench ?
             "Participation à la conception d'une startup dans le secteur bancaire." :
             "Participation in the conception of a startup in the banking sector.");
@@ -484,7 +486,7 @@ public class CV_java_to_PDF_Generator {
             achievements7.add(new Achievement("►Led a cross-department project to improve security of applications, aligning them with OWASP recommendations and GDPR.", false));
         }
 
-        WorkExperience we7 = new WorkExperience("Eptica", "Jan", 2016, "Jun", 2018, "Senior Software Engineer", "Boulogne Billancourt, France", 2, achievements7, duties7, isFrench ? "Solutions IA pour centres d'appels multicanal" : "AI-powered solutions for multichannel call centers", "");
+        WorkExperience we7 = new WorkExperience("Eptica", "Jan", 2016, "Jun", 2018, "Senior Software Engineer", "Boulogne Billancourt, France", 2, achievements7, duties7, isFrench ? "Solutions IA pour centres d'appels multicanal" : "AI-powered solutions for multichannel call centers", "", false, "");
         we7.setCompanyContext(isFrench ?
             "Eptica fournit des solutions propulsées par l'IA pour les centres d'appels multicanal, en exploitant des technologies propriétaires de traitement du langage naturel (NLP) et d'intelligence collaborative." :
             "Eptica provides AI-powered solutions for multichannel call centers exploiting proprietary natural language processing (NLP) technologies and collaborative intelligence.");
@@ -520,7 +522,7 @@ public class CV_java_to_PDF_Generator {
             achievements8.add(new Achievement("►Designed and developed proofs of concept to implement the Action Intelligence methodology.", false));
         }
 
-        WorkExperience we8 = new WorkExperience("2Collaborate Consulting", "Sep", 2014, "Sep", 2015, "Business Analyst / Software Architect", "Geneva, Switzerland", 1, achievements8, duties8, isFrench ? "Projets des Nations Unies (Socio-culturel)" : "UN Projects on global themes (Socio-cultural)", "");
+        WorkExperience we8 = new WorkExperience("2Collaborate Consulting", "Sep", 2014, "Sep", 2015, "Business Analyst / Software Architect", "Geneva, Switzerland", 1, achievements8, duties8, isFrench ? "Projets des Nations Unies (Socio-culturel)" : "UN Projects on global themes (Socio-cultural)", "", false, "");
         we8.setCompanyContext(isFrench ?
             "2Collaborate travaille dans des contextes socioculturels complexes tels que les projets des Nations Unies sur des thèmes mondiaux, en promouvant une méthodologie innovante appelée \"Action Intelligence\"." :
             "2Collaborate works in complex socio-cultural contexts such as United Nations projects on global themes, promoting an innovative methodology called \"Action Intelligence\".");
@@ -547,7 +549,7 @@ public class CV_java_to_PDF_Generator {
             achievements9.add(new Achievement("►Implemented a set of photogrammetry services (like 3D reconstructions and orthomosaics) which enabled the company to explore new business opportunities related to aerial inspection.", false));
         }
 
-        WorkExperience we9 = new WorkExperience("Terabee", "Mar", 2013, "Aug", 2014, "R&D Software Lead", "St. Genis Pouilly, France", 1, achievements9, duties9, isFrench ? "Drones et capteurs innovants" : "Drones and advanced sensors", "");
+        WorkExperience we9 = new WorkExperience("Terabee", "Mar", 2013, "Aug", 2014, "R&D Software Lead", "St. Genis Pouilly, France", 1, achievements9, duties9, isFrench ? "Drones et capteurs innovants" : "Drones and advanced sensors", "", false, "");
         we9.setCompanyContext(isFrench ?
             "Terabee collabore avec le CERN dans le domaine des drones et des capteurs innovants." :
             "Terabee collaborates with CERN in the market of drones and advanced sensors.");
@@ -578,7 +580,7 @@ public class CV_java_to_PDF_Generator {
             achievements10.add(new Achievement("►Led a project for the integration of microservices within a platform for web app development.", false));
         }
 
-        WorkExperience we10 = new WorkExperience("italianaSoftware", "Sep", 2010, "Nov", 2012, "Software Architect / Project Manager", "Imola, Italy", 2, achievements10, duties10, isFrench ? "Microservices et intégration de systèmes" : "Microservices and system integration", "");
+        WorkExperience we10 = new WorkExperience("italianaSoftware", "Sep", 2010, "Nov", 2012, "Software Architect / Project Manager", "Imola, Italy", 2, achievements10, duties10, isFrench ? "Microservices et intégration de systèmes" : "Microservices and system integration", "", false, "");
         we10.setCompanyContext(isFrench ?
             "italianaSoftware est spécialisée dans les microservices et l'intégration de systèmes; l'entreprise collabore avec des centres d'excellence (INRIA, SDU) et une communauté internationale." :
             "ItalianaSoftware created the first language for microservices JOLIE, in collaboration with centers of excellence (INRIA, SDU) and an international community.");
@@ -604,7 +606,7 @@ public class CV_java_to_PDF_Generator {
             achievements11.add(new Achievement("►Supervised the construction of 3 Extract-Transform-Load applications involving legacy systems.", false));
         }
 
-        WorkExperience we11 = new WorkExperience("GemBB", "Jun", 2011, "Jun", 2012, "Consultant / Resource Trainer", "San Marino", 1, achievements11, duties11, isFrench ? "Sécurité au travail" : "Workplace safety", "");
+        WorkExperience we11 = new WorkExperience("GemBB", "Jun", 2011, "Jun", 2012, "Consultant / Resource Trainer", "San Marino", 1, achievements11, duties11, isFrench ? "Sécurité au travail" : "Workplace safety", "", false, "");
         we11.setCompanyContext(isFrench ?
             "GemBB est actif dans le secteur de la sécurité au travail et intègre des systèmes existants." :
             "GemBB is active in the sector of workplace safety, integrating legacy systems.");
@@ -624,15 +626,15 @@ public class CV_java_to_PDF_Generator {
             duties12.add(new Duty("►Gestion, développement, maintenance, déploiement et support de projets JEE."));
             duties12.add(new Duty("►Gestion des relations avec les parties prenantes des projets."));
             achievements12.add(new Achievement("►Direction de 6 projets, coordination de 3 professionnels et interaction avec les clients/revendeurs.", false));
-            achievements12.add(new Achievement("►Amélioration des performances d'un serveur de vidéosurveillance, doublant le nombre de flux temps réel et types de caméras supportés.", false));
+            achievements12.add(new Achievement("►Amélioration majeure des performances d'un serveur de vidéosurveillance, doublant le nombre de flux temps réel, les types de caméras supportés et la precision du dectection du moviment, conduisant à l’acquisition de nouveaux contrats clients.", false));
         } else {
             duties12.add(new Duty("►Management, development, maintenance, deployment and support of JEE projects."));
             duties12.add(new Duty("►Management of the relationships with the stakeholders of the projects."));
             achievements12.add(new Achievement("►Led up to 6 projects, coordinating 3 professionals and interacting with stakeholders.", false));
-            achievements12.add(new Achievement("►Doubled the performance of a video surveillance server in terms of real-time streams handling and supported camera types, leading to the acquisition of more client contracts.", false));
+            achievements12.add(new Achievement("►Highly improved the performance of a video surveillance server in terms of real-time streams handling, supported camera types and the precision of movement detection, leading to the acquisition of more client contracts.", false));
         }
 
-        WorkExperience we12 = new WorkExperience("Gheotech", "Oct", 2009, "Aug", 2010, "Analyst / Developer", "Cattolica, Italy", 1, achievements12, duties12, isFrench ? "Gestion des infrastructures urbaines (GIS)" : "Public utility distribution (GIS)", "");
+        WorkExperience we12 = new WorkExperience("Gheotech", "Oct", 2009, "Aug", 2010, "Analyst / Developer", "Cattolica, Italy", 1, achievements12, duties12, isFrench ? "Gestion des infrastructures urbaines (GIS)" : "Public utility distribution (GIS)", "", false, "");
         we12.setCompanyContext(isFrench ?
             "Gheotech intervient dans la gestion des infrastructures urbaines (distribution d'eau, de gaz et de fibre)." :
             "Gheotech operates in the field of public utility distribution (water, optical fiber, gas), leveraging its proprietary Geographic Information System (GIS), distributed documentation systems and video surveillance server.");
@@ -859,6 +861,9 @@ public class CV_java_to_PDF_Generator {
     }
 
     public static void main(String[] args) throws DocumentException, IOException, SQLException {
-        new CV_java_to_PDF_Generator().createPdf(CV_FILENAME);
+        CV_Generator=new CV_java_to_PDF_Generator();
+        //Configuration
+
+        CV_Generator.createPdf(CV_FILENAME);
     }
 }
