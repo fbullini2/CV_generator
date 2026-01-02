@@ -166,4 +166,12 @@ public class WorkExperience implements Comparable<WorkExperience> {
         return companyBusinessSector;
     }
 
+    public boolean isOneLineAchievementEnabled() {
+        return isOneLineAchievementEnabled;
+    }
+
+    public String getOneLineAchievement() {
+        return oneLineAchievement;
+    }
+
 }

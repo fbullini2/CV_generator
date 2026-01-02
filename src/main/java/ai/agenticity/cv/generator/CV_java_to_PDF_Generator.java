@@ -43,7 +43,7 @@ import java.util.Date;
 public class CV_java_to_PDF_Generator {
 
     // Language parameter: "EN" for English, "FR" for French
-    public static final String LANGUAGE = "EN";
+    public static final String LANGUAGE = "FR";
     public static final String JOB_TITLE = "CHIEF TECHNOLOGY OFFICER - AI EXPERT";
 
     // Job type configuration
@@ -288,6 +288,8 @@ public class CV_java_to_PDF_Generator {
         // Work Experience 1: Agenticity.ai
         java.util.List<Duty> duties1 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements1 = new ArrayList<Achievement>();
+        String oneLineSummary1 = "";
+        boolean useOneLineSummary1 = false;
 
         if (isFrench) {
             duties1.add(new Duty("►Conception et développement d'infrastructure logicielle native en IA."));
@@ -303,7 +305,7 @@ public class CV_java_to_PDF_Generator {
             achievements1.add(new Achievement("►Designed and developed a custom ingestion component for unstructured data, including videos.", false));
         }
 
-        WorkExperience we1 = new WorkExperience("Agenticity.ai", "Jan", 2024, "Present", 2025, "CTO / AI Architect", "Paris, France", 1, achievements1, duties1, isFrench ? "Conseil en IA et IT" : "AI and IT consulting", "", false, "");
+        WorkExperience we1 = new WorkExperience("Agenticity.ai", "Jan", 2024, "Present", 2025, "CTO / AI Architect", "Paris, France", 1, achievements1, duties1, isFrench ? "Conseil en IA et IT" : "AI and IT consulting", "", useOneLineSummary1, oneLineSummary1);
         we1.setContractType(translations.get("contract_self_employed"));
         we1.setCompanyContext(isFrench ?
             "Agenticity propose des prestations de conseil en IA et IT, en concevant et en livrant des solutions sur mesure pour des assistants IA spécialisés par domaine et des systèmes multi-agents." :
@@ -325,20 +327,26 @@ public class CV_java_to_PDF_Generator {
         // Work Experience 2: EU Project D-Reskill
         java.util.List<Duty> duties2 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements2 = new ArrayList<Achievement>();
+        String oneLineSummary2 = "";
+        boolean useOneLineSummary2 = false;
 
         if (isFrench) {
             duties2.add(new Duty("►Animation de réunions techniques et études de faisabilité pour plateforme de reconversion."));
             achievements2.add(new Achievement("►Animé des réunions techniques entre partenaires européens (jusqu'à 15 professionnels).", false));
             achievements2.add(new Achievement("►Réalisé des études de faisabilité explorant différentes ontologies et approches pour appliquer l'intelligence des compétences à l'éducation et à la reconversion professionnelle.", false));
             achievements2.add(new Achievement("►Présentations lors de conférences internationales en EdTech.", false));
+            oneLineSummary2 = "►Conception d'une plateforme européenne de reconversion et direction technique et produit d'une équipe de 15 experts de plusieurs universités européennes.";
+            useOneLineSummary2 = true;
         } else {
             duties2.add(new Duty("►Lead technical meetings and conduct feasibility studies for skill-based reskilling platform."));
             achievements2.add(new Achievement("►Led technical meetings between European partners (15 professionals).", false));
             achievements2.add(new Achievement("►Conducted feasibility studies exploring different ontologies and approaches to apply skill intelligence to education and for reskilling the workforce.", false));
             achievements2.add(new Achievement("►Presented at international EdTech conferences.", false));
+            oneLineSummary2 = "►Designed a European career reskilling platform and led the technical and product direction of a 15-member expert team from multiple European universities.";
+            useOneLineSummary2 = true;
         }
 
-        WorkExperience we2 = new WorkExperience("EU Project D-Reskill", "May", 2022, "Nov", 2023, "Consultant CPO/CTO", "Paris, France", 1, achievements2, duties2, isFrench ? "Projet financé par la Commission européenne (Éducation/Reconversion)" : "European Commission Project (Education/Reskilling)", "", false, "");
+        WorkExperience we2 = new WorkExperience("EU Project D-Reskill", "May", 2022, "Nov", 2023, "Consultant CPO/CTO", "Paris, France", 1, achievements2, duties2, isFrench ? "Projet financé par la Commission européenne (Éducation/Reconversion)" : "European Commission Project (Education/Reskilling)", "", useOneLineSummary2, oneLineSummary2);
         we2.setContractType("Freelance");
         we2.setCompanyContext(isFrench ?
             "\"D-Reskill at Universities\" est un projet financé par la Commission européenne visant à concevoir et élaborer une plateforme logicielle pour la reconversion des travailleurs, fondée sur une approche explicite des compétences." :
@@ -355,6 +363,8 @@ public class CV_java_to_PDF_Generator {
         // Work Experience 3: Open University of Catalonia
         java.util.List<Duty> duties3 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements3 = new ArrayList<Achievement>();
+        String oneLineSummary3 = "";
+        boolean useOneLineSummary3 = false;
 
         if (isFrench) {
             duties3.add(new Duty("►Conception de plateforme d'orientation professionnelle et direction du développement du prototype."));
@@ -362,15 +372,19 @@ public class CV_java_to_PDF_Generator {
             achievements3.add(new Achievement("►Supervision de deux professionnels dans la réalisation du prototype technique.", false));
             achievements3.add(new Achievement("►Animation d'ateliers de conception à fort impact avec les clients.", false));
             achievements3.add(new Achievement("►Réalisation d'une étude de faisabilité pour l'intégration dans le système informatique universitaire.", false));
+            oneLineSummary3 = "►Pilotage de la conception d'un produit EdTech intégré au SI de l'université, gestion de deux experts data et livraison d'un prototype d'aide à la décision, initiant un projet pluriannuel.";
+            useOneLineSummary3 = true;
         } else {
             duties3.add(new Duty("►Design career guidance platform and lead prototype development."));
             achievements3.add(new Achievement("►Designed a career guidance platform for the education and employability sectors.", false));
             achievements3.add(new Achievement("►Led a team of 2 professionals in the development of the prototype.", false));
             achievements3.add(new Achievement("►Facilitated high-impact design workshops with clients to drive product ideation and align on strategic goals.", false));
             achievements3.add(new Achievement("►Conducted a feasibility study for integrating the product into the university's IT ecosystem and data pipelines.", false));
+            oneLineSummary3 = "►Led the design of an EdTech product integrated with the university information system, managed two data experts, and delivered an operational decision-support prototype, initiating a multi-year project.";
+            useOneLineSummary3 = true;
         }
 
-        WorkExperience we3 = new WorkExperience("Open University of Catalonia", "Jun", 2023, "Sep", 2023, "Consultant CPO/CTO", "Barcelona, Spain", 1, achievements3, duties3, isFrench ? "Employabilité et Éducation" : "Education and Employability", "", false, "");
+        WorkExperience we3 = new WorkExperience("Open University of Catalonia", "Jun", 2023, "Sep", 2023, "Consultant CPO/CTO", "Barcelona, Spain", 1, achievements3, duties3, isFrench ? "Employabilité et Éducation" : "Education and Employability", "", useOneLineSummary3, oneLineSummary3);
         we3.setContractType("Freelance");
         we3.setCompanyContext(isFrench ?
             "L'UOC est l'une des premières universités européennes entièrement numériques et dispense des cours à des étudiants internationaux depuis plus de 20 ans." :
@@ -386,6 +400,8 @@ public class CV_java_to_PDF_Generator {
         // Work Experience 4: Pixis
         java.util.List<Duty> duties4 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements4 = new ArrayList<Achievement>();
+        String oneLineSummary4 = "";
+        boolean useOneLineSummary4 = false;
 
         if (isFrench) {
             duties4.add(new Duty("►Direction de projets complexes basés sur microservices et management d'équipe data science."));
@@ -394,6 +410,8 @@ public class CV_java_to_PDF_Generator {
             achievements4.add(new Achievement("►Conception et direction de l'implémentation d'un SaaS multi-cloud en marque blanche basé sur microservices.", false));
             achievements4.add(new Achievement("►Développement de preuves de concept techniques devenues éléments clés de nouveaux produits SaaS.", false));
             achievements4.add(new Achievement("►Conception des flux d'autorisation avec Identity Provider (Azure AD B2C).", false));
+            oneLineSummary4 = "►Conception de l'architecture logicielle, développement de la solution et direction de l'équipe technique pour la livraison de plateformes SaaS en marque blanche.";
+            useOneLineSummary4 = true;
         } else {
             duties4.add(new Duty("►Lead complex projects based on microservices and manage data science team."));
             achievements4.add(new Achievement("►Led concurrently up to 5 complex projects based on microservices.", false));
@@ -401,9 +419,11 @@ public class CV_java_to_PDF_Generator {
             achievements4.add(new Achievement("►Designed and led implementation of a cross-cloud, white-label SaaS, based on microservices.", false));
             achievements4.add(new Achievement("►Developed technical proofs of concept which then became the key elements of new SaaS products.", false));
             achievements4.add(new Achievement("►Designed authorization flows with Identity Provider (Azure AD B2C).", false));
+            oneLineSummary4 = "►Designed the software architecture, developed the solution, and led the technical team to deliver white-label SaaS platforms.";
+            useOneLineSummary4 = true;
         }
 
-        WorkExperience we4 = new WorkExperience("Pixis", "Jul", 2019, "Jul", 2022, "Chief Technology Officer", "Paris, France", 3, achievements4, duties4, isFrench ? "Éducation et Orientation professionnelle" : "Career advice and coaching", "", false, "");
+        WorkExperience we4 = new WorkExperience("Pixis", "Jul", 2019, "Jul", 2022, "Chief Technology Officer", "Paris, France", 3, achievements4, duties4, isFrench ? "Éducation et Orientation professionnelle" : "Career advice and coaching", "", useOneLineSummary4, oneLineSummary4);
         we4.setCompanyContext(isFrench ?
             "Pixis fournit des solutions SaaS en marque blanche dans le secteur de l'éducation et de l'orientation professionnelle, en utilisant l'ontologie ESCO et les Objectifs de Développement Durable (ODD)." :
             "Pixis provides white-label SaaS solutions in the career advice and coaching sector using ontologies for skills, Sustainable Development Goals and a chatbot that guides the user in interacting with the application.");
@@ -425,18 +445,24 @@ public class CV_java_to_PDF_Generator {
         // Work Experience 5: Cosys
         java.util.List<Duty> duties5 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements5 = new ArrayList<Achievement>();
+        String oneLineSummary5 = "";
+        boolean useOneLineSummary5 = false;
 
         if (isFrench) {
             duties5.add(new Duty("►Mise en place de processus agiles et animation des réunions Sprint."));
             achievements5.add(new Achievement("►Mise en place d'un processus agile interne et animation des réunions Sprint.", false));
             achievements5.add(new Achievement("►Création, mise à jour et suivi de la réalisation de la feuille de route.", false));
+            oneLineSummary5 = "►Mise en place d'une organisation agile et structuration de la feuille de route et des spécifications produit.";
+            useOneLineSummary5 = true;
         } else {
             duties5.add(new Duty("►Introduce agile processes and lead Sprint meetings."));
             achievements5.add(new Achievement("►Introduced an internal agile process and led Sprint meetings.", false));
             achievements5.add(new Achievement("►Created, maintained and facilitated the execution of the Roadmap.", false));
+            oneLineSummary5 = "►Implemented an agile organization and structured the product roadmap and product specifications.";
+            useOneLineSummary5 = true;
         }
 
-        WorkExperience we5 = new WorkExperience("Cosys", "Mar", 2021, "Feb", 2022, "Scrum Master and Agile Coach", "Paris, France", 1, achievements5, duties5, isFrench ? "SaaS (Construction et gestion d'entreprises à risque partagé)" : "SaaS (Shared-risk company building)", "", false, "");
+        WorkExperience we5 = new WorkExperience("Cosys", "Mar", 2021, "Feb", 2022, "Scrum Master and Agile Coach", "Paris, France", 1, achievements5, duties5, isFrench ? "SaaS (Construction et gestion d'entreprises à risque partagé)" : "SaaS (Shared-risk company building)", "", useOneLineSummary5, oneLineSummary5);
         we5.setCompanyContext(isFrench ?
             "Le projet Flexup propose un produit SaaS destiné à instaurer un modèle de construction et de gestion d'entreprises basé sur le risque partagé entre les participants." :
             "The Flexup project proposes a SaaS product to implement a model for building and managing companies based on shared risk between participants.");
@@ -450,16 +476,20 @@ public class CV_java_to_PDF_Generator {
         // Work Experience 6: Stealth mode startup
         java.util.List<Duty> duties6 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements6 = new ArrayList<Achievement>();
+        String oneLineSummary6 = "";
+        boolean useOneLineSummary6 = false;
 
         if (isFrench) {
             duties6.add(new Duty("►Recueil des besoins, conception de l'architecture et implémentation d'un PoC."));
             achievements6.add(new Achievement("►Recueil des besoins, conception de l'architecture et implémentation d'un PoC de la solution.", false));
+            oneLineSummary6 = "►Recueil des besoins, conception de l'architecture et implémentation d'un PoC de la solution.";
+            useOneLineSummary6 = true;
         } else {
             duties6.add(new Duty("►Elicit requirements, design architecture and implement PoC for banking sector startup."));
             achievements6.add(new Achievement("►Elicited requirements, designed the architecture and implemented a PoC of the solution.", false));
         }
 
-        WorkExperience we6 = new WorkExperience("Stealth mode startup", "Oct", 2018, "Mar", 2019, "CTO / Software Architect", "Paris, France", 1, achievements6, duties6, isFrench ? "Bancaire" : "Banking", "", false, "");
+        WorkExperience we6 = new WorkExperience("Stealth mode startup", "Oct", 2018, "Mar", 2019, "CTO / Software Architect", "Paris, France", 1, achievements6, duties6, isFrench ? "Bancaire" : "Banking", "", useOneLineSummary6, oneLineSummary6);
         we6.setCompanyContext(isFrench ?
             "Participation à la conception d'une startup dans le secteur bancaire." :
             "Participation in the conception of a startup in the banking sector.");
@@ -473,20 +503,26 @@ public class CV_java_to_PDF_Generator {
         // Work Experience 7: Eptica
         java.util.List<Duty> duties7 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements7 = new ArrayList<Achievement>();
+        String oneLineSummary7 = "";
+        boolean useOneLineSummary7 = false;
 
         if (isFrench) {
             duties7.add(new Duty("►Amélioration et maintenance d'applications JEE pour centres d'appels multicanal."));
             achievements7.add(new Achievement("►Amélioration et maintenance, au sein d'une équipe SCRUM, d'une suite d'applications JEE représentant environ 80% du chiffre d'affaires.", false));
             achievements7.add(new Achievement("►Conception de l'architecture et preuves de concept pour l'introduction de fonctionnalités linguistiques sur un CRM, comme le routage sémantique des messages.", false));
             achievements7.add(new Achievement("►Direction d'un projet transversal pour améliorer la sécurité des applications selon les recommandations OWASP et RGPD.", false));
+            oneLineSummary7 = "►Modernisation, sécurisation et maintien de la continuité opérationnelle d'applications stratégiques représentant environ 80% du chiffre d'affaires.";
+            useOneLineSummary7 = true;
         } else {
             duties7.add(new Duty("►Improve and maintain JEE applications for AI-powered multichannel call centers."));
             achievements7.add(new Achievement("►Improved and maintained, within a Scrum team, a suite of interacting JEE applications, that constitutes about 80% of the enterprise revenue.", false));
             achievements7.add(new Achievement("►Designed architecture, user stories and proof of concept for the introduction of linguistic-aware features on a CRM, like the Semantic Routing of messages.", false));
             achievements7.add(new Achievement("►Led a cross-department project to improve security of applications, aligning them with OWASP recommendations and GDPR.", false));
+            oneLineSummary7 = "►Modernized, secured, and maintained operational continuity of strategic applications representing approximately 80% of company revenue.";
+            useOneLineSummary7 = true;
         }
 
-        WorkExperience we7 = new WorkExperience("Eptica", "Jan", 2016, "Jun", 2018, "Senior Software Engineer", "Boulogne Billancourt, France", 2, achievements7, duties7, isFrench ? "Solutions IA pour centres d'appels multicanal" : "AI-powered solutions for multichannel call centers", "", false, "");
+        WorkExperience we7 = new WorkExperience("Eptica", "Jan", 2016, "Jun", 2018, "Senior Software Engineer", "Boulogne Billancourt, France", 2, achievements7, duties7, isFrench ? "Solutions IA pour centres d'appels multicanal" : "AI-powered solutions for multichannel call centers", "", useOneLineSummary7, oneLineSummary7);
         we7.setCompanyContext(isFrench ?
             "Eptica fournit des solutions propulsées par l'IA pour les centres d'appels multicanal, en exploitant des technologies propriétaires de traitement du langage naturel (NLP) et d'intelligence collaborative." :
             "Eptica provides AI-powered solutions for multichannel call centers exploiting proprietary natural language processing (NLP) technologies and collaborative intelligence.");
@@ -513,16 +549,22 @@ public class CV_java_to_PDF_Generator {
         // Work Experience 8: 2Collaborate Consulting
         java.util.List<Duty> duties8 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements8 = new ArrayList<Achievement>();
+        String oneLineSummary8 = "";
+        boolean useOneLineSummary8 = false;
 
         if (isFrench) {
             duties8.add(new Duty("►Conception et développement de preuves de concept pour la méthodologie Action Intelligence."));
             achievements8.add(new Achievement("►Conception et développement de preuves de concept pour implémenter la méthodologie Action Intelligence.", false));
+            oneLineSummary8 = "►Collaboration avec le Dr Jerri Husch pour la mise en œuvre de la méthodologie « Action Intelligence ».";
+            useOneLineSummary8 = true;
         } else {
             duties8.add(new Duty("►Design and develop proofs of concept for Action Intelligence methodology."));
             achievements8.add(new Achievement("►Designed and developed proofs of concept to implement the Action Intelligence methodology.", false));
+            oneLineSummary8 = "►Collaborated with Dr. Jerri Husch on the implementation of the “Action Intelligence” methodology.";
+            useOneLineSummary8 = true;
         }
 
-        WorkExperience we8 = new WorkExperience("2Collaborate Consulting", "Sep", 2014, "Sep", 2015, "Business Analyst / Software Architect", "Geneva, Switzerland", 1, achievements8, duties8, isFrench ? "Projets des Nations Unies (Socio-culturel)" : "UN Projects on global themes (Socio-cultural)", "", false, "");
+        WorkExperience we8 = new WorkExperience("2Collaborate Consulting", "Sep", 2014, "Sep", 2015, "Business Analyst / Software Architect", "Geneva, Switzerland", 1, achievements8, duties8, isFrench ? "Projets des Nations Unies (Socio-culturel)" : "UN Projects on global themes (Socio-cultural)", "", useOneLineSummary8, oneLineSummary8);
         we8.setCompanyContext(isFrench ?
             "2Collaborate travaille dans des contextes socioculturels complexes tels que les projets des Nations Unies sur des thèmes mondiaux, en promouvant une méthodologie innovante appelée \"Action Intelligence\"." :
             "2Collaborate works in complex socio-cultural contexts such as United Nations projects on global themes, promoting an innovative methodology called \"Action Intelligence\".");
@@ -538,18 +580,24 @@ public class CV_java_to_PDF_Generator {
         // Work Experience 9: Terabee
         java.util.List<Duty> duties9 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements9 = new ArrayList<Achievement>();
+        String oneLineSummary9 = "";
+        boolean useOneLineSummary9 = false;
 
         if (isFrench) {
             duties9.add(new Duty("►Direction d'équipe R&D pour projets drones et capteurs en collaboration avec le CERN."));
             achievements9.add(new Achievement("►Coordination d'une équipe de 4 personnes dans un projet impliquant smartphones et drones dans le secteur sportif.", false));
             achievements9.add(new Achievement("►Mise en œuvre d'un ensemble de services de photogrammétrie ayant permis à l'entreprise d'initier de nouvelles lignes d'activité.", false));
+            oneLineSummary9 = "►Direction de projets R&D ayant permis le lancement de nouveaux services de photogrammétrie 3D.";
+            useOneLineSummary9 = true;
         } else {
             duties9.add(new Duty("►Lead R&D team for drone and sensor projects in collaboration with CERN."));
             achievements9.add(new Achievement("►Led a 4-member team in a project that involved smartphones and drones in the golf sector.", false));
             achievements9.add(new Achievement("►Implemented a set of photogrammetry services (like 3D reconstructions and orthomosaics) which enabled the company to explore new business opportunities related to aerial inspection.", false));
+            oneLineSummary9 = "►Led R&D projects that enabled the launch of new 3D photogrammetry services.";
+            useOneLineSummary9 = true;
         }
 
-        WorkExperience we9 = new WorkExperience("Terabee", "Mar", 2013, "Aug", 2014, "R&D Software Lead", "St. Genis Pouilly, France", 1, achievements9, duties9, isFrench ? "Drones et capteurs innovants" : "Drones and advanced sensors", "", false, "");
+        WorkExperience we9 = new WorkExperience("Terabee", "Mar", 2013, "Aug", 2014, "R&D Software Lead", "St. Genis Pouilly, France", 1, achievements9, duties9, isFrench ? "Drones et capteurs innovants" : "Drones and advanced sensors", "", useOneLineSummary9, oneLineSummary9);
         we9.setCompanyContext(isFrench ?
             "Terabee collabore avec le CERN dans le domaine des drones et des capteurs innovants." :
             "Terabee collaborates with CERN in the market of drones and advanced sensors.");
@@ -563,6 +611,8 @@ public class CV_java_to_PDF_Generator {
         // Work Experience 10: italianaSoftware
         java.util.List<Duty> duties10 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements10 = new ArrayList<Achievement>();
+        String oneLineSummary10 = "";
+        boolean useOneLineSummary10 = false;
 
         if (isFrench) {
             duties10.add(new Duty("►Gestion de projet et direction d'équipe pour projets IT."));
@@ -571,6 +621,8 @@ public class CV_java_to_PDF_Generator {
             achievements10.add(new Achievement("►Conception et implémentation d'un synchroniseur de données temps réel pour un e-commerce distribué.", false));
             achievements10.add(new Achievement("►Réalisation de missions de conseil externe en tant qu'ingénieur QA dans l'industrie des télécoms mobiles.", false));
             achievements10.add(new Achievement("►Direction d'un projet d'intégration de microservices dans une plateforme de développement web.", false));
+            oneLineSummary10 = "►Direction technique de projets et d'équipes informatiques représentant 70% du chiffre d'affaires de l'entreprise.";
+            useOneLineSummary10 = true;
         } else {
             duties10.add(new Duty("►Project management and team leadership of IT projects."));
             duties10.add(new Duty("►Conception, analysis, design and development of innovative service-oriented web applications."));
@@ -578,9 +630,11 @@ public class CV_java_to_PDF_Generator {
             achievements10.add(new Achievement("►Designed and implemented a fail-safe real-time data synchronizer for a distributed eCommerce of office supplies.", false));
             achievements10.add(new Achievement("►Accomplished an external consultancy as QA engineer in the mobile carrier industry, in a system with more than 500 services.", false));
             achievements10.add(new Achievement("►Led a project for the integration of microservices within a platform for web app development.", false));
+            oneLineSummary10 = "►Technical leadership of IT projects and teams representing 70% of company revenue.";
+            useOneLineSummary10 = true;
         }
 
-        WorkExperience we10 = new WorkExperience("italianaSoftware", "Sep", 2010, "Nov", 2012, "Software Architect / Project Manager", "Imola, Italy", 2, achievements10, duties10, isFrench ? "Microservices et intégration de systèmes" : "Microservices and system integration", "", false, "");
+        WorkExperience we10 = new WorkExperience("italianaSoftware", "Sep", 2010, "Nov", 2012, "Software Architect / Project Manager", "Imola, Italy", 2, achievements10, duties10, isFrench ? "Microservices et intégration de systèmes" : "Microservices and system integration", "", useOneLineSummary10, oneLineSummary10);
         we10.setCompanyContext(isFrench ?
             "italianaSoftware est spécialisée dans les microservices et l'intégration de systèmes; l'entreprise collabore avec des centres d'excellence (INRIA, SDU) et une communauté internationale." :
             "ItalianaSoftware created the first language for microservices JOLIE, in collaboration with centers of excellence (INRIA, SDU) and an international community.");
@@ -597,16 +651,22 @@ public class CV_java_to_PDF_Generator {
         // Work Experience 11: GemBB
         java.util.List<Duty> duties11 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements11 = new ArrayList<Achievement>();
+        String oneLineSummary11 = "";
+        boolean useOneLineSummary11 = false;
 
         if (isFrench) {
             duties11.add(new Duty("►Supervision de la construction d'applications ETL intégrant des systèmes existants."));
             achievements11.add(new Achievement("►Supervision de la mise en place de 3 applications Extract-Transform-Load intégrant des systèmes existants.", false));
+            oneLineSummary11 = "►Contribution clé à l'innovation stratégique par la conception et gestion de projets ETL et connecteurs de systèmes hérités, et formation de développeur.";
+            useOneLineSummary11 = true;
         } else {
             duties11.add(new Duty("►Supervise construction of ETL applications involving legacy systems."));
             achievements11.add(new Achievement("►Supervised the construction of 3 Extract-Transform-Load applications involving legacy systems.", false));
+            oneLineSummary11 = "►Key contribution to the company's strategic innovation through the design and management of ETL projects and legacy system connectors, along with training a developer.";
+            useOneLineSummary11 = true;
         }
 
-        WorkExperience we11 = new WorkExperience("GemBB", "Jun", 2011, "Jun", 2012, "Consultant / Resource Trainer", "San Marino", 1, achievements11, duties11, isFrench ? "Sécurité au travail" : "Workplace safety", "", false, "");
+        WorkExperience we11 = new WorkExperience("GemBB", "Jun", 2011, "Jun", 2012, "Consultant / Resource Trainer", "San Marino", 1, achievements11, duties11, isFrench ? "Sécurité au travail" : "Workplace safety", "", useOneLineSummary11, oneLineSummary11);
         we11.setCompanyContext(isFrench ?
             "GemBB est actif dans le secteur de la sécurité au travail et intègre des systèmes existants." :
             "GemBB is active in the sector of workplace safety, integrating legacy systems.");
@@ -621,20 +681,26 @@ public class CV_java_to_PDF_Generator {
         // Work Experience 12: Gheotech
         java.util.List<Duty> duties12 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements12 = new ArrayList<Achievement>();
+        String oneLineSummary12 = "";
+        boolean useOneLineSummary12 = false;
 
         if (isFrench) {
             duties12.add(new Duty("►Gestion, développement, maintenance, déploiement et support de projets JEE."));
             duties12.add(new Duty("►Gestion des relations avec les parties prenantes des projets."));
             achievements12.add(new Achievement("►Direction de 6 projets, coordination de 3 professionnels et interaction avec les clients/revendeurs.", false));
             achievements12.add(new Achievement("►Amélioration majeure des performances d'un serveur de vidéosurveillance, doublant le nombre de flux temps réel, les types de caméras supportés et la precision du dectection du moviment, conduisant à l’acquisition de nouveaux contrats clients.", false));
+            oneLineSummary12 = "►Gestion simultanée de 6 projets techniques et refonte d'un serveur de vidéosurveillance ayant doublé les performances et permis la signature de nouveaux contrats majeurs.";
+            useOneLineSummary12 = true;
         } else {
             duties12.add(new Duty("►Management, development, maintenance, deployment and support of JEE projects."));
             duties12.add(new Duty("►Management of the relationships with the stakeholders of the projects."));
             achievements12.add(new Achievement("►Led up to 6 projects, coordinating 3 professionals and interacting with stakeholders.", false));
             achievements12.add(new Achievement("►Highly improved the performance of a video surveillance server in terms of real-time streams handling, supported camera types and the precision of movement detection, leading to the acquisition of more client contracts.", false));
+            oneLineSummary12 = "►Simultaneous management of 6 technical projects, overhaul of a video surveillance server that doubled performance and enabled the signing of new major contracts.";
+            useOneLineSummary12 = true;
         }
 
-        WorkExperience we12 = new WorkExperience("Gheotech", "Oct", 2009, "Aug", 2010, "Analyst / Developer", "Cattolica, Italy", 1, achievements12, duties12, isFrench ? "Gestion des infrastructures urbaines (GIS)" : "Public utility distribution (GIS)", "", false, "");
+        WorkExperience we12 = new WorkExperience("Gheotech", "Oct", 2009, "Aug", 2010, "Analyst / Developer", "Cattolica, Italy", 1, achievements12, duties12, isFrench ? "Gestion des infrastructures urbaines (GIS)" : "Public utility distribution (GIS)", "", useOneLineSummary12, oneLineSummary12);
         we12.setCompanyContext(isFrench ?
             "Gheotech intervient dans la gestion des infrastructures urbaines (distribution d'eau, de gaz et de fibre)." :
             "Gheotech operates in the field of public utility distribution (water, optical fiber, gas), leveraging its proprietary Geographic Information System (GIS), distributed documentation systems and video surveillance server.");
@@ -726,7 +792,11 @@ public class CV_java_to_PDF_Generator {
             }
 
             // Achievements
-            if (work_experience.getAchievements() != null && !work_experience.getAchievements().isEmpty()) {
+            if (work_experience.isOneLineAchievementEnabled() && work_experience.getOneLineAchievement() != null && !work_experience.getOneLineAchievement().isEmpty()) {
+                Paragraph achPar = new Paragraph(work_experience.getOneLineAchievement(), font_10);
+                achPar.setIndentationLeft(10);
+                parExperiences.add(achPar);
+            } else if (work_experience.getAchievements() != null && !work_experience.getAchievements().isEmpty()) {
                 for (Achievement achievement : work_experience.getAchievements()) {
                     Paragraph achPar = new Paragraph(achievement.toString(), font_10);
                     achPar.setIndentationLeft(10);
@@ -863,7 +933,6 @@ public class CV_java_to_PDF_Generator {
     public static void main(String[] args) throws DocumentException, IOException, SQLException {
         CV_Generator=new CV_java_to_PDF_Generator();
         //Configuration
-
         CV_Generator.createPdf(CV_FILENAME);
     }
 }
