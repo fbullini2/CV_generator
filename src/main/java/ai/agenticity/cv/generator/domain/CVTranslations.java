@@ -3,6 +3,8 @@ package ai.agenticity.cv.generator.domain;
 import java.util.HashMap;
 import java.util.Map;
 
+import static ai.agenticity.cv.generator.CV_java_to_PDF_Generator.TARGET_COMPANY_IS_A_STARTUP;
+
 /**
  * Translations for CV content in different languages
  */
@@ -36,16 +38,20 @@ public class CVTranslations {
 
         // Introduction
         translations.put("intro_1", "7 years as Chief Technology Officer and leader of R&D projects in SME and startups.\n");
-        translations.put("intro_2", "4 startups built from scratch, contributing as CTO and minoritary partner.\n");
-        translations.put("intro_3", "16 years of professional experience designing, developing and delivering distributed systems and SaaS platforms. Expert in Agentic AI, Multi-Agent Systems and Gen AI.\n");
+        if (TARGET_COMPANY_IS_A_STARTUP) {
+            translations.put("intro_2", "4 startups built from scratch, contributing as CTO and minoritary partner.\n");
+        }
+        translations.put("intro_3", "16 years of professional experience designing, developing and delivering distributed systems and SaaS platforms. " +
+                "Expert in Agentic AI, Multi-Agent Systems and Generative AI.\n");
         translations.put("intro_4", "12 years of practice working in agile teams, acting as both Senior Engineer and Scrum Master.\n");
         translations.put("intro_5", "12 years of international experience working in culturally diverse contexts across several countries.\n");
         translations.put("intro_6", "10+ application domains covered throughout my career.\n");
         translations.put("intro_7", "3 languages spoken with full professional proficiency: French, English, and Italian.\n");
         translations.put("intro_8", "6 years as independent consultant and Fractional CTO and CPO.\n");
         translations.put("intro_9", "6 years of management experience, leading teams of up to 15 professionals.\n");
-        translations.put("intro_10", "10 years within startup ecosystems, spanning incubators and accelerators such as Innovami, CERN Technoparc, Station F, and Pépinière 26.\n");
-
+        if (TARGET_COMPANY_IS_A_STARTUP) {
+            translations.put("intro_10", "10 years within startup ecosystems, spanning incubators and accelerators such as Innovami, CERN Technoparc, Station F, and Pépinière 26.\n");
+        }
         // Profile
         translations.put("profile_1", "Intellectually curious, quick learner and strategic team leader, with a strong focus on AI and security.\n");
         translations.put("profile_2", "My journey began in university labs with multi-agent systems and agentic AI research and has evolved into solid expertise in innovation, industry standards, and best practices, culminating in recent experience with cutting-edge AI technologies.\n");
@@ -163,16 +169,20 @@ public class CVTranslations {
 
         // Introduction
         translations.put("intro_1", "7 ans d'expérience en direction technique et en pilotage d'équipes R&D dans des PME.\n");
-        translations.put("intro_2", "4 startups créées from scratch en tant que CTO et associé minoritaire.\n");
-        translations.put("intro_3", "16 ans d'expérience dans la conception, le développement et le déploiement de systèmes distribués et de plateformes SaaS à haute disponibilité. Expert en IA agentique, systèmes multi-agents et IA générative.\n");
+        if (TARGET_COMPANY_IS_A_STARTUP) {
+            translations.put("intro_2", "4 startups créées from scratch en tant que CTO et associé minoritaire.\n");
+        }
+        translations.put("intro_3", "16 ans d'expérience dans la conception, le développement et le déploiement de systèmes distribués et de plateformes SaaS à haute disponibilité. " +
+                "Expert en IA agentique, systèmes multi-agents et IA générative.\n");
         translations.put("intro_4", "12 ans de pratique au sein d’équipes agiles en tant que Senior Engineer et Scrum Master.\n");
         translations.put("intro_5", "12 ans d’expérience internationale dans des environnements multiculturels exigeants à travers plusieurs pays.\n");
         translations.put("intro_6", "10+ domaines d’application couverts tout au long de ma carrière.\n");
         translations.put("intro_7", "3 langues parlées avec une compétence professionnelle complète : français, anglais et italien.\n");
         translations.put("intro_8", "6 ans d’expérience comme consultant indépendant et Fractional CPTO.\n");
         translations.put("intro_9", "6 ans d’expérience en management, à la tête d’équipes jusqu’à 15 professionnels.\n");
-//        translations.put("intro_10", "10 ans au sein des écosystèmes de startups, à travers des incubateurs et accélérateurs tels qu’Innovami, le Technoparc du CERN, Station F et la Pépinière 26..\n");
-
+        if (TARGET_COMPANY_IS_A_STARTUP) {
+            translations.put("intro_10", "10 ans au sein des écosystèmes de startups, à travers des incubateurs et accélérateurs tels qu’Innovami, le Technoparc du CERN, Station F et la Pépinière 26..\n");
+        }
 
         // Profile
         translations.put("profile_1", "Leader technologique orienté résultats, passionné par l'innovation, la cybersécurité et la transformation digitale des organisations.\n");

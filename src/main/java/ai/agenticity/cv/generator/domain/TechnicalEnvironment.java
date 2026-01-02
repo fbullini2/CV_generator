@@ -8,29 +8,39 @@ import java.util.List;
  * Contains multiple categories (e.g., Languages, Cloud, Databases) with their associated technologies.
  */
 public class TechnicalEnvironment {
+
     private List<TechnicalEnvironmentCategory> categories;
+    private boolean oneLine = false;
+    private String oneLineText = "";
 
     public TechnicalEnvironment() {
         this.categories = new ArrayList<>();
+        this.oneLine = false;
     }
 
-    public TechnicalEnvironment(List<TechnicalEnvironmentCategory> categories) {
-        this.categories = categories;
-    }
-
-    public List<TechnicalEnvironmentCategory> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<TechnicalEnvironmentCategory> categories) {
-        this.categories = categories;
+    public TechnicalEnvironment(String oneLineText) {
+        this.oneLineText = oneLineText;
+        this.oneLine = true;
+        this.categories = new ArrayList<>(); // Initialize to avoid null pointers
     }
 
     public void addCategory(TechnicalEnvironmentCategory category) {
         this.categories.add(category);
     }
 
+    public List<TechnicalEnvironmentCategory> getCategories() {
+        return categories;
+    }
+
+    public boolean isOneLine() {
+        return oneLine;
+    }
+
+    public String getOneLineText() {
+        return oneLineText;
+    }
+
     public boolean isEmpty() {
-        return categories == null || categories.isEmpty();
+        return categories.isEmpty() && oneLineText.isEmpty();
     }
 }
