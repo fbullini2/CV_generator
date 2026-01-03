@@ -43,7 +43,7 @@ public class CVTranslations {
             translations.put("intro_2", "4 startups built from scratch, contributing as CTO and minoritary partner.\n");
         }
         translations.put("intro_3", "16 years of professional experience designing, developing and delivering distributed systems and SaaS platforms. " +
-                "Expert in Agentic AI, Multi-Agent Systems and Generative AI.\n");
+                "**Expert in Agentic AI, Multi-Agent Systems and Generative AI.**\n");
         translations.put("intro_4", "12 years of international experience delivering high-impact outcomes within agile, multicultural teams across multiple countries.\n");
 //        translations.put("intro_4", "12 years of practice working in agile teams, acting as both Senior Engineer and Scrum Master.\n");
 //        translations.put("intro_5", "12 years of international experience working in culturally diverse contexts across several countries.\n");
@@ -180,7 +180,7 @@ public class CVTranslations {
             translations.put("intro_2", "4 startups créées from scratch en tant que CTO et associé minoritaire.\n");
         }
         translations.put("intro_3", "16 ans d'expérience dans la conception, le développement et le déploiement de systèmes distribués et de plateformes SaaS à haute disponibilité. " +
-                "Expert en IA agentique, systèmes multi-agents et IA générative.\n");
+                "**Expert en IA agentique, systèmes multi-agents et IA générative.**\n");
         translations.put("intro_4", "12 ans d’expérience internationale dans la réalisation de résultats à fort impact au sein d’équipes agiles et multiculturelles, réparties dans plusieurs pays.\n");
 //        translations.put("intro_4", "12 ans de pratique au sein d’équipes agiles en tant que Senior Engineer et Scrum Master.\n");
 //        translations.put("intro_5", "12 ans d’expérience internationale dans des environnements multiculturels exigeants à travers plusieurs pays.\n");

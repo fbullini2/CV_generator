@@ -184,7 +184,18 @@ public class CV_java_to_PDF_Generator {
             String translation = translations.get(key);
             // Add the chunk only if the translation exists and is not the key itself
             if (translation != null && !translation.equals(key)  && !translation.trim().isEmpty()) {
-                phr1.add(new Chunk(translation));
+                if (translation.contains("**")) {
+                    String[] parts = translation.split("\\*\\*");
+                    for (int j = 0; j < parts.length; j++) {
+                        if (j % 2 == 1) {
+                            phr1.add(new Chunk(parts[j], font_bold_10));
+                        } else {
+                            phr1.add(new Chunk(parts[j], font_10));
+                        }
+                    }
+                } else {
+                    phr1.add(new Chunk(translation, font_10));
+                }
             }
         }
         phr1.setFont(font_10);
@@ -797,9 +808,9 @@ public class CV_java_to_PDF_Generator {
         applyTitleStyle(par4_title);
         Paragraph par4 = new Paragraph();
         Phrase phr4_1 = new Phrase();
-        Chunk chunk4_1 = new Chunk(translations.get("education_1"));
-        Chunk chunk4_2 = new Chunk(translations.get("education_2"));
-        Chunk chunk4_3 = new Chunk(translations.get("education_3"));
+        Chunk chunk4_1 = new Chunk(translations.get("education_1"), font_10);
+        Chunk chunk4_2 = new Chunk(translations.get("education_2"), font_10);
+        Chunk chunk4_3 = new Chunk(translations.get("education_3"), font_10);
 
         phr4_1.add(chunk4_1);
         phr4_1.add(Chunk.NEWLINE);
