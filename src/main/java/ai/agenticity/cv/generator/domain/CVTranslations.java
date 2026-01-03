@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static ai.agenticity.cv.generator.CV_java_to_PDF_Generator.TARGET_COMPANY_IS_A_STARTUP;
+import static ai.agenticity.cv.generator.CV_java_to_PDF_Generator.TARGET_SECTOR_IS_EDUCATION_OR_EMPLOYABILITY_OR_SKILLS;
 
 /**
  * Translations for CV content in different languages
@@ -43,9 +44,15 @@ public class CVTranslations {
         }
         translations.put("intro_3", "16 years of professional experience designing, developing and delivering distributed systems and SaaS platforms. " +
                 "Expert in Agentic AI, Multi-Agent Systems and Generative AI.\n");
-        translations.put("intro_4", "12 years of practice working in agile teams, acting as both Senior Engineer and Scrum Master.\n");
-        translations.put("intro_5", "12 years of international experience working in culturally diverse contexts across several countries.\n");
-        translations.put("intro_6", "10+ application domains covered throughout my career.\n");
+        translations.put("intro_4", "12 years of international experience delivering high-impact outcomes within agile, multicultural teams across multiple countries.\n");
+//        translations.put("intro_4", "12 years of practice working in agile teams, acting as both Senior Engineer and Scrum Master.\n");
+//        translations.put("intro_5", "12 years of international experience working in culturally diverse contexts across several countries.\n");
+        String txtBaseEN="10+ application domains covered throughout my career.\n";
+        String textFinalEN=txtBaseEN;
+        if (TARGET_SECTOR_IS_EDUCATION_OR_EMPLOYABILITY_OR_SKILLS) {
+            textFinalEN=txtBaseEN+", including 5 years in EdTech, Reskilling and Upskilling.\n";}
+        translations.put("intro_6",textFinalEN);
+
         translations.put("intro_7", "3 languages spoken with full professional proficiency: French, English, and Italian.\n");
         translations.put("intro_8", "6 years as independent consultant and Fractional CTO and CPO.\n");
         translations.put("intro_9", "6 years of management experience, leading teams of up to 15 professionals.\n");
@@ -174,9 +181,18 @@ public class CVTranslations {
         }
         translations.put("intro_3", "16 ans d'expérience dans la conception, le développement et le déploiement de systèmes distribués et de plateformes SaaS à haute disponibilité. " +
                 "Expert en IA agentique, systèmes multi-agents et IA générative.\n");
-        translations.put("intro_4", "12 ans de pratique au sein d’équipes agiles en tant que Senior Engineer et Scrum Master.\n");
-        translations.put("intro_5", "12 ans d’expérience internationale dans des environnements multiculturels exigeants à travers plusieurs pays.\n");
-        translations.put("intro_6", "10+ domaines d’application couverts tout au long de ma carrière.\n");
+        translations.put("intro_4", "12 ans d’expérience internationale dans la réalisation de résultats à fort impact au sein d’équipes agiles et multiculturelles, réparties dans plusieurs pays.\n");
+//        translations.put("intro_4", "12 ans de pratique au sein d’équipes agiles en tant que Senior Engineer et Scrum Master.\n");
+//        translations.put("intro_5", "12 ans d’expérience internationale dans des environnements multiculturels exigeants à travers plusieurs pays.\n");
+        String txtBase="10+ domaines d’application couverts tout au long de ma carrière.";
+        String textFinal=txtBase;
+        if (TARGET_SECTOR_IS_EDUCATION_OR_EMPLOYABILITY_OR_SKILLS) {
+        textFinal=txtBase+", dont 5 ans en EdTech, reconversion professionnelle et développement des compétences.";}
+//        else {
+//            textFinal=txtBase+"\n";
+//        }
+        translations.put("intro_6",textFinal+"\n");
+
         translations.put("intro_7", "3 langues parlées avec une compétence professionnelle complète : français, anglais et italien.\n");
         translations.put("intro_8", "6 ans d’expérience comme consultant indépendant et Fractional CPTO.\n");
         translations.put("intro_9", "6 ans d’expérience en management, à la tête d’équipes jusqu’à 15 professionnels.\n");
@@ -220,22 +236,19 @@ public class CVTranslations {
         // Languages
         translations.put("lang_italian", "Italien : Langue maternelle   ");
         translations.put("lang_english", "Anglais : Compétence professionnelle   ");
-        translations.put("lang_french", "Français : Compétence professionnelle");
-
-        // Months
-        translations.put("Jan", "Jan");
-        translations.put("Feb", "Fév");
-        translations.put("Mar", "Mar");
-        translations.put("Apr", "Avr");
+        translations.put("Jan", "Janv.");
+        translations.put("Feb", "Févr.");
+        translations.put("Mar", "Mars");
+        translations.put("Apr", "Avr.");
         translations.put("May", "Mai");
-        translations.put("Jun", "Jun");
-        translations.put("Jul", "Jul");
-        translations.put("Aug", "Aoû");
-        translations.put("Sep", "Sep");
-        translations.put("Oct", "Oct");
-        translations.put("Nov", "Nov");
-        translations.put("Dec", "Déc");
-        translations.put("Present", "Présent");
+        translations.put("Jun", "Juin");
+        translations.put("Jul", "Juil.");
+        translations.put("Aug", "Août");
+        translations.put("Sep", "Sept.");
+        translations.put("Oct", "Oct.");
+        translations.put("Nov", "Nov.");
+        translations.put("Dec", "Déc.");
+        translations.put("Present", "à ce jour");
         translations.put("contract_self_employed", "Indépendant");
 
         // PDF metadata

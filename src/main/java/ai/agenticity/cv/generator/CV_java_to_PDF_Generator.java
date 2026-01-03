@@ -34,7 +34,6 @@ import ai.agenticity.cv.generator.domain.TechnicalEnvironmentCategory;
 import ai.agenticity.cv.generator.domain.WorkExperience;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -61,7 +60,7 @@ public class CV_java_to_PDF_Generator {
     public static final boolean DUTIES_ENABLED = false; // true = Show Duties for work experiences, false = hide it
     public static final boolean COMPANY_SECTOR_ENABLED = false; // true = Show Duties for work experiences, false = hide it
 
-    public static final String CV_FILENAME = "CV_BULLINI_" +"CTO_"+ LANGUAGE + "_" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ".pdf";
+    public static String CV_FILENAME = "CV_BULLINI_" +"CTO_"+ LANGUAGE + "_" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ".pdf";
 
     // Personal information
     public static final String FULL_NAME = "Francesco Bullini";
@@ -112,9 +111,9 @@ public class CV_java_to_PDF_Generator {
 
     private CVTranslations translations;
 
-    public void createPdf(String filename) throws DocumentException, IOException, SQLException {
+    public void createPdf(String filename, String language) throws DocumentException, IOException, SQLException {
         // Initialize translations
-        this.translations = new CVTranslations(LANGUAGE);
+        this.translations = new CVTranslations(language);
         CVTranslations translations = this.translations;
 
 //        if (!TARGET_COMPANY_IS_A_STARTUP) {
@@ -284,7 +283,7 @@ public class CV_java_to_PDF_Generator {
 
         // Work Experience List
         java.util.List<WorkExperience> workExperiences = new ArrayList<WorkExperience>();
-        boolean isFrench = "FR".equals(LANGUAGE);
+        boolean isFrench = "FR".equals(language);
 
         // Work Experience 1: Agenticity.ai
         java.util.List<Duty> duties1 = new ArrayList<Duty>();
@@ -889,6 +888,9 @@ public class CV_java_to_PDF_Generator {
     public static void main(String[] args) throws DocumentException, IOException, SQLException {
         CV_Generator=new CV_java_to_PDF_Generator();
         //Configuration
-        CV_Generator.createPdf(CV_FILENAME);
+        CV_FILENAME="CV_BULLINI_" +"CTO_"+ "EN" + "_" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ".pdf";
+        CV_Generator.createPdf(CV_FILENAME, "EN");
+        CV_FILENAME="CV_BULLINI_" +"CTO_"+ "FR" + "_" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ".pdf";
+        CV_Generator.createPdf(CV_FILENAME, "FR");
     }
 }
