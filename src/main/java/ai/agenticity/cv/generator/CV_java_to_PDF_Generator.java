@@ -50,15 +50,15 @@ public class CV_java_to_PDF_Generator {
     public static final boolean REQUIRES_JAVA = false; // true = Java required, false = not required
     public static final boolean TARGET_COMPANY_IS_A_STARTUP = false; // true = The target company is a startup, or it's valuable to highlight my work in startups; false if it is not valuable for that company job description
     public static final boolean TARGET_COMPANY_IS_FROM_SCRATCH = false; // true = The target company is a startup from scratch, or it's valuable to highlight my work in startups from scratch;false if it is not valuable for that company job description
-    public static final boolean TARGET_SECTOR_IS_EDUCATION_OR_EMPLOYABILITY_OR_SKILLS = false; // true = The target sector is someway related to education, employability or reskilling, upskilling or human resources; false if it is not valuable for that company job description
+    public static final boolean TARGET_SECTOR_IS_EDUCATION_OR_EMPLOYABILITY_OR_SKILLS = true; // true = The target sector is someway related to education, employability or reskilling, upskilling or human resources; false if it is not valuable for that company job description
 
     public static final boolean INTRO_ENABLED = true; // true = Show introduction section, false = hide it
-    public static final boolean PROFILE_ENABLED = false; // true = Show Profile section, false = hide it
+    public static final boolean PROFILE_ENABLED = true; // true = Show Profile section, false = hide it
     public static final boolean COMPETENCE_SECTION_ENABLED = false; // true = Show Key Competencies section, false = hide it
     public static final boolean TECH_ENV_SECTION_ENABLED = true; // true = Show Technical Environment for work experiences, false = hide it
     public static final boolean DISPLAY_BUSINESS_SECTOR_ENABLED = false; // true = Show company business sector, false = hide it
     public static final boolean DUTIES_ENABLED = false; // true = Show Duties for work experiences, false = hide it
-    public static final boolean COMPANY_SECTOR_ENABLED = false; // true = Show Duties for work experiences, false = hide it
+    public static final boolean COMPANY_SECTOR_ENABLED = true; // true = Show Duties for work experiences, false = hide it
 
     public static String CV_FILENAME = "CV_BULLINI_" +"CTO_"+ LANGUAGE + "_" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ".pdf";
 
@@ -83,6 +83,11 @@ public class CV_java_to_PDF_Generator {
     public static Font font_bold_10;
     public static Font font_bold_12;
     private static CV_java_to_PDF_Generator CV_Generator;
+
+    private static void addIfNotEmpty(Phrase ph, Chunk chunk){
+       if (chunk!=null && !chunk.getContent().isEmpty())
+           ph.add(chunk);
+    }
 
     static {
         try {
@@ -207,15 +212,15 @@ public class CV_java_to_PDF_Generator {
         Paragraph par2_profile = new Paragraph();
 
         Phrase phr2_1 = new Phrase();
-        Chunk chunk2_1 = new Chunk(translations.get("profile_1"));
-        Chunk chunk2_2 = new Chunk(translations.get("profile_2"));
-        Chunk chunk2_3 = new Chunk(translations.get("profile_3"));
-        Chunk chunk2_4 = new Chunk(translations.get("profile_4"));
+        Chunk chunk2_1 = new Chunk(translations.get("profile_1"), font_10);
+        Chunk chunk2_2 = new Chunk(translations.get("profile_2"), font_10);
+        Chunk chunk2_3 = new Chunk(translations.get("profile_3"), font_10);
+        Chunk chunk2_4 = new Chunk(translations.get("profile_4"), font_10);
 
-        phr2_1.add(chunk2_1);
-        phr2_1.add(chunk2_2);
-        phr2_1.add(chunk2_3);
-        phr2_1.add(chunk2_4);
+        addIfNotEmpty(phr2_1,chunk2_1);
+        addIfNotEmpty(phr2_1,chunk2_2);
+        addIfNotEmpty(phr2_1,chunk2_3);
+        addIfNotEmpty(phr2_1,chunk2_4);
         phr2_1.setFont(font_10);
         par2_profile.add(phr2_1);
 
@@ -307,24 +312,24 @@ public class CV_java_to_PDF_Generator {
             achievements1.add(new Achievement("►Conception et développement d'une infrastructure logicielle native en IA, centrée sur les agents, pour le raisonnement contextuel et l'orchestration d'équipes d'assistants IA spécialisés par domaine (B2B).", false));
             achievements1.add(new Achievement("►Développement de trois MVPs pour assistants IA (B2B) basés sur des pipelines RAG, dans les domaines de la construction civile, du coaching pour dirigeants de PME et de la recherche en longévité.", false));
             achievements1.add(new Achievement("►Conception et développement d'un outil pour optimiser le compromis coût-qualité dans l'utilisation des Large Language Models (LLMs).", false));
-            achievements1.add(new Achievement("►Conception et développement d'un composant d'ingestion personnalisé pour données non structurées, incluant les vidéos.", false));
+//            achievements1.add(new Achievement("►Conception et développement d'un composant d'ingestion personnalisé pour données non structurées, incluant les vidéos.", false));
         } else {
             duties1.add(new Duty("►Design and develop AI-native distributed software infrastructure for contextual reasoning and orchestration of AI Assistants."));
             achievements1.add(new Achievement("►Designed and developed an agent-first AI-native distributed software infrastructure for contextual reasoning and programmable orchestration of teams of ai.agenticity.cv.generator.domain-specific AI Assistants.", false));
             achievements1.add(new Achievement("►Designed and developed three MVPs for AI assistants (B2B) based on RAG pipelines, in the fields of civil construction, coaching of SME executives and longevity research.", false));
             achievements1.add(new Achievement("►Designed and developed a tool to optimize the cost-quality trade-off in the usage of Large Language Models (LLMs).", false));
-            achievements1.add(new Achievement("►Designed and developed a custom ingestion component for unstructured data, including videos.", false));
+//            achievements1.add(new Achievement("►Designed and developed a custom ingestion component for unstructured data, including videos.", false));
         }
 
         WorkExperience we1 = new WorkExperience("Agenticity.ai", "Jan", 2024, "Present", 2025, "CTO / AI Architect", "Paris, France", 1, achievements1, duties1, isFrench ? "Conseil en IA et IT" : "AI and IT consulting", "", useOneLineSummary1, oneLineSummary1);
         we1.setContractType(translations.get("contract_self_employed"));
         we1.setCompanyContext(isFrench ?
             "Agenticity propose des prestations de conseil en IA et IT, en concevant et en livrant des solutions sur mesure pour des assistants IA spécialisés par domaine et des systèmes multi-agents." :
-            "Agenticity provides AI and IT consulting, designing and delivering custom solutions for ai.agenticity.cv.generator.domain-specialized AI assistants and multi-agent systems.");
+            "Agenticity provides AI and IT consulting, designing and delivering custom solutions for domain-specialized AI assistants and multi-agent systems.");
         if (isFrench) {
-            we1.setTechnicalEnvironment(new TechnicalEnvironment("Java 21, SpringBoot 3.2, Maven, python, Docker, Google Cloud, Github, React, Large Language Models, agentic frameworks and \"Al specific” clouds (RunPod, HuggingFace, Mistral Al, Vertex Al, AWS bedrock), protocoles pour les agents (Model Context Protocol, Agent-2-Agent)."));
+            we1.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Java, python, Docker, agentic frameworks and \"Al specific” clouds (RunPod, HuggingFace, Mistral Al, Vertex Al, AWS bedrock), protocoles pour les agents (Model Context Protocol, Agent-2-Agent, AG-UI), RabbitMQ, Nginx, Firebase, websocket, Next.js."));
         } else {
-            we1.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Java, Python, Docker, websocket, RabbitMQ, Nginx, agent frameworks and protocols (Model Context Protocol, Agent-to-Agent, AG-UI), agentic RAG systems, Al-dedicated cloud services (like RunPod, Hugging Face, AnyScale), Firebase."));
+            we1.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Java, Python, Docker, agent frameworks and protocols (Model Context Protocol, Agent-to-Agent, AG-UI), agentic RAG systems, Al-dedicated cloud services (like RunPod, Hugging Face, AnyScale), RabbitMQ, Nginx, Firebase, websocket, Next.js."));
         }
 
         // Work Experience 2: EU Project D-Reskill
@@ -666,9 +671,10 @@ public class CV_java_to_PDF_Generator {
             "Gheotech intervient dans la gestion des infrastructures urbaines (distribution d'eau, de gaz et de fibre)." :
             "Gheotech operates in the field of public utility distribution (water, optical fiber, gas), leveraging its proprietary Geographic Information System (GIS), distributed documentation systems and video surveillance server.");
         if (isFrench) {
-            we12.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, EJB, JBPM, Maven, Postgresql, bibliothèque pour vidéo-surveillance."));
+            we12.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, EJB, JBPM, PostgreSQL, bibliothèque pour vidéo-surveillance."));
         } else {
-            we12.setTechnicalEnvironment(new TechnicalEnvironment("JBoss, EJB3, jBPM, Tomcat, JSF, JPA/Hibernate, JAX-WS, PostgreSQL, GWT/GXT, dojo toolkit, Batik, JasperReports, BIRT, Rackspace, VirtualBox, PostGIS. Video streaming libs tools and protocols (VLC, Red5. ffmpeg), various types of IP cameras."));
+            we12.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, PostgreSQL, Rackspace, VirtualBox, PostGIS. Video streaming libs tools and protocols (VLC, Red5, ffmpeg), various types of IP cameras."));
+//            we12.setTechnicalEnvironment(new TechnicalEnvironment("JBoss, EJB3, jBPM, Tomcat, JSF, JPA/Hibernate, JAX-WS, PostgreSQL, GWT/GXT, dojo toolkit, Batik, JasperReports, BIRT, Rackspace, VirtualBox, PostGIS. Video streaming libs tools and protocols (VLC, Red5, ffmpeg), various types of IP cameras."));
         }
 
         // Add all work experiences

@@ -47,11 +47,14 @@ public class CVTranslations {
         translations.put("intro_4", "12 years of international experience delivering high-impact outcomes within agile, multicultural teams across multiple countries.\n");
 //        translations.put("intro_4", "12 years of practice working in agile teams, acting as both Senior Engineer and Scrum Master.\n");
 //        translations.put("intro_5", "12 years of international experience working in culturally diverse contexts across several countries.\n");
-        String txtBaseEN="10+ application domains covered throughout my career.\n";
+        String txtBaseEN="10+ application domains covered throughout my career";
         String textFinalEN=txtBaseEN;
         if (TARGET_SECTOR_IS_EDUCATION_OR_EMPLOYABILITY_OR_SKILLS) {
-            textFinalEN=txtBaseEN+", including 5 years in EdTech, Reskilling and Upskilling.\n";}
-        translations.put("intro_6",textFinalEN);
+            textFinalEN=txtBaseEN+", including 5 years in EdTech, Reskilling and Upskilling.";}
+        else {
+            textFinalEN=txtBaseEN+".";
+        }
+        translations.put("intro_6",textFinalEN+"\n");
 
         translations.put("intro_7", "3 languages spoken with full professional proficiency: French, English, and Italian.\n");
         translations.put("intro_8", "6 years as independent consultant and Fractional CTO and CPO.\n");
@@ -60,10 +63,12 @@ public class CVTranslations {
             translations.put("intro_10", "10 years within startup ecosystems, spanning incubators and accelerators such as Innovami, CERN Technoparc, Station F, and Pépinière 26.\n");
         }
         // Profile
-        translations.put("profile_1", "Intellectually curious, quick learner and strategic team leader, with a strong focus on AI and security.\n");
-        translations.put("profile_2", "My journey began in university labs with multi-agent systems and agentic AI research and has evolved into solid expertise in innovation, industry standards, and best practices, culminating in recent experience with cutting-edge AI technologies.\n");
-        translations.put("profile_3", "Along the way, I progressed across SMEs and startups, moving from developer to architect and ultimately into strategic leadership roles as a CTO, while always maintaining a hands-on, operational approach.\n");
-        translations.put("profile_4", "Experienced in hybrid and remote collaboration.\n"); //, thriving in international environments
+        translations.put("profile_1", "Strategic team leader, with a strong focus on AI and security.\n");
+//        translations.put("profile_1", "Intellectually curious, quick learner and strategic team leader, with a strong focus on AI and security.\n");
+        translations.put("profile_2", "My journey began in university labs with multi-agent systems and agentic AI, and has evolved into solid expertise in innovation, industry standards, and best practices, culminating in recent experience with cutting-edge AI technologies.\n");
+        translations.put("profile_3", "I worked in SMEs and gave structure to startups, moving from developer to architect and ultimately into strategic leadership roles as a CTO, while always maintaining a hands-on, operational approach.\n");
+//        translations.put("profile_3", "Along the way, I progressed across SMEs and startups, moving from developer to architect and ultimately into strategic leadership roles as a CTO, while always maintaining a hands-on, operational approach.\n");
+//        translations.put("profile_4", "Experienced in hybrid and remote collaboration.\n"); //, thriving in international environments
 
         // Competencies titles
         translations.put("comp_mgmt_title", "Management of AI and Software engineering projects:\n");
@@ -184,13 +189,13 @@ public class CVTranslations {
         translations.put("intro_4", "12 ans d’expérience internationale dans la réalisation de résultats à fort impact au sein d’équipes agiles et multiculturelles, réparties dans plusieurs pays.\n");
 //        translations.put("intro_4", "12 ans de pratique au sein d’équipes agiles en tant que Senior Engineer et Scrum Master.\n");
 //        translations.put("intro_5", "12 ans d’expérience internationale dans des environnements multiculturels exigeants à travers plusieurs pays.\n");
-        String txtBase="10+ domaines d’application couverts tout au long de ma carrière.";
+        String txtBase="10+ domaines d’application couverts tout au long de ma carrière";
         String textFinal=txtBase;
         if (TARGET_SECTOR_IS_EDUCATION_OR_EMPLOYABILITY_OR_SKILLS) {
         textFinal=txtBase+", dont 5 ans en EdTech, reconversion professionnelle et développement des compétences.";}
-//        else {
-//            textFinal=txtBase+"\n";
-//        }
+        else {
+            textFinal=txtBase+".";
+        }
         translations.put("intro_6",textFinal+"\n");
 
         translations.put("intro_7", "3 langues parlées avec une compétence professionnelle complète : français, anglais et italien.\n");
@@ -248,7 +253,7 @@ public class CVTranslations {
         translations.put("Oct", "Oct.");
         translations.put("Nov", "Nov.");
         translations.put("Dec", "Déc.");
-        translations.put("Present", "à ce jour");
+        translations.put("Pnt", "à ce jour");
         translations.put("contract_self_employed", "Indépendant");
 
         // PDF metadata
@@ -304,7 +309,7 @@ public class CVTranslations {
     }
 
     public String get(String key) {
-        return translations.getOrDefault(key, key);
+        return translations.getOrDefault(key, "");
     }
 
     public void put(String key, String value) {
