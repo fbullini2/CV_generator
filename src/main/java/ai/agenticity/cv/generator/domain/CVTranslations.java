@@ -33,7 +33,7 @@ public class CVTranslations {
         translations.put("main_title", "CHIEF TECHNOLOGY OFFICER - AI EXPERT");
         translations.put("profile_title", "Profile");
         translations.put("competencies_title", "Key Competencies");
-        translations.put("experience_title", "Professional Experience");
+        translations.put("experience_title", "Key Professional Experience");
         translations.put("education_title", "Education & Qualifications");
         translations.put("languages_title", "Languages");
 
@@ -42,8 +42,9 @@ public class CVTranslations {
         if (TARGET_COMPANY_IS_A_STARTUP) {
             translations.put("intro_2", "4 startups built from scratch, contributing as CTO and minoritary partner.\n");
         }
-        translations.put("intro_3", "16 years of professional experience designing, developing and delivering distributed systems and SaaS platforms. " +
-                "**Expert in Agentic AI, Multi-Agent Systems and Generative AI.**\n");
+        translations.put("intro_3", "16 years of professional experience designing, developing and delivering distributed systems and SaaS platforms.\n");
+//        translations.put("intro_3", "16 years of professional experience designing, developing and delivering distributed systems and SaaS platforms. " +
+//                "**Expert in Agentic AI, Multi-Agent Systems and Generative AI.**\n");
         translations.put("intro_4", "12 years of international experience delivering high-impact outcomes within agile, multicultural teams across multiple countries.\n");
 //        translations.put("intro_4", "12 years of practice working in agile teams, acting as both Senior Engineer and Scrum Master.\n");
 //        translations.put("intro_5", "12 years of international experience working in culturally diverse contexts across several countries.\n");
@@ -63,10 +64,14 @@ public class CVTranslations {
             translations.put("intro_10", "10 years within startup ecosystems, spanning incubators and accelerators such as Innovami, CERN Technoparc, Station F, and Pépinière 26.\n");
         }
         // Profile
-        translations.put("profile_1", "Strategic team leader, with a strong focus on AI and security.\n");
+        translations.put("profile_1", "Result-driven engineering leader combining strategic vision in AI and cybersecurity with operational execution. Expert in Agentic AI, Multi-Agent Systems and Adoption of AI.\n");
 //        translations.put("profile_1", "Intellectually curious, quick learner and strategic team leader, with a strong focus on AI and security.\n");
-        translations.put("profile_2", "My journey began in university labs with multi-agent systems and agentic AI, and has evolved into solid expertise in innovation, industry standards, and best practices, culminating in recent experience with cutting-edge AI technologies.\n");
-        translations.put("profile_3", "I worked in SMEs and gave structure to startups, moving from developer to architect and ultimately into strategic leadership roles as a CTO, while always maintaining a hands-on, operational approach.\n");
+//        translations.put("profile_2", "From university labs with multi-agent systems and agentic AI, to production-grade AI technologies.\n");
+        translations.put("profile_2", "Leveraging latest research to deliver production-grade AI systems.\n");
+//        translations.put("profile_2", "Bridged academic research in multi-agent systems and agentic AI with delivery of production-grade AI technologies.\n");
+//        translations.put("profile_2", "My journey began in university labs with multi-agent systems and agentic AI, and has evolved into solid expertise in innovation, industry standards, and best practices, culminating in recent experience with cutting-edge AI technologies.\n");
+        translations.put("profile_3", "Career progression from engineer through architect to CTO.\n");
+//        translations.put("profile_3", "Worked in SMEs and gave structure to startups, moving from developer to architect and ultimately into strategic leadership roles as a CTO, with a hands-on, operational approach.\n");
 //        translations.put("profile_3", "Along the way, I progressed across SMEs and startups, moving from developer to architect and ultimately into strategic leadership roles as a CTO, while always maintaining a hands-on, operational approach.\n");
 //        translations.put("profile_4", "Experienced in hybrid and remote collaboration.\n"); //, thriving in international environments
 
@@ -116,7 +121,7 @@ public class CVTranslations {
         translations.put("Nov", "Nov");
         translations.put("Dec", "Dec");
         translations.put("Present", "Present");
-        translations.put("contract_self_employed", "Self-Employed");
+        translations.put("contract_self_employed", "Independent consultant");
 
         // PDF metadata
         translations.put("pdf_title", "Francesco Bullini - CV");
@@ -184,8 +189,9 @@ public class CVTranslations {
         if (TARGET_COMPANY_IS_A_STARTUP) {
             translations.put("intro_2", "4 startups créées from scratch en tant que CTO et associé minoritaire.\n");
         }
-        translations.put("intro_3", "16 ans d'expérience dans la conception, le développement et le déploiement de systèmes distribués et de plateformes SaaS à haute disponibilité. " +
-                "**Expert en IA agentique, systèmes multi-agents et IA générative.**\n");
+        translations.put("intro_3", "16 ans d'expérience dans la conception, le développement et le déploiement de systèmes distribués et de plateformes SaaS à haute disponibilité.\n");
+//        translations.put("intro_3", "16 ans d'expérience dans la conception, le développement et le déploiement de systèmes distribués et de plateformes SaaS à haute disponibilité. " +
+//                "**Expert en IA agentique, systèmes multi-agents et IA générative.**\n");
         translations.put("intro_4", "12 ans d’expérience internationale dans la réalisation de résultats à fort impact au sein d’équipes agiles et multiculturelles, réparties dans plusieurs pays.\n");
 //        translations.put("intro_4", "12 ans de pratique au sein d’équipes agiles en tant que Senior Engineer et Scrum Master.\n");
 //        translations.put("intro_5", "12 ans d’expérience internationale dans des environnements multiculturels exigeants à travers plusieurs pays.\n");
