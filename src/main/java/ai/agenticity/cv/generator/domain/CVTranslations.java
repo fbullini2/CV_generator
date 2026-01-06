@@ -63,14 +63,20 @@ public class CVTranslations {
         if (TARGET_COMPANY_IS_A_STARTUP) {
             translations.put("intro_10", "10 years within startup ecosystems, spanning incubators and accelerators such as Innovami, CERN Technoparc, Station F, and Pépinière 26.\n");
         }
+
+        // Pitch
+        translations.put("pitch_1", "Result-driven engineering leader combining strategic vision in AI and cybersecurity with operational execution.\nExpert in Agentic AI, Multi-Agent Systems and Adoption of AI. Leveraging latest research to deliver production-grade AI systems. Career progression from engineer through architect to CTO.\n");
+
         // Profile
-        translations.put("profile_1", "Result-driven engineering leader combining strategic vision in AI and cybersecurity with operational execution. Expert in Agentic AI, Multi-Agent Systems and Adoption of AI.\n");
+        translations.put("profile_1", "Result-driven engineering leader combining strategic vision in AI and cybersecurity with operational execution.\nExpert in Agentic AI, Multi-Agent Systems and Adoption of AI. Leveraging latest research to deliver production-grade AI systems. Career progression from engineer through architect to CTO.\n");
 //        translations.put("profile_1", "Intellectually curious, quick learner and strategic team leader, with a strong focus on AI and security.\n");
 //        translations.put("profile_2", "From university labs with multi-agent systems and agentic AI, to production-grade AI technologies.\n");
-        translations.put("profile_2", "Leveraging latest research to deliver production-grade AI systems.\n");
+
+//        translations.put("profile_2", "Leveraging latest research to deliver production-grade AI systems.\n");
 //        translations.put("profile_2", "Bridged academic research in multi-agent systems and agentic AI with delivery of production-grade AI technologies.\n");
 //        translations.put("profile_2", "My journey began in university labs with multi-agent systems and agentic AI, and has evolved into solid expertise in innovation, industry standards, and best practices, culminating in recent experience with cutting-edge AI technologies.\n");
-        translations.put("profile_3", "Career progression from engineer through architect to CTO.\n");
+//        translations.put("profile_3", "Career progression from engineer through architect to CTO.\n");
+
 //        translations.put("profile_3", "Worked in SMEs and gave structure to startups, moving from developer to architect and ultimately into strategic leadership roles as a CTO, with a hands-on, operational approach.\n");
 //        translations.put("profile_3", "Along the way, I progressed across SMEs and startups, moving from developer to architect and ultimately into strategic leadership roles as a CTO, while always maintaining a hands-on, operational approach.\n");
 //        translations.put("profile_4", "Experienced in hybrid and remote collaboration.\n"); //, thriving in international environments
@@ -206,10 +212,13 @@ public class CVTranslations {
 
         translations.put("intro_7", "3 langues parlées avec une compétence professionnelle complète : français, anglais et italien.\n");
         translations.put("intro_8", "6 ans d’expérience comme consultant indépendant et Fractional CPTO.\n");
-        translations.put("intro_9", "6 ans d’expérience en management, à la tête d’équipes jusqu’à 15 professionnels.\n");
+        translations.put("intro_9", "6 ans d'expérience en management, à la tête d'équipes jusqu'à 15 professionnels.\n");
         if (TARGET_COMPANY_IS_A_STARTUP) {
-            translations.put("intro_10", "10 ans au sein des écosystèmes de startups, à travers des incubateurs et accélérateurs tels qu’Innovami, le Technoparc du CERN, Station F et la Pépinière 26..\n");
+            translations.put("intro_10", "10 ans au sein des écosystèmes de startups, à travers des incubateurs et accélérateurs tels qu'Innovami, le Technoparc du CERN, Station F et la Pépinière 26..\n");
         }
+
+        // Pitch
+        translations.put("pitch_1", "Leader technologique orienté résultats, alliant vision stratégique en IA et cybersécurité avec exécution opérationnelle. Expert en IA agentique, systèmes multi-agents et adoption de l'IA. Exploitation des dernières recherches pour délivrer des systèmes IA de qualité production. Progression de carrière d'ingénieur à architecte puis CTO.\n");
 
         // Profile
         translations.put("profile_1", "Leader technologique orienté résultats, passionné par l'innovation, la cybersécurité et la transformation digitale des organisations.\n");
