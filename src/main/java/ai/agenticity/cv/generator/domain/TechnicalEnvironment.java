@@ -18,9 +18,9 @@ public class TechnicalEnvironment {
         this.oneLine = false;
     }
 
-    public TechnicalEnvironment(String oneLineText) {
+    public TechnicalEnvironment(String oneLineText, boolean isOneLine) {
         this.oneLineText = oneLineText;
-        this.oneLine = true;
+        this.oneLine = isOneLine;
         this.categories = new ArrayList<>(); // Initialize to avoid null pointers
     }
 
