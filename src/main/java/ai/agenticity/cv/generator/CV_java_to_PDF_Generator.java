@@ -27,6 +27,7 @@ import com.itextpdf.text.pdf.PdfDestination;
 import com.itextpdf.text.pdf.PdfOutline;
 import com.itextpdf.text.pdf.PdfWriter;
 import ai.agenticity.cv.generator.domain.Achievement;
+import ai.agenticity.cv.generator.domain.CVSection;
 import ai.agenticity.cv.generator.domain.CVTranslations;
 import ai.agenticity.cv.generator.domain.Duty;
 import ai.agenticity.cv.generator.domain.TechnicalEnvironment;
@@ -34,6 +35,7 @@ import ai.agenticity.cv.generator.domain.TechnicalEnvironmentCategory;
 import ai.agenticity.cv.generator.domain.WorkExperience;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -61,6 +63,16 @@ public class CV_java_to_PDF_Generator {
     public static final boolean DUTIES_ENABLED = false; // true = Show Duties for work experiences, false = hide it
     public static final boolean TECH_ENV_SECTION_ENABLED = false; // true = Show Technical Environment for work experiences, false = hide it
     public static final boolean TECH_ENV_IS_ONE_LINE = true; // true = Technical Environment displayed as one line, false = displayed as categories
+
+    // Order of CV sections - modify this list to change the order in which sections appear in the PDF
+    public static final List<CVSection> CV_SECTIONS_ORDER = Arrays.asList(
+        CVSection.INTRO,
+        CVSection.PITCH,
+        CVSection.PROFILE,
+        CVSection.WORK_EXPERIENCES,
+        CVSection.COMPETENCIES,
+        CVSection.EDUCATION
+    );
 
     public static String CV_FILENAME = "CV_BULLINI_" +"CTO_"+ LANGUAGE + "_" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ".pdf";
 
@@ -1392,39 +1404,46 @@ public class CV_java_to_PDF_Generator {
 //        phr5_1.setFont(font_10);
 //        par5.add(phr5_1);
 
-        // Build document with bookmarks
+        // Build document with bookmarks using configurable section order
         // Main title
         document.add(par1_title);
-        if (INTRO_ENABLED) {
-            document.add(par1_intro);
-        }
-        if (PITCH_ENABLED) {
-            document.add(par1_pitch);
-        }
 
-        // Profile section with bookmark
-        if (PROFILE_ENABLED) {
-            new PdfOutline(root, new PdfDestination(PdfDestination.FITH, writer.getVerticalPosition(true)), translations.get("profile_title"), false);
-            document.add(par2_title);
-            document.add(par2_profile);
+        // Add sections in the order specified by CV_SECTIONS_ORDER
+        for (CVSection section : CV_SECTIONS_ORDER) {
+            switch (section) {
+                case INTRO:
+                    if (INTRO_ENABLED) {
+                        addIntroSection(document);
+                    }
+                    break;
+
+                case PITCH:
+                    if (PITCH_ENABLED) {
+                        addPitchSection(document);
+                    }
+                    break;
+
+                case PROFILE:
+                    if (PROFILE_ENABLED) {
+                        addProfileSection(document, writer, root);
+                    }
+                    break;
+
+                case COMPETENCIES:
+                    if (COMPETENCE_SECTION_ENABLED) {
+                        addCompetenciesSection(document, writer, root);
+                    }
+                    break;
+
+                case WORK_EXPERIENCES:
+                    addWorkExperiencesSection(document, writer, root, workExperiences);
+                    break;
+
+                case EDUCATION:
+                    addEducationSection(document, writer, root);
+                    break;
+            }
         }
-
-        // Key Competencies section with bookmark
-        if (COMPETENCE_SECTION_ENABLED) {
-            new PdfOutline(root, new PdfDestination(PdfDestination.FITH, writer.getVerticalPosition(true)), translations.get("competencies_title"), false);
-            document.add(par_comp_title);
-            document.add(par_competencies);
-        }
-
-        // Key Professional Experience section with bookmark
-        new PdfOutline(root, new PdfDestination(PdfDestination.FITH, writer.getVerticalPosition(true)), translations.get("experience_title"), false);
-        document.add(par3_title);
-        document.add(parExperiences);
-
-        // Education & Qualifications section with bookmark
-        new PdfOutline(root, new PdfDestination(PdfDestination.FITH, writer.getVerticalPosition(true)), translations.get("education_title"), false);
-        document.add(par4_title);
-        document.add(par4);
 
         // Languages section with bookmark
 //        new PdfOutline(root, new PdfDestination(PdfDestination.FITH, writer.getVerticalPosition(true)), translations.get("languages_title"), false);
@@ -1437,6 +1456,393 @@ public class CV_java_to_PDF_Generator {
 
         System.out.println("PDF generated: " + filename);
         System.out.println("Number of pages: " + numberOfPages);
+    }
+
+    /**
+     * Add the Introduction section to the PDF document
+     */
+    private void addIntroSection(Document document) throws DocumentException {
+        Paragraph par1_intro = new Paragraph();
+        Phrase phr1 = new Phrase();
+
+        for (int i = 1; i <= 10; i++) {
+            String key = "intro_" + i;
+            String translation = translations.get(key);
+            if (translation != null && !translation.equals(key) && !translation.trim().isEmpty()) {
+                if (translation.contains("**")) {
+                    String[] parts = translation.split("\\*\\*");
+                    for (int j = 0; j < parts.length; j++) {
+                        if (j % 2 == 1) {
+                            phr1.add(new Chunk(parts[j], font_bold_10));
+                        } else {
+                            phr1.add(new Chunk(parts[j], font_10));
+                        }
+                    }
+                } else {
+                    phr1.add(new Chunk(translation, font_10));
+                }
+            }
+        }
+        phr1.setFont(font_10);
+        par1_intro.add(phr1);
+        document.add(par1_intro);
+    }
+
+    /**
+     * Add the Pitch section to the PDF document
+     */
+    private void addPitchSection(Document document) throws DocumentException {
+        Paragraph par1_pitch = new Paragraph();
+        Phrase phr_pitch = new Phrase();
+
+        for (int i = 1; i <= 10; i++) {
+            String key = "pitch_" + i;
+            String translation = translations.get(key);
+            if (translation != null && !translation.equals(key) && !translation.trim().isEmpty()) {
+                if (translation.contains("**")) {
+                    String[] parts = translation.split("\\*\\*");
+                    for (int j = 0; j < parts.length; j++) {
+                        if (j % 2 == 1) {
+                            phr_pitch.add(new Chunk(parts[j], font_bold_10));
+                        } else {
+                            phr_pitch.add(new Chunk(parts[j], font_10));
+                        }
+                    }
+                } else {
+                    phr_pitch.add(new Chunk(translation, font_10));
+                }
+            }
+        }
+        phr_pitch.setFont(font_10);
+        par1_pitch.add(phr_pitch);
+        document.add(par1_pitch);
+    }
+
+    /**
+     * Add the Profile section to the PDF document
+     */
+    private void addProfileSection(Document document, PdfWriter writer, PdfOutline root) throws DocumentException {
+        new PdfOutline(root, new PdfDestination(PdfDestination.FITH, writer.getVerticalPosition(true)), translations.get("profile_title"), false);
+
+        Paragraph par2_title = new Paragraph(translations.get("profile_title"), font_bold_12);
+        applyTitleStyle(par2_title);
+        Paragraph par2_profile = new Paragraph();
+
+        Phrase phr2_1 = new Phrase();
+        Chunk chunk2_1 = new Chunk(translations.get("profile_1"), font_10);
+        Chunk chunk2_2 = new Chunk(translations.get("profile_2"), font_10);
+        Chunk chunk2_3 = new Chunk(translations.get("profile_3"), font_10);
+        Chunk chunk2_4 = new Chunk(translations.get("profile_4"), font_10);
+
+        addIfNotEmpty(phr2_1, chunk2_1);
+        addIfNotEmpty(phr2_1, chunk2_2);
+        addIfNotEmpty(phr2_1, chunk2_3);
+        addIfNotEmpty(phr2_1, chunk2_4);
+        phr2_1.setFont(font_10);
+        par2_profile.add(phr2_1);
+
+        document.add(par2_title);
+        document.add(par2_profile);
+    }
+
+    /**
+     * Add the Competencies section to the PDF document
+     */
+    private void addCompetenciesSection(Document document, PdfWriter writer, PdfOutline root) throws DocumentException {
+        new PdfOutline(root, new PdfDestination(PdfDestination.FITH, writer.getVerticalPosition(true)), translations.get("competencies_title"), false);
+
+        Paragraph par_comp_title = new Paragraph(translations.get("competencies_title"), font_bold_12);
+        applyTitleStyle(par_comp_title);
+        Paragraph par_competencies = new Paragraph();
+
+        Phrase phr_comp = new Phrase();
+
+        Chunk comp_mgmt_title = new Chunk(translations.get("comp_mgmt_title"));
+        comp_mgmt_title.setFont(font_bold_11);
+        Chunk comp_mgmt = new Chunk(translations.get("comp_mgmt"));
+        comp_mgmt.setFont(font_10);
+
+        Chunk comp_ai_title = new Chunk(translations.get("comp_ai_title"));
+        comp_ai_title.setFont(font_bold_11);
+        Chunk comp_ai = new Chunk(translations.get("comp_ai"));
+        comp_ai.setFont(font_10);
+
+        Chunk comp_tech_title = new Chunk(translations.get("comp_tech_title"));
+        comp_tech_title.setFont(font_bold_11);
+        Chunk comp_tech = new Chunk(translations.get("comp_tech"));
+        comp_tech.setFont(font_10);
+
+        Chunk comp_arch_title = new Chunk(translations.get("comp_arch_title"));
+        comp_arch_title.setFont(font_bold_11);
+        Chunk comp_arch = new Chunk(translations.get("comp_arch"));
+        comp_arch.setFont(font_10);
+
+        Chunk comp_cloud_ia_title = new Chunk(translations.get("comp_cloud_ia_title"));
+        comp_cloud_ia_title.setFont(font_bold_11);
+        Chunk comp_cloud_ia = new Chunk(translations.get("comp_cloud_ia"));
+        comp_cloud_ia.setFont(font_10);
+
+        Chunk comp_cloud_title = new Chunk(translations.get("comp_cloud_title"));
+        comp_cloud_title.setFont(font_bold_11);
+        Chunk comp_cloud = new Chunk(translations.get("comp_cloud"));
+        comp_cloud.setFont(font_10);
+
+        Chunk comp_front_title = new Chunk(translations.get("comp_front_title"));
+        comp_front_title.setFont(font_bold_11);
+        Chunk comp_front = new Chunk(translations.get("comp_front"));
+        comp_front.setFont(font_10);
+
+        Chunk comp_sec_title = new Chunk(translations.get("comp_sec_title"));
+        comp_sec_title.setFont(font_bold_11);
+        Chunk comp_sec = new Chunk(translations.get("comp_sec"));
+        comp_sec.setFont(font_10);
+
+        Chunk comp_dev_title = new Chunk(translations.get("comp_dev_title"));
+        comp_dev_title.setFont(font_bold_11);
+        Chunk comp_dev = new Chunk(translations.get("comp_dev"));
+        comp_dev.setFont(font_10);
+
+        phr_comp.add(comp_mgmt_title);
+        phr_comp.add(comp_mgmt);
+        phr_comp.add(comp_ai_title);
+        phr_comp.add(comp_ai);
+        phr_comp.add(comp_tech_title);
+        phr_comp.add(comp_tech);
+        phr_comp.add(comp_arch_title);
+        phr_comp.add(comp_arch);
+        phr_comp.add(comp_cloud_title);
+        phr_comp.add(comp_cloud);
+        phr_comp.add(comp_cloud_ia_title);
+        phr_comp.add(comp_cloud_ia);
+        phr_comp.add(comp_front_title);
+        phr_comp.add(comp_front);
+        phr_comp.add(comp_sec_title);
+        phr_comp.add(comp_sec);
+        phr_comp.add(comp_dev_title);
+        phr_comp.add(comp_dev);
+
+        par_competencies.add(phr_comp);
+
+        document.add(par_comp_title);
+        document.add(par_competencies);
+    }
+
+    /**
+     * Add the Work Experiences section to the PDF document
+     */
+    private void addWorkExperiencesSection(Document document, PdfWriter writer, PdfOutline root, List<WorkExperience> workExperiences) throws DocumentException {
+        new PdfOutline(root, new PdfDestination(PdfDestination.FITH, writer.getVerticalPosition(true)), translations.get("experience_title"), false);
+
+        Paragraph par3_title = new Paragraph(translations.get("experience_title"), font_bold_12);
+        applyTitleStyle(par3_title);
+        document.add(par3_title);
+
+        Paragraph parExperiences = new Paragraph();
+        Font linkFont = FontFactory.getFont("Arial", BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 10, Font.UNDERLINE, BaseColor.BLUE);
+
+        for (WorkExperience work_experience : workExperiences) {
+            // Date formatting
+            String startMonth = work_experience.getStartMonth() != null ? translations.get(work_experience.getStartMonth()) : "";
+            String endMonth = work_experience.getEndMonth() != null ? translations.get(work_experience.getEndMonth()) : "";
+            String startDate = (startMonth.isEmpty() ? "" : startMonth + " ") + work_experience.getStartYear();
+            String endDate;
+            if ("Present".equals(work_experience.getEndMonth())) {
+                endDate = translations.get("Present");
+            } else {
+                endDate = (endMonth.isEmpty() ? "" : endMonth + " ") + work_experience.getEndYear();
+            }
+
+            // Work experience header (date + role + company + location + contract type)
+            Paragraph expHeader = new Paragraph();
+            Chunk headerChunk = new Chunk(startDate + " – " + endDate + "  ", font_bold_10);
+            String companyLocation = work_experience.getCompanyName();
+            if (work_experience.getLocation() != null && !work_experience.getLocation().isEmpty()) {
+                companyLocation += " (" + work_experience.getLocation();
+                if (work_experience.getContractType() != null && !work_experience.getContractType().isEmpty()) {
+                    companyLocation += ") - " + work_experience.getContractType();
+                } else {
+                    companyLocation += ")";
+                }
+            } else if (work_experience.getContractType() != null && !work_experience.getContractType().isEmpty()) {
+                companyLocation += " - " + work_experience.getContractType();
+            }
+            Chunk roleChunk = new Chunk(work_experience.getRole() + " - " + companyLocation, font_bold_10);
+            expHeader.add(headerChunk);
+            expHeader.add(roleChunk);
+            expHeader.setSpacingBefore(8);
+            parExperiences.add(expHeader);
+
+            // Company Business Sector
+            if (DISPLAY_BUSINESS_SECTOR_ENABLED && work_experience.getCompanyBusinessSector() != null && !work_experience.getCompanyBusinessSector().isEmpty()) {
+                Paragraph companyBusinessSectorPar = new Paragraph(work_experience.getCompanyBusinessSector(), font_10);
+                companyBusinessSectorPar.setIndentationLeft(10);
+                parExperiences.add(companyBusinessSectorPar);
+            }
+
+            // Company description (context)
+            if (work_experience.getCompanyContext() != null && !work_experience.getCompanyContext().isEmpty()) {
+                Paragraph companyContext = new Paragraph();
+                companyContext.setIndentationLeft(10);
+                companyContext.setSpacingAfter(3);
+
+                String contextText = work_experience.getCompanyContext();
+                if (contextText.contains("INRIA") || contextText.contains("SDU")) {
+                    int lastIndex = 0;
+                    while (lastIndex < contextText.length()) {
+                        int inriaIndex = contextText.indexOf("INRIA", lastIndex);
+                        int sduIndex = contextText.indexOf("SDU", lastIndex);
+
+                        if (inriaIndex != -1 && (sduIndex == -1 || inriaIndex < sduIndex)) {
+                            if (inriaIndex > lastIndex) {
+                                companyContext.add(new Chunk(contextText.substring(lastIndex, inriaIndex), font_10));
+                            }
+                            Chunk inriaChunk = new Chunk("INRIA", linkFont);
+                            inriaChunk.setAnchor("https://www.inria.fr");
+                            companyContext.add(inriaChunk);
+                            lastIndex = inriaIndex + 5;
+                        } else if (sduIndex != -1) {
+                            if (sduIndex > lastIndex) {
+                                companyContext.add(new Chunk(contextText.substring(lastIndex, sduIndex), font_10));
+                            }
+                            Chunk sduChunk = new Chunk("SDU", linkFont);
+                            sduChunk.setAnchor("https://www.sdu.dk");
+                            companyContext.add(sduChunk);
+                            lastIndex = sduIndex + 3;
+                        } else {
+                            companyContext.add(new Chunk(contextText.substring(lastIndex), font_10));
+                            break;
+                        }
+                    }
+                } else {
+                    companyContext.add(new Chunk(contextText, font_10));
+                }
+
+                parExperiences.add(companyContext);
+            }
+
+            // Duties
+            if (DUTIES_ENABLED && work_experience.getDuties() != null && !work_experience.getDuties().isEmpty()) {
+                for (Duty duty : work_experience.getDuties()) {
+                    Paragraph dutyPar = new Paragraph(duty.toString(), font_10);
+                    dutyPar.setIndentationLeft(10);
+                    parExperiences.add(dutyPar);
+                }
+            }
+
+            // Achievements
+            if (work_experience.isOneLineAchievementEnabled() && work_experience.getOneLineAchievement() != null && !work_experience.getOneLineAchievement().isEmpty()) {
+                Paragraph achPar = new Paragraph(work_experience.getOneLineAchievement(), font_10);
+                achPar.setIndentationLeft(10);
+                parExperiences.add(achPar);
+            } else if (work_experience.getAchievements() != null && !work_experience.getAchievements().isEmpty()) {
+                for (Achievement achievement : work_experience.getAchievements()) {
+                    Paragraph achPar = new Paragraph(achievement.toString(), font_10);
+                    achPar.setIndentationLeft(10);
+                    parExperiences.add(achPar);
+                }
+            }
+
+            // Technical Environment
+            if (TECH_ENV_SECTION_ENABLED && work_experience.getTechnicalEnvironment() != null && !work_experience.getTechnicalEnvironment().isEmpty()) {
+                TechnicalEnvironment techEnv = work_experience.getTechnicalEnvironment();
+                Font font_blue_10 = FontFactory.getFont("Arial", BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 10, Font.NORMAL, BaseColor.BLUE);
+
+                if (techEnv.isOneLine()) {
+                    Paragraph techEnvPar = new Paragraph();
+                    techEnvPar.setIndentationLeft(10);
+                    techEnvPar.setSpacingBefore(5);
+                    Chunk techEnvTitle = new Chunk(translations.get("tech_env_title") + ": ", font_blue_10);
+                    techEnvPar.add(techEnvTitle);
+
+                    String techEnvText = techEnv.getOneLineText();
+                    if (techEnvText.contains("Jolie-lang") || techEnvText.contains("JOLIE")) {
+                        int lastIndex = 0;
+                        while (lastIndex < techEnvText.length()) {
+                            int jolieLangIndex = techEnvText.indexOf("Jolie-lang", lastIndex);
+                            int jolieIndex = techEnvText.indexOf("JOLIE", lastIndex);
+
+                            if (jolieLangIndex != -1 && (jolieIndex == -1 || jolieLangIndex <= jolieIndex)) {
+                                if (jolieLangIndex > lastIndex) {
+                                    techEnvPar.add(new Chunk(techEnvText.substring(lastIndex, jolieLangIndex), font_10));
+                                }
+                                Chunk jolieChunk = new Chunk("Jolie-lang", linkFont);
+                                jolieChunk.setAnchor("https://www.jolie-lang.org/");
+                                techEnvPar.add(jolieChunk);
+                                lastIndex = jolieLangIndex + 10;
+                            } else if (jolieIndex != -1) {
+                                if (jolieIndex > lastIndex) {
+                                    techEnvPar.add(new Chunk(techEnvText.substring(lastIndex, jolieIndex), font_10));
+                                }
+                                Chunk jolieChunk = new Chunk("JOLIE", linkFont);
+                                jolieChunk.setAnchor("https://www.jolie-lang.org/");
+                                techEnvPar.add(jolieChunk);
+                                lastIndex = jolieIndex + 5;
+                            } else {
+                                techEnvPar.add(new Chunk(techEnvText.substring(lastIndex), font_10));
+                                break;
+                            }
+                        }
+                    } else {
+                        techEnvPar.add(new Chunk(techEnvText, font_10));
+                    }
+
+                    parExperiences.add(techEnvPar);
+                } else {
+                    Paragraph techEnvTitle = new Paragraph(translations.get("tech_env_title") + ":", font_blue_10);
+                    techEnvTitle.setIndentationLeft(10);
+                    techEnvTitle.setSpacingBefore(5);
+                    parExperiences.add(techEnvTitle);
+
+                    if (techEnv.getCategories().isEmpty() && !techEnv.getOneLineText().isEmpty()) {
+                        Paragraph techText = new Paragraph(techEnv.getOneLineText(), font_10);
+                        techText.setIndentationLeft(10);
+                        parExperiences.add(techText);
+                    } else {
+                        for (TechnicalEnvironmentCategory category : techEnv.getCategories()) {
+                            Paragraph categoryPar = new Paragraph();
+                            categoryPar.setIndentationLeft(10);
+
+                            Chunk categoryTitle = new Chunk(translations.get(category.getTitle()) + ": ", font_blue_10);
+                            categoryPar.add(categoryTitle);
+
+                            String techList = String.join(", ", category.getTechnologies());
+                            Chunk technologies = new Chunk(techList + ".", font_10);
+                            categoryPar.add(technologies);
+
+                            parExperiences.add(categoryPar);
+                        }
+                    }
+                }
+            }
+        }
+
+        document.add(parExperiences);
+    }
+
+    /**
+     * Add the Education section to the PDF document
+     */
+    private void addEducationSection(Document document, PdfWriter writer, PdfOutline root) throws DocumentException {
+        new PdfOutline(root, new PdfDestination(PdfDestination.FITH, writer.getVerticalPosition(true)), translations.get("education_title"), false);
+
+        Paragraph par4_title = new Paragraph(translations.get("education_title") + "\n", font_bold_12);
+        applyTitleStyle(par4_title);
+        Paragraph par4 = new Paragraph();
+        Phrase phr4_1 = new Phrase();
+        Chunk chunk4_1 = new Chunk(translations.get("education_1"), font_10);
+        Chunk chunk4_2 = new Chunk(translations.get("education_2"), font_10);
+        Chunk chunk4_3 = new Chunk(translations.get("education_3"), font_10);
+
+        phr4_1.add(chunk4_1);
+        phr4_1.add(Chunk.NEWLINE);
+        phr4_1.add(chunk4_2);
+        phr4_1.add(Chunk.NEWLINE);
+        phr4_1.add(chunk4_3);
+        phr4_1.setFont(font_10);
+        par4.add(phr4_1);
+
+        document.add(par4_title);
+        document.add(par4);
     }
 
     public static void applyTitleStyle(Paragraph par1_title) {

@@ -98,7 +98,7 @@ public class CVTranslations {
         translations.put("comp_tech", "Python, Java, Spring Boot, JEE, API implementation, API Managers, Nginx, SQL, Relational Databases, NoSQL, MongoDB, Elasticsearch, Redis, Neo4J, RabbitMQ, Kafka, n8n.\n\n");
         translations.put("comp_arch", "Microservice architectural style, Domain Driven Design, Agentic AI Architectures, SOA (Service Oriented Architectures), Enterprise Integration Patterns, MVC Frameworks.\n\n");
         translations.put("comp_cloud_ia", "Google Vertex AI, RunPod, AnyScale, AWS Bedrock.\n\n");
-        translations.put("comp_cloud", "Google Cloud Platform, Heroku, Netlify, Vercel, OVHCloud, Azure, AWS (S3, EC2), Scaleway, Docker, Docker Compose, Google Kubernetes Engine, CI/CD pipelines, Observability tools (Google Cloud Monitoring etc).\n\n");
+        translations.put("comp_cloud", "Google Cloud Platform, Heroku, Netlify, Vercel, OVHCloud, Azure, AWS (S3, EC2), Scaleway, Docker, Docker Compose, Google Kubernetes Engine, CI/CD pipelines, Observability tools (Google Cloud Monitoring and Logging).\n\n");
         translations.put("comp_front", "Angular, Next.js.\n\n");
         translations.put("comp_sec", "OAuth 2.0, OIDC, JWT, Identity Providers, implementation of OWASP recommendations and GDPR compliance, ISO/IEC-27001.\n\n");
         translations.put("comp_dev", "Test-Driven Development (TDD), Behavior-Driven Development (BDD), design, architectural, and agentic patterns.\n");
