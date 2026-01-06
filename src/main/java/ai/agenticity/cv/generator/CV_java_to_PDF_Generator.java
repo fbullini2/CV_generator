@@ -42,7 +42,7 @@ import java.util.Date;
 public class CV_java_to_PDF_Generator {
 
     // Language parameter: "EN" for English, "FR" for French
-    public static final String LANGUAGE = "FR";
+    public static final String LANGUAGE = "EN";
     public static final String JOB_TITLE = "CHIEF TECHNOLOGY OFFICER - AI EXPERT";
 
     // Job type configuration
@@ -55,10 +55,9 @@ public class CV_java_to_PDF_Generator {
     public static final boolean INTRO_ENABLED = true; // true = Show introduction section, false = hide it
     public static final boolean PROFILE_ENABLED = true; // true = Show Profile section, false = hide it
     public static final boolean COMPETENCE_SECTION_ENABLED = false; // true = Show Key Competencies section, false = hide it
-    public static final boolean TECH_ENV_SECTION_ENABLED = true; // true = Show Technical Environment for work experiences, false = hide it
     public static final boolean DISPLAY_BUSINESS_SECTOR_ENABLED = false; // true = Show company business sector, false = hide it
     public static final boolean DUTIES_ENABLED = false; // true = Show Duties for work experiences, false = hide it
-    public static final boolean COMPANY_SECTOR_ENABLED = true; // true = Show Duties for work experiences, false = hide it
+    public static final boolean TECH_ENV_SECTION_ENABLED = false; // true = Show Technical Environment for work experiences, false = hide it
 
     public static String CV_FILENAME = "CV_BULLINI_" +"CTO_"+ LANGUAGE + "_" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ".pdf";
 
@@ -305,7 +304,7 @@ public class CV_java_to_PDF_Generator {
         java.util.List<Duty> duties1 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements1 = new ArrayList<Achievement>();
         String oneLineSummary1 = "";
-        boolean useOneLineSummary1 = false;
+        boolean useOneLineSummary1 = true;
 
         if (isFrench) {
             duties1.add(new Duty("►Conception et développement d'infrastructure logicielle native en IA."));
@@ -313,12 +312,14 @@ public class CV_java_to_PDF_Generator {
             achievements1.add(new Achievement("►Développement de trois MVPs pour assistants IA (B2B) basés sur des pipelines RAG, dans les domaines de la construction civile, du coaching pour dirigeants de PME et de la recherche en longévité.", false));
             achievements1.add(new Achievement("►Conception et développement d'un outil pour optimiser le compromis coût-qualité dans l'utilisation des Large Language Models (LLMs).", false));
 //            achievements1.add(new Achievement("►Conception et développement d'un composant d'ingestion personnalisé pour données non structurées, incluant les vidéos.", false));
+//            oneLineSummary1 = "►Conception d'une plateforme européenne de reconversion et direction technique et produit d'une équipe de 15 experts de plusieurs universités européennes.";
         } else {
             duties1.add(new Duty("►Design and develop AI-native distributed software infrastructure for contextual reasoning and orchestration of AI Assistants."));
-            achievements1.add(new Achievement("►Designed and developed an agent-first AI-native distributed software infrastructure for contextual reasoning and programmable orchestration of teams of ai.agenticity.cv.generator.domain-specific AI Assistants.", false));
+//            achievements1.add(new Achievement("►Designed and developed an agent-first AI-native distributed software infrastructure for contextual reasoning and programmable orchestration of teams of domain-specific AI Assistants.", false));
             achievements1.add(new Achievement("►Designed and developed three MVPs for AI assistants (B2B) based on RAG pipelines, in the fields of civil construction, coaching of SME executives and longevity research.", false));
-            achievements1.add(new Achievement("►Designed and developed a tool to optimize the cost-quality trade-off in the usage of Large Language Models (LLMs).", false));
+//            achievements1.add(new Achievement("►Designed and developed a tool to optimize the cost-quality trade-off in the usage of Large Language Models (LLMs).", false));
 //            achievements1.add(new Achievement("►Designed and developed a custom ingestion component for unstructured data, including videos.", false));
+            oneLineSummary1 = "►Built three specialized AI assistants reducing information processing time from hours to minutes in construction compliance, executive coaching, and longevity research.";
         }
 
         WorkExperience we1 = new WorkExperience("Agenticity.ai", "Jan", 2024, "Present", 2025, "CTO / AI Architect", "Paris, France", 1, achievements1, duties1, isFrench ? "Conseil en IA et IT" : "AI and IT consulting", "", useOneLineSummary1, oneLineSummary1);
@@ -327,9 +328,9 @@ public class CV_java_to_PDF_Generator {
             "Agenticity propose des prestations de conseil en IA et IT, en concevant et en livrant des solutions sur mesure pour des assistants IA spécialisés par domaine et des systèmes multi-agents." :
             "Agenticity provides AI and IT consulting, designing and delivering custom solutions for domain-specialized AI assistants and multi-agent systems.");
         if (isFrench) {
-            we1.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Java, python, Docker, agentic frameworks and \"Al specific” clouds (RunPod, HuggingFace, Mistral Al, Vertex Al, AWS bedrock), protocoles pour les agents (Model Context Protocol, Agent-2-Agent, AG-UI), RabbitMQ, Nginx, Firebase, websocket, Next.js."));
+            we1.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Java, python, Docker, agentic frameworks and \"Al specific” clouds (RunPod, HuggingFace, Mistral Al, Vertex Al, AWS bedrock), protocoles pour les agents (Model Context Protocol, Agent-2-Agent, AG-UI), ChromaDB, RabbitMQ, Nginx, Firebase, websocket, Next.js."));
         } else {
-            we1.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Java, Python, Docker, agent frameworks and protocols (Model Context Protocol, Agent-to-Agent, AG-UI), agentic RAG systems, Al-dedicated cloud services (like RunPod, Hugging Face, AnyScale), RabbitMQ, Nginx, Firebase, websocket, Next.js."));
+            we1.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Java, Python, Docker, agent frameworks and protocols (Model Context Protocol, Agent-to-Agent, AG-UI), agentic RAG systems, Al-dedicated cloud services (like RunPod, Hugging Face, AnyScale, Vertex AI), ChromaDB, RabbitMQ, Nginx, Firebase, websocket, Next.js."));
         }
 
         // Work Experience 2: EU Project D-Reskill
@@ -350,7 +351,7 @@ public class CV_java_to_PDF_Generator {
             achievements2.add(new Achievement("►Led technical meetings between European partners (15 professionals).", false));
             achievements2.add(new Achievement("►Conducted feasibility studies exploring different ontologies and approaches to apply skill intelligence to education and for reskilling the workforce.", false));
             achievements2.add(new Achievement("►Presented at international EdTech conferences.", false));
-            oneLineSummary2 = "►Designed a European career reskilling platform and led the technical and product direction of a 15-member expert team from multiple European universities.";
+            oneLineSummary2 = "►Co-authored successful €300K EU grant proposal and led 15-member consortium across 4 countries to design a reskilling platform with standardized cross-border skills certification.";
             useOneLineSummary2 = true;
         }
 
@@ -404,7 +405,7 @@ public class CV_java_to_PDF_Generator {
         java.util.List<Duty> duties4 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements4 = new ArrayList<Achievement>();
         String oneLineSummary4 = "";
-        boolean useOneLineSummary4 = false;
+        boolean useOneLineSummary4 = true;
 
         if (isFrench) {
             duties4.add(new Duty("►Direction de projets complexes basés sur microservices et management d'équipe data science."));
@@ -414,7 +415,6 @@ public class CV_java_to_PDF_Generator {
             achievements4.add(new Achievement("►Développement de preuves de concept techniques devenues éléments clés de nouveaux produits SaaS.", false));
             achievements4.add(new Achievement("►Conception des flux d'autorisation avec Identity Provider (Azure AD B2C).", false));
             oneLineSummary4 = "►Conception de l'architecture logicielle, développement de la solution et direction de l'équipe technique pour la livraison de plateformes SaaS en marque blanche.";
-            useOneLineSummary4 = true;
         } else {
             duties4.add(new Duty("►Lead complex projects based on microservices and manage data science team."));
             achievements4.add(new Achievement("►Led concurrently up to 5 complex projects based on microservices.", false));
@@ -422,8 +422,8 @@ public class CV_java_to_PDF_Generator {
             achievements4.add(new Achievement("►Designed and led implementation of a cross-cloud, white-label SaaS, based on microservices.", false));
             achievements4.add(new Achievement("►Developed technical proofs of concept which then became the key elements of new SaaS products.", false));
             achievements4.add(new Achievement("►Designed authorization flows with Identity Provider (Azure AD B2C).", false));
-            oneLineSummary4 = "►Designed the software architecture, developed the solution, and led the technical team to deliver white-label SaaS platforms.";
-            useOneLineSummary4 = true;
+            oneLineSummary4 = "►Designed and presented technical roadmap to investors (contributing to successful fundraising), then led the technical team to deliver white-label SaaS platforms while driving pre-sales, managing key accounts, supported CEO on strategic contract negotiations.";
+//            oneLineSummary4 = "►Secured funding from investors and led the technical team to deliver white-label SaaS platforms while driving pre-sales, managing key accounts, and partnering with CEO on strategic contract negotiations.";
         }
 
         WorkExperience we4 = new WorkExperience("Pixis", "Jul", 2019, "Jul", 2022, "Chief Technology Officer", "Paris, France", 3, achievements4, duties4, isFrench ? "Éducation et Orientation professionnelle" : "Career advice and coaching", "", useOneLineSummary4, oneLineSummary4);
@@ -431,29 +431,28 @@ public class CV_java_to_PDF_Generator {
             "Pixis fournit des solutions SaaS en marque blanche dans le secteur de l'éducation et de l'orientation professionnelle, en utilisant l'ontologie ESCO et les Objectifs de Développement Durable (ODD)." :
             "Pixis provides white-label SaaS solutions in the career advice and coaching sector using ontologies for skills, Sustainable Development Goals and a chatbot that guides the user in interacting with the application.");
         if (isFrench) {
-            we4.setTechnicalEnvironment(new TechnicalEnvironment("Java, SpringBoot 2.7, Angular 14, Bootstrap, Maven, python, Docker, MySQL, Neo4J, Github, Git Actions, jolie-lang, Google Cloud, Azure, Sketch."));
+            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Python, Docker, Microservices, Github Actions, PostgreSQL, MySQL, Neo4J, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform; Google Analytics, Google Tag Manager, Sketch, Zeplin, Firebase."));
         } else {
-            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Docker, Microservices Java/Jolie, Google Colab, Jupyter Notebooks, Python, Github Actions, PostgreSQL, MySQL, Neo4J, OpenAPI, OAuth 2.0, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform; Google Analytics, Google Tag Manager, Sketch, Zeplin, Firebase."));
+            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Python, Docker, Microservices, Github Actions, PostgreSQL, MySQL, Neo4J, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform; Google Analytics, Google Tag Manager, Sketch, Zeplin, Firebase."));
+//            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Docker, Microservices, Google Colab, Jupyter Notebooks, Python, Github Actions, PostgreSQL, MySQL, Neo4J, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform; Google Analytics, Google Tag Manager, Sketch, Zeplin, Firebase."));
         }
 
         // Work Experience 5: Cosys
         java.util.List<Duty> duties5 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements5 = new ArrayList<Achievement>();
         String oneLineSummary5 = "";
-        boolean useOneLineSummary5 = false;
+        boolean useOneLineSummary5 = true;
 
         if (isFrench) {
             duties5.add(new Duty("►Mise en place de processus agiles et animation des réunions Sprint."));
             achievements5.add(new Achievement("►Mise en place d'un processus agile interne et animation des réunions Sprint.", false));
             achievements5.add(new Achievement("►Création, mise à jour et suivi de la réalisation de la feuille de route.", false));
             oneLineSummary5 = "►Mise en place d'une organisation agile et structuration de la feuille de route et des spécifications produit.";
-            useOneLineSummary5 = true;
         } else {
             duties5.add(new Duty("►Introduce agile processes and lead Sprint meetings."));
             achievements5.add(new Achievement("►Introduced an internal agile process and led Sprint meetings.", false));
             achievements5.add(new Achievement("►Created, maintained and facilitated the execution of the Roadmap.", false));
             oneLineSummary5 = "►Implemented an agile organization and structured the product roadmap and product specifications.";
-            useOneLineSummary5 = true;
         }
 
         WorkExperience we5 = new WorkExperience("Cosys", "Mar", 2021, "Feb", 2022, "Scrum Master and Agile Coach", "Paris, France", 1, achievements5, duties5, isFrench ? "SaaS (Construction et gestion d'entreprises à risque partagé)" : "SaaS (Shared-risk company building)", "", useOneLineSummary5, oneLineSummary5);
@@ -471,16 +470,16 @@ public class CV_java_to_PDF_Generator {
         java.util.List<Duty> duties6 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements6 = new ArrayList<Achievement>();
         String oneLineSummary6 = "";
-        boolean useOneLineSummary6 = false;
+        boolean useOneLineSummary6 = true;
 
         if (isFrench) {
             duties6.add(new Duty("►Recueil des besoins, conception de l'architecture et implémentation d'un PoC."));
             achievements6.add(new Achievement("►Recueil des besoins, conception de l'architecture et implémentation d'un PoC de la solution.", false));
             oneLineSummary6 = "►Recueil des besoins, conception de l'architecture et implémentation d'un PoC de la solution.";
-            useOneLineSummary6 = true;
         } else {
             duties6.add(new Duty("►Elicit requirements, design architecture and implement PoC for banking sector startup."));
             achievements6.add(new Achievement("►Elicited requirements, designed the architecture and implemented a PoC of the solution.", false));
+            oneLineSummary6 = "►Elicited requirements, designed the architecture and implemented a PoC of the solution.";
         }
 
         WorkExperience we6 = new WorkExperience("Stealth mode startup", "Oct", 2018, "Mar", 2019, "CTO / Software Architect", "Paris, France", 1, achievements6, duties6, isFrench ? "Bancaire" : "Banking", "", useOneLineSummary6, oneLineSummary6);
@@ -494,7 +493,7 @@ public class CV_java_to_PDF_Generator {
         java.util.List<Duty> duties7 = new ArrayList<Duty>();
         java.util.List<Achievement> achievements7 = new ArrayList<Achievement>();
         String oneLineSummary7 = "";
-        boolean useOneLineSummary7 = false;
+        boolean useOneLineSummary7 = true;
 
         if (isFrench) {
             duties7.add(new Duty("►Amélioration et maintenance d'applications JEE pour centres d'appels multicanal."));
@@ -502,14 +501,13 @@ public class CV_java_to_PDF_Generator {
             achievements7.add(new Achievement("►Conception de l'architecture et preuves de concept pour l'introduction de fonctionnalités linguistiques sur un CRM, comme le routage sémantique des messages.", false));
             achievements7.add(new Achievement("►Direction d'un projet transversal pour améliorer la sécurité des applications selon les recommandations OWASP et RGPD.", false));
             oneLineSummary7 = "►Modernisation, sécurisation et maintien de la continuité opérationnelle d'applications stratégiques représentant environ 80% du chiffre d'affaires.";
-            useOneLineSummary7 = true;
         } else {
             duties7.add(new Duty("►Improve and maintain JEE applications for AI-powered multichannel call centers."));
             achievements7.add(new Achievement("►Improved and maintained, within a Scrum team, a suite of interacting JEE applications, that constitutes about 80% of the enterprise revenue.", false));
             achievements7.add(new Achievement("►Designed architecture, user stories and proof of concept for the introduction of linguistic-aware features on a CRM, like the Semantic Routing of messages.", false));
             achievements7.add(new Achievement("►Led a cross-department project to improve security of applications, aligning them with OWASP recommendations and GDPR.", false));
-            oneLineSummary7 = "►Modernized, secured, and maintained operational continuity of strategic applications representing approximately 80% of company revenue.";
-            useOneLineSummary7 = true;
+            oneLineSummary7 = "►Modernized and secured mission-critical applications representing ~80% of company revenue, ensuring operational continuity for enterprise clients in banking, insurance, and retail sectors across millions of daily customer interactions.";
+//            oneLineSummary7 = "►Modernized, secured, and maintained operational continuity of strategic applications representing approximately 80% of company revenue.";
         }
 
         WorkExperience we7 = new WorkExperience("Eptica", "Jan", 2016, "Jun", 2018, "Senior Software Engineer", "Boulogne Billancourt, France", 2, achievements7, duties7, isFrench ? "Solutions IA pour centres d'appels multicanal" : "AI-powered solutions for multichannel call centers", "", useOneLineSummary7, oneLineSummary7);
@@ -519,7 +517,8 @@ public class CV_java_to_PDF_Generator {
         if (isFrench) {
             we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Maven, plusieurs frameworks JS, base de données Oracle, PostgreSQL, SQLServer, Docker, Git, Jenkins, ElasticSearch, moteur NLP propriétaire."));
         } else {
-            we7.setTechnicalEnvironment(new TechnicalEnvironment("Spring, Spring Boot, Docker, JEE, Elasticsearch, PostgreSQL, SQLServer, Oracle DBMS PL/SQL, JBehave, GIT, Jenkins, SonarCube, Scala/Gatling, OWASP zap, Wireshark, TestLink, SquashTM, JIRA, Confluence, proprietary NLP engine, XSLT, jQuery."));
+            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Docker, JEE, Elasticsearch, PostgreSQL, SQLServer, Oracle DBMS PL/SQL, JBehave, GIT, Jenkins, SonarCube, Scala/Gatling, OWASP Zap, Wireshark, TestLink, SquashTM, JIRA, Confluence, proprietary NLP engine."));
+//            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Docker, JEE, Elasticsearch, PostgreSQL, SQLServer, Oracle DBMS PL/SQL, JBehave, GIT, Jenkins, SonarCube, Scala/Gatling, OWASP zap, Wireshark, TestLink, SquashTM, JIRA, Confluence, proprietary NLP engine, XSLT, jQuery."));
         }
 
 
@@ -564,7 +563,7 @@ public class CV_java_to_PDF_Generator {
             duties9.add(new Duty("►Lead R&D team for drone and sensor projects in collaboration with CERN."));
             achievements9.add(new Achievement("►Led a 4-member team in a project that involved smartphones and drones in the golf sector.", false));
             achievements9.add(new Achievement("►Implemented a set of photogrammetry services (like 3D reconstructions and orthomosaics) which enabled the company to explore new business opportunities related to aerial inspection.", false));
-            oneLineSummary9 = "►Led R&D projects that enabled the launch of new 3D photogrammetry services.";
+            oneLineSummary9 = "►Led R&D projects that enabled the launch of new aerial inspection services.";
             useOneLineSummary9 = true;
         }
 
@@ -573,9 +572,14 @@ public class CV_java_to_PDF_Generator {
             "Terabee collabore avec le CERN dans le domaine des drones et des capteurs innovants." :
             "Terabee collaborates with CERN in the market of drones and advanced sensors.");
         if (isFrench) {
-            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Maven, systèmes et bibliothèques pour photogrammétrie et mission planners pour les drones."));
+            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, outils et bibliothèques pour la manipulation de nuages de points, de maillages, de données de photogrammétrie ainsi que de données géographiques et géospatiales, Real-Time Kinematics, ainsi que des capteurs avancés à temps de vol, Precision GPS."));
+            //
+            //Outils et bibliothèques pour la manipulation de nuages de points, de maillages, de données de photogrammétrie ainsi que de données géographiques et géospatiales, incluant des outils tels que Pix4D, Photoscan, ArcGIS et Global Mapper, ainsi que des capteurs avancés à temps de vol (Time-of-Flight).
+            //Outils liés aux drones, notamment les planificateurs de mission.
         } else {
-            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, GeoTools, JSSC/java-comm, JFreeChart, Jama, GDAL. Drones related tools (mission planners). Tools and libraries for manipulation of point-clouds, meshes, photogrammetry, geographical and geospatial data. including tools like Pix4D, Photoscan, ArcGIS. advanced time-of-flight sensors."));
+            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, tools and libraries for manipulation of point clouds, meshes, photogrammetry, geographical and geospatial data, Advanced time-of-flight sensors. Precision GPS, Real-Time Kinematics. Drones related tools (mission planners)."));
+            //GeoTools, JSSC/java-comm, JFreeChart, Jama, GDAL.
+            //            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, GeoTools, JSSC/java-comm, JFreeChart, Jama, GDAL. Drones related tools (mission planners). Tools and libraries for manipulation of point-clouds, meshes, photogrammetry, geographical and geospatial data, including tools like Pix4D, Photoscan, ArcGIS, advanced time-of-flight sensors."));
         }
 
         // Work Experience 10: italianaSoftware
@@ -600,20 +604,19 @@ public class CV_java_to_PDF_Generator {
             achievements10.add(new Achievement("►Designed and implemented a fail-safe real-time data synchronizer for a distributed eCommerce of office supplies.", false));
             achievements10.add(new Achievement("►Accomplished an external consultancy as QA engineer in the mobile carrier industry, in a system with more than 500 services.", false));
             achievements10.add(new Achievement("►Led a project for the integration of microservices within a platform for web app development.", false));
-            oneLineSummary10 = "►Technical leadership of IT projects and teams representing 70% of company revenue.";
+            oneLineSummary10 = "►Technical leadership of IT projects and teams representing approximatively 75% of company revenue.";
             useOneLineSummary10 = true;
         }
 
         WorkExperience we10 = new WorkExperience("italianaSoftware", "Sep", 2010, "Nov", 2012, "Software Architect / Project Manager", "Imola, Italy", 2, achievements10, duties10, isFrench ? "Microservices et intégration de systèmes" : "Microservices and system integration", "", useOneLineSummary10, oneLineSummary10);
         we10.setCompanyContext(isFrench ?
-            "italianaSoftware est spécialisée dans les microservices et l'intégration de systèmes; l'entreprise collabore avec des centres d'excellence (INRIA, SDU) et une communauté internationale." :
-            "ItalianaSoftware created the first language for microservices JOLIE, in collaboration with centers of excellence (INRIA, SDU) and an international community.");
+            "ItalianaSoftware est spécialisée dans les microservices et l'intégration de systèmes; l'entreprise collabore avec des centres d'excellence (INRIA, SDU) et une communauté internationale." :
+            "ItalianaSoftware is specialized in microservices and systems integration. They collaborate with centers of excellence (INRIA, SDU) and an international community.");
         if (isFrench) {
             we10.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, Maven, Postgresql, Github, Microsoft Dynamics, Aqualogic Service Bus."));
         } else {
             we10.setTechnicalEnvironment(new TechnicalEnvironment("Java, Nexus artifact repository, Web Services, SOAP, MS Dynamics, SQLServer, Tomcat, GWT, Swing, SoapUI, PostgreSQL, Jolie-lang, custom API Gateway, Enterprise Service Buses, EDI Standards."));
         }
-
 
         // Work Experience 11: GemBB
         java.util.List<Duty> duties11 = new ArrayList<Duty>();
@@ -636,7 +639,7 @@ public class CV_java_to_PDF_Generator {
         WorkExperience we11 = new WorkExperience("GemBB", "Jun", 2011, "Jun", 2012, "Consultant / Resource Trainer", "San Marino", 1, achievements11, duties11, isFrench ? "Sécurité au travail" : "Workplace safety", "", useOneLineSummary11, oneLineSummary11);
         we11.setCompanyContext(isFrench ?
             "GemBB est actif dans le secteur de la sécurité au travail et intègre des systèmes existants." :
-            "GemBB is active in the sector of workplace safety, integrating legacy systems.");
+            "GemBB provides technical consulting and compliance services in workplace and industrial machinery safety.");
         we11.setContractType("Freelance");
         if (isFrench) {
             we11.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, Maven, bibliothèques pour IBM AS400 et l'interopérabilité java-COM."));
@@ -662,7 +665,7 @@ public class CV_java_to_PDF_Generator {
             duties12.add(new Duty("►Management of the relationships with the stakeholders of the projects."));
             achievements12.add(new Achievement("►Led up to 6 projects, coordinating 3 professionals and interacting with stakeholders.", false));
             achievements12.add(new Achievement("►Highly improved the performance of a video surveillance server in terms of real-time streams handling, supported camera types and the precision of movement detection, leading to the acquisition of more client contracts.", false));
-            oneLineSummary12 = "►Simultaneous management of 6 technical projects, overhaul of a video surveillance server that doubled performance and enabled the signing of new major contracts.";
+            oneLineSummary12 = "►Simultaneous management of 6 technical projects, major upgrade of a video surveillance server that doubled performance and enabled the signing of new key contracts.";
             useOneLineSummary12 = true;
         }
 
