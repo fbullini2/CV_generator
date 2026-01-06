@@ -57,7 +57,7 @@ public class CV_java_to_PDF_Generator {
     public static final boolean COMPETENCE_SECTION_ENABLED = false; // true = Show Key Competencies section, false = hide it
     public static final boolean DISPLAY_BUSINESS_SECTOR_ENABLED = false; // true = Show company business sector, false = hide it
     public static final boolean DUTIES_ENABLED = false; // true = Show Duties for work experiences, false = hide it
-    public static final boolean TECH_ENV_SECTION_ENABLED = false; // true = Show Technical Environment for work experiences, false = hide it
+    public static final boolean TECH_ENV_SECTION_ENABLED = true; // true = Show Technical Environment for work experiences, false = hide it
 
     public static String CV_FILENAME = "CV_BULLINI_" +"CTO_"+ LANGUAGE + "_" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ".pdf";
 
@@ -119,16 +119,6 @@ public class CV_java_to_PDF_Generator {
         // Initialize translations
         this.translations = new CVTranslations(language);
         CVTranslations translations = this.translations;
-
-//        if (!TARGET_COMPANY_IS_A_STARTUP) {
-//            if ("EN".equals(LANGUAGE)) {
-//                translations.put("intro_1", "7 years as Chief Technology Officer and leader of R&D projects in SME.\n");
-//            } else if ("FR".equals(LANGUAGE)) {
-//                translations.put("intro_1", "7 ans d'expérience en direction technique et en pilotage d'équipes R&D dans des PME.\n");
-//            }
-//            // Hide intro_2 (Startups built from scratch)
-//            translations.put("intro_2", "");
-//        }
 
         Document document = new Document(PageSize.A4);
         FileOutputStream fos = new FileOutputStream(filename);
@@ -431,9 +421,9 @@ public class CV_java_to_PDF_Generator {
             "Pixis fournit des solutions SaaS en marque blanche dans le secteur de l'éducation et de l'orientation professionnelle, en utilisant l'ontologie ESCO et les Objectifs de Développement Durable (ODD)." :
             "Pixis provides white-label SaaS solutions in the career advice and coaching sector using ontologies for skills, Sustainable Development Goals and a chatbot that guides the user in interacting with the application.");
         if (isFrench) {
-            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Python, Docker, Microservices, Github Actions, PostgreSQL, MySQL, Neo4J, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform; Google Analytics, Google Tag Manager, Sketch, Zeplin, Firebase."));
+            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Python, Docker, Microservices, Github Actions, PostgreSQL, MySQL, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform; Google Analytics, Google Tag Manager, Firebase."));
         } else {
-            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Python, Docker, Microservices, Github Actions, PostgreSQL, MySQL, Neo4J, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform; Google Analytics, Google Tag Manager, Sketch, Zeplin, Firebase."));
+            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Python, Docker, Microservices, Github Actions, PostgreSQL, MySQL, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform; Google Analytics, Google Tag Manager, Firebase."));
 //            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Docker, Microservices, Google Colab, Jupyter Notebooks, Python, Github Actions, PostgreSQL, MySQL, Neo4J, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform; Google Analytics, Google Tag Manager, Sketch, Zeplin, Firebase."));
         }
 
@@ -517,7 +507,8 @@ public class CV_java_to_PDF_Generator {
         if (isFrench) {
             we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Maven, plusieurs frameworks JS, base de données Oracle, PostgreSQL, SQLServer, Docker, Git, Jenkins, ElasticSearch, moteur NLP propriétaire."));
         } else {
-            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Docker, JEE, Elasticsearch, PostgreSQL, SQLServer, Oracle DBMS PL/SQL, JBehave, GIT, Jenkins, SonarCube, Scala/Gatling, OWASP Zap, Wireshark, TestLink, SquashTM, JIRA, Confluence, proprietary NLP engine."));
+            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Docker, JEE, Elasticsearch, PostgreSQL, SQLServer, Oracle DBMS PL/SQL, JBehave, GIT, Jenkins, SonarCube, Gatling, OWASP Zap, Wireshark, TestLink, SquashTM, JIRA, Confluence, proprietary NLP engine."));
+//            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Docker, JEE, Elasticsearch, PostgreSQL, SQLServer, Oracle DBMS PL/SQL, JBehave, GIT, Jenkins, SonarCube, Scala/Gatling, OWASP Zap, Wireshark, TestLink, SquashTM, JIRA, Confluence, proprietary NLP engine."));
 //            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Docker, JEE, Elasticsearch, PostgreSQL, SQLServer, Oracle DBMS PL/SQL, JBehave, GIT, Jenkins, SonarCube, Scala/Gatling, OWASP zap, Wireshark, TestLink, SquashTM, JIRA, Confluence, proprietary NLP engine, XSLT, jQuery."));
         }
 
@@ -577,7 +568,8 @@ public class CV_java_to_PDF_Generator {
             //Outils et bibliothèques pour la manipulation de nuages de points, de maillages, de données de photogrammétrie ainsi que de données géographiques et géospatiales, incluant des outils tels que Pix4D, Photoscan, ArcGIS et Global Mapper, ainsi que des capteurs avancés à temps de vol (Time-of-Flight).
             //Outils liés aux drones, notamment les planificateurs de mission.
         } else {
-            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, tools and libraries for manipulation of point clouds, meshes, photogrammetry, geographical and geospatial data, Advanced time-of-flight sensors. Precision GPS, Real-Time Kinematics. Drones related tools (mission planners)."));
+            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, tools and libraries for manipulation of point clouds, meshes, photogrammetry, geographical and geospatial data, Time-of-flight sensors. Precision GPS. Mission planners for drones."));
+//            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, tools and libraries for manipulation of point clouds, meshes, photogrammetry, geographical and geospatial data, Advanced time-of-flight sensors. Precision GPS, Real-Time Kinematics. Drones related tools (mission planners)."));
             //GeoTools, JSSC/java-comm, JFreeChart, Jama, GDAL.
             //            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, GeoTools, JSSC/java-comm, JFreeChart, Jama, GDAL. Drones related tools (mission planners). Tools and libraries for manipulation of point-clouds, meshes, photogrammetry, geographical and geospatial data, including tools like Pix4D, Photoscan, ArcGIS, advanced time-of-flight sensors."));
         }
@@ -676,7 +668,7 @@ public class CV_java_to_PDF_Generator {
         if (isFrench) {
             we12.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, EJB, JBPM, PostgreSQL, bibliothèque pour vidéo-surveillance."));
         } else {
-            we12.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, PostgreSQL, Rackspace, VirtualBox, PostGIS. Video streaming libs tools and protocols (VLC, Red5, ffmpeg), various types of IP cameras."));
+            we12.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, WebServices, PostgreSQL, Rackspace, VirtualBox, PostGIS. Video streaming libs tools and protocols (VLC, Red5, ffmpeg), various types of IP cameras."));
 //            we12.setTechnicalEnvironment(new TechnicalEnvironment("JBoss, EJB3, jBPM, Tomcat, JSF, JPA/Hibernate, JAX-WS, PostgreSQL, GWT/GXT, dojo toolkit, Batik, JasperReports, BIRT, Rackspace, VirtualBox, PostGIS. Video streaming libs tools and protocols (VLC, Red5, ffmpeg), various types of IP cameras."));
         }
 
@@ -740,9 +732,52 @@ public class CV_java_to_PDF_Generator {
 
             // Company description (context)
             if (work_experience.getCompanyContext() != null && !work_experience.getCompanyContext().isEmpty()) {
-                Paragraph companyContext = new Paragraph(work_experience.getCompanyContext(), font_10);
+                Paragraph companyContext = new Paragraph();
                 companyContext.setIndentationLeft(10);
                 companyContext.setSpacingAfter(3);
+
+                // Check if the text contains "INRIA" or "SDU" and make them clickable
+                String contextText = work_experience.getCompanyContext();
+                if (contextText.contains("INRIA") || contextText.contains("SDU")) {
+                    int lastIndex = 0;
+                    int index;
+
+                    while (lastIndex < contextText.length()) {
+                        int inriaIndex = contextText.indexOf("INRIA", lastIndex);
+                        int sduIndex = contextText.indexOf("SDU", lastIndex);
+
+                        // Find which keyword comes first
+                        if (inriaIndex != -1 && (sduIndex == -1 || inriaIndex < sduIndex)) {
+                            // Add text before INRIA
+                            if (inriaIndex > lastIndex) {
+                                companyContext.add(new Chunk(contextText.substring(lastIndex, inriaIndex), font_10));
+                            }
+                            // Add INRIA as link
+                            Chunk inriaChunk = new Chunk("INRIA", linkFont);
+                            inriaChunk.setAnchor("https://www.inria.fr");
+                            companyContext.add(inriaChunk);
+                            lastIndex = inriaIndex + 5; // length of "INRIA"
+                        } else if (sduIndex != -1) {
+                            // Add text before SDU
+                            if (sduIndex > lastIndex) {
+                                companyContext.add(new Chunk(contextText.substring(lastIndex, sduIndex), font_10));
+                            }
+                            // Add SDU as link
+                            Chunk sduChunk = new Chunk("SDU", linkFont);
+                            sduChunk.setAnchor("https://www.sdu.dk");
+                            companyContext.add(sduChunk);
+                            lastIndex = sduIndex + 3; // length of "SDU"
+                        } else {
+                            // No more keywords, add remaining text
+                            companyContext.add(new Chunk(contextText.substring(lastIndex), font_10));
+                            break;
+                        }
+                    }
+                } else {
+                    // No INRIA or SDU in the text, add as normal
+                    companyContext.add(new Chunk(contextText, font_10));
+                }
+
                 parExperiences.add(companyContext);
             }
 
@@ -778,9 +813,48 @@ public class CV_java_to_PDF_Generator {
                     techEnvPar.setIndentationLeft(10);
                     techEnvPar.setSpacingBefore(5);
                     Chunk techEnvTitle = new Chunk(translations.get("tech_env_title") + ": ", font_blue_10);
-                    Chunk techEnvText = new Chunk(techEnv.getOneLineText(), font_10);
                     techEnvPar.add(techEnvTitle);
-                    techEnvPar.add(techEnvText);
+
+                    // Check if the text contains "Jolie-lang" or "JOLIE" and make them clickable
+                    String techEnvText = techEnv.getOneLineText();
+                    if (techEnvText.contains("Jolie-lang") || techEnvText.contains("JOLIE")) {
+                        int lastIndex = 0;
+
+                        while (lastIndex < techEnvText.length()) {
+                            int jolieLangIndex = techEnvText.indexOf("Jolie-lang", lastIndex);
+                            int jolieIndex = techEnvText.indexOf("JOLIE", lastIndex);
+
+                            // Find which keyword comes first (prefer "Jolie-lang" over "JOLIE" if at same position)
+                            if (jolieLangIndex != -1 && (jolieIndex == -1 || jolieLangIndex <= jolieIndex)) {
+                                // Add text before Jolie-lang
+                                if (jolieLangIndex > lastIndex) {
+                                    techEnvPar.add(new Chunk(techEnvText.substring(lastIndex, jolieLangIndex), font_10));
+                                }
+                                // Add Jolie-lang as link
+                                Chunk jolieChunk = new Chunk("Jolie-lang", linkFont);
+                                jolieChunk.setAnchor("https://www.jolie-lang.org/");
+                                techEnvPar.add(jolieChunk);
+                                lastIndex = jolieLangIndex + 10; // length of "Jolie-lang"
+                            } else if (jolieIndex != -1) {
+                                // Add text before JOLIE
+                                if (jolieIndex > lastIndex) {
+                                    techEnvPar.add(new Chunk(techEnvText.substring(lastIndex, jolieIndex), font_10));
+                                }
+                                // Add JOLIE as link
+                                Chunk jolieChunk = new Chunk("JOLIE", linkFont);
+                                jolieChunk.setAnchor("https://www.jolie-lang.org/");
+                                techEnvPar.add(jolieChunk);
+                                lastIndex = jolieIndex + 5; // length of "JOLIE"
+                            } else {
+                                // No more keywords, add remaining text
+                                techEnvPar.add(new Chunk(techEnvText.substring(lastIndex), font_10));
+                                break;
+                            }
+                        }
+                    } else {
+                        techEnvPar.add(new Chunk(techEnvText, font_10));
+                    }
+
                     parExperiences.add(techEnvPar);
                 } else {
                     // Title "Technical Environment" in blue (no bold)
