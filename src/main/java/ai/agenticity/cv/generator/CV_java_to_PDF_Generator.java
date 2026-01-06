@@ -35,6 +35,7 @@ import ai.agenticity.cv.generator.domain.WorkExperience;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * CV Generator for Francesco Bullini - CTO / AI Architect
@@ -55,10 +56,11 @@ public class CV_java_to_PDF_Generator {
     public static final boolean PITCH_ENABLED = true; // true = Show pitch section, false = hide it
     public static final boolean INTRO_ENABLED = false; // true = Show introduction section, false = hide it
     public static final boolean PROFILE_ENABLED = false; // true = Show Profile section, false = hide it
-    public static final boolean COMPETENCE_SECTION_ENABLED = false; // true = Show Key Competencies section, false = hide it
+    public static final boolean COMPETENCE_SECTION_ENABLED = true; // true = Show Key Competencies section, false = hide it
     public static final boolean DISPLAY_BUSINESS_SECTOR_ENABLED = false; // true = Show company business sector, false = hide it
     public static final boolean DUTIES_ENABLED = false; // true = Show Duties for work experiences, false = hide it
-    public static final boolean TECH_ENV_SECTION_ENABLED = true; // true = Show Technical Environment for work experiences, false = hide it
+    public static final boolean TECH_ENV_SECTION_ENABLED = false; // true = Show Technical Environment for work experiences, false = hide it
+    public static final boolean TECH_ENV_IS_ONE_LINE = true; // true = Technical Environment displayed as one line, false = displayed as categories
 
     public static String CV_FILENAME = "CV_BULLINI_" +"CTO_"+ LANGUAGE + "_" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ".pdf";
 
@@ -343,10 +345,92 @@ public class CV_java_to_PDF_Generator {
         we1.setCompanyContext(isFrench ?
             "Agenticity propose des prestations de conseil en IA et IT, en concevant et en livrant des solutions sur mesure pour des assistants IA spécialisés par domaine et des systèmes multi-agents." :
             "Agenticity provides AI and IT consulting, designing and delivering custom solutions for domain-specialized AI assistants and multi-agent systems.");
-        if (isFrench) {
-            we1.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Java, python, Docker, agentic frameworks and \"Al specific” clouds (RunPod, HuggingFace, Mistral Al, Vertex Al, AWS bedrock), protocoles pour les agents (Model Context Protocol, Agent-2-Agent, AG-UI), ChromaDB, RabbitMQ, Nginx, Firebase, websocket, Next.js.", true));
+
+        if (TECH_ENV_IS_ONE_LINE) {
+            if (isFrench) {
+                we1.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Java, python, Docker, agentic frameworks and \"AI specific\" clouds (RunPod, HuggingFace, Mistral AI, Vertex AI, AWS bedrock), protocoles pour les agents (Model Context Protocol, Agent-2-Agent, AG-UI), ChromaDB, RabbitMQ, Nginx, Firebase, websocket, Next.js.", true));
+            } else {
+                we1.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Java, Python, Docker, agent frameworks and protocols (Model Context Protocol, Agent-to-Agent, AG-UI), agentic RAG systems, AI-dedicated cloud services (like RunPod, Hugging Face, AnyScale, Vertex AI), ChromaDB, RabbitMQ, Nginx, Firebase, websocket, Next.js.", true));
+            }
         } else {
-            we1.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Java, Python, Docker, agent frameworks and protocols (Model Context Protocol, Agent-to-Agent, AG-UI), agentic RAG systems, Al-dedicated cloud services (like RunPod, Hugging Face, AnyScale, Vertex AI), ChromaDB, RabbitMQ, Nginx, Firebase, websocket, Next.js.", true));
+            // Create categorized technical environment
+            TechnicalEnvironment techEnv1 = new TechnicalEnvironment();
+
+            // Languages
+            List<String> languages = new ArrayList<>();
+            languages.add("Java SE 17");
+            languages.add("21");
+            techEnv1.addCategory(new TechnicalEnvironmentCategory("tech_env_languages", languages));
+
+            // Backend Framework
+            List<String> backend = new ArrayList<>();
+            backend.add("Spring Boot 3.2");
+            techEnv1.addCategory(new TechnicalEnvironmentCategory("tech_env_backend_framework", backend));
+
+            // LLM libraries
+            List<String> llmLibs = new ArrayList<>();
+            llmLibs.add("LangChain4J");
+            llmLibs.add("Ollama4J");
+            llmLibs.add("vLLM");
+            llmLibs.add("RouteLLM");
+            llmLibs.add("Lark");
+            llmLibs.add("LiteLLM");
+            techEnv1.addCategory(new TechnicalEnvironmentCategory("tech_env_llm_libraries", llmLibs));
+
+            // LLM Providers and API
+            List<String> llmProviders = new ArrayList<>();
+            llmProviders.add("Google Vertex AI");
+            llmProviders.add("OpenAI");
+            llmProviders.add("AWS Bedrock");
+            llmProviders.add("Anthropic");
+            llmProviders.add("Mistral AI");
+            llmProviders.add("Hugging Face");
+            llmProviders.add("Whisper API");
+            techEnv1.addCategory(new TechnicalEnvironmentCategory("tech_env_llm_providers", llmProviders));
+
+            // Protocols
+            List<String> protocols = new ArrayList<>();
+            protocols.add("Model Context Protocol (MCP)");
+            protocols.add("agent-to-agent protocol (A2A)");
+            protocols.add("AG-UI protocol");
+            protocols.add("WebSockets");
+            protocols.add("Docker-MCP");
+            protocols.add("Proprietary Protocol for contextual reasoning and orchestration");
+            techEnv1.addCategory(new TechnicalEnvironmentCategory("tech_env_protocols", protocols));
+
+            // Cloud
+            List<String> cloud = new ArrayList<>();
+            cloud.add("Google Cloud Platform");
+            cloud.add("GCE");
+            cloud.add("Cloud Storage");
+            cloud.add("gcloud CLI");
+            cloud.add("RunPod");
+            cloud.add("Hugging Face");
+            cloud.add("Anyscale");
+            cloud.add("Netlify");
+            cloud.add("Docker");
+            cloud.add("Docker Compose");
+            cloud.add("Firebase");
+            techEnv1.addCategory(new TechnicalEnvironmentCategory("tech_env_cloud", cloud));
+
+            // Middleware and Databases
+            List<String> middleware = new ArrayList<>();
+            middleware.add("RabbitMQ");
+            middleware.add("Nginx");
+            middleware.add("ChromaDB");
+            middleware.add("Firebase");
+            middleware.add("H2");
+            middleware.add("PostgreSQL");
+            middleware.add("Redis");
+            techEnv1.addCategory(new TechnicalEnvironmentCategory("tech_env_middleware_db", middleware));
+
+            // Security
+            List<String> security = new ArrayList<>();
+            security.add("JWT");
+            security.add("Spring Security");
+            techEnv1.addCategory(new TechnicalEnvironmentCategory("tech_env_security", security));
+
+            we1.setTechnicalEnvironment(techEnv1);
         }
 
         // Work Experience 2: EU Project D-Reskill
@@ -376,10 +460,38 @@ public class CV_java_to_PDF_Generator {
         we2.setCompanyContext(isFrench ?
             "\"D-Reskill at Universities\" est un projet financé par la Commission européenne visant à concevoir et élaborer une plateforme logicielle pour la reconversion des travailleurs, fondée sur une approche explicite des compétences." :
             "\"D-Reskill at Universities\" is a project funded by the European Commission to envision and design a software platform for reskilling workers using an explicit skill-based approach and ESCO ontology.");
-        if (isFrench) {
-            we2.setTechnicalEnvironment(new TechnicalEnvironment("Figma, Figma flow, Google Workplace Suite.", true));
+
+        if (TECH_ENV_IS_ONE_LINE) {
+            if (isFrench) {
+                we2.setTechnicalEnvironment(new TechnicalEnvironment("Figma, Figma flow, Google Workplace Suite.", true));
+            } else {
+                we2.setTechnicalEnvironment(new TechnicalEnvironment("Java, Resource Definition Framework (RDF), SKOS ontologies, Neo4j, Figma, Figma flow.", true));
+            }
         } else {
-            we2.setTechnicalEnvironment(new TechnicalEnvironment("Java, Resource Definition Framework (RDF), SKOS ontologies, Neo4j, Figma, Figma flow.", true));
+            TechnicalEnvironment techEnv2 = new TechnicalEnvironment();
+
+            // Languages
+            List<String> languages2 = new ArrayList<>();
+            languages2.add("Java SE 17");
+            techEnv2.addCategory(new TechnicalEnvironmentCategory("tech_env_languages", languages2));
+
+            // Databases
+            List<String> databases2 = new ArrayList<>();
+            databases2.add("Neo4J");
+            techEnv2.addCategory(new TechnicalEnvironmentCategory("tech_env_databases", databases2));
+
+            // Semantic Web/Ontologies
+            List<String> semanticWeb2 = new ArrayList<>();
+            semanticWeb2.add("Resource Description Framework (RDF)");
+            semanticWeb2.add("Simple Knowledge Organization System (SKOS)");
+            techEnv2.addCategory(new TechnicalEnvironmentCategory("tech_env_semantic_web", semanticWeb2));
+
+            // UX/UI
+            List<String> uxui2 = new ArrayList<>();
+            uxui2.add("Supervision of work in: Figma, Figma Flow");
+            techEnv2.addCategory(new TechnicalEnvironmentCategory("tech_env_ux_ui", uxui2));
+
+            we2.setTechnicalEnvironment(techEnv2);
         }
 
         // Work Experience 3: Open University of Catalonia
@@ -411,10 +523,35 @@ public class CV_java_to_PDF_Generator {
         we3.setCompanyContext(isFrench ?
             "L'UOC est l'une des premières universités européennes entièrement numériques et dispense des cours à des étudiants internationaux depuis plus de 20 ans." :
             "UOC is one of the first European universities fully digital and provides courses to international students for more than 20 years.");
-        if (isFrench) {
-            we3.setTechnicalEnvironment(new TechnicalEnvironment("Bubble.io, PowerBI, Snowflake, Azure.", true));
+
+        if (TECH_ENV_IS_ONE_LINE) {
+            if (isFrench) {
+                we3.setTechnicalEnvironment(new TechnicalEnvironment("Bubble.io, PowerBI, Snowflake, Azure.", true));
+            } else {
+                we3.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Run, Power BI, Azure AD, Adobe Cloud (Adobe AEM DXP), Snowflake, Bubble.io, Whimsical.", true));
+            }
         } else {
-            we3.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Run, Power BI, Azure AD, Adobe Cloud (Adobe AEM DXP), Snowflake, Bubble.io, Whimsical.", true));
+            TechnicalEnvironment techEnv3 = new TechnicalEnvironment();
+
+            // No-Code
+            List<String> nocode3 = new ArrayList<>();
+            nocode3.add("Bubble.io");
+            techEnv3.addCategory(new TechnicalEnvironmentCategory("tech_env_no_code", nocode3));
+
+            // Cloud
+            List<String> cloud3 = new ArrayList<>();
+            cloud3.add("Azure AD");
+            cloud3.add("Power BI");
+            cloud3.add("Adobe Cloud");
+            cloud3.add("Google Cloud Run");
+            techEnv3.addCategory(new TechnicalEnvironmentCategory("tech_env_cloud", cloud3));
+
+            // Other
+            List<String> other3 = new ArrayList<>();
+            other3.add("Whimsical");
+            techEnv3.addCategory(new TechnicalEnvironmentCategory("tech_env_other", other3));
+
+            we3.setTechnicalEnvironment(techEnv3);
         }
 
         // Work Experience 4: Pixis
@@ -446,11 +583,83 @@ public class CV_java_to_PDF_Generator {
         we4.setCompanyContext(isFrench ?
             "Pixis fournit des solutions SaaS en marque blanche dans le secteur de l'éducation et de l'orientation professionnelle, en utilisant l'ontologie ESCO et les Objectifs de Développement Durable (ODD)." :
             "Pixis provides white-label SaaS solutions in the career advice and coaching sector using ontologies for skills, Sustainable Development Goals and a chatbot that guides the user in interacting with the application.");
-        if (isFrench) {
-            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Python, Docker, Microservices, Github Actions, PostgreSQL, MySQL, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform, Google Analytics, Google Tag Manager, Firebase.", true));
+
+        if (TECH_ENV_IS_ONE_LINE) {
+            if (isFrench) {
+                we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Python, Docker, Microservices, Github Actions, PostgreSQL, MySQL, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform, Google Analytics, Google Tag Manager, Firebase.", true));
+            } else {
+                we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Python, Docker, Microservices, Github Actions, PostgreSQL, MySQL, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform, Google Analytics, Google Tag Manager, Firebase.", true));
+            }
         } else {
-            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Python, Docker, Microservices, Github Actions, PostgreSQL, MySQL, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform, Google Analytics, Google Tag Manager, Firebase.", true));
-//            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Docker, Microservices, Google Colab, Jupyter Notebooks, Python, Github Actions, PostgreSQL, MySQL, Neo4J, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform; Google Analytics, Google Tag Manager, Sketch, Zeplin, Firebase."));
+            TechnicalEnvironment techEnv4 = new TechnicalEnvironment();
+
+            // Languages
+            List<String> languages4 = new ArrayList<>();
+            languages4.add("Java SE 17");
+            languages4.add("Spring Boot");
+            languages4.add("Angular 10");
+            languages4.add("Python");
+            languages4.add("Jupyter Notebook");
+            languages4.add("Google Colab");
+            techEnv4.addCategory(new TechnicalEnvironmentCategory("tech_env_languages", languages4));
+
+            // Middleware and Databases
+            List<String> middleware4 = new ArrayList<>();
+            middleware4.add("MySql");
+            middleware4.add("Neo4J");
+            middleware4.add("MongoDb");
+            middleware4.add("REST API");
+            middleware4.add("OpenAPI");
+            middleware4.add("proprietary API Gateway");
+            techEnv4.addCategory(new TechnicalEnvironmentCategory("tech_env_middleware_db", middleware4));
+
+            // Authentication
+            List<String> auth4 = new ArrayList<>();
+            auth4.add("OAuth 2.0");
+            auth4.add("JWT");
+            auth4.add("MS Authentication Libraries (MSAL)");
+            auth4.add("Azure AD");
+            auth4.add("Single Sign-On");
+            auth4.add("Azure AD B2C");
+            techEnv4.addCategory(new TechnicalEnvironmentCategory("tech_env_authentication", auth4));
+
+            // Cloud
+            List<String> cloud4 = new ArrayList<>();
+            cloud4.add("Google Cloud Platform");
+            cloud4.add("Azure");
+            cloud4.add("Docker");
+            cloud4.add("Docker Compose");
+            cloud4.add("Microservices");
+            cloud4.add("Terraform");
+            techEnv4.addCategory(new TechnicalEnvironmentCategory("tech_env_cloud", cloud4));
+
+            // CI/CD
+            List<String> cicd4 = new ArrayList<>();
+            cicd4.add("Github Actions");
+            cicd4.add("Maven repository");
+            techEnv4.addCategory(new TechnicalEnvironmentCategory("tech_env_ci_cd", cicd4));
+
+            // NLP / ML
+            List<String> nlp4 = new ArrayList<>();
+            nlp4.add("spaCy");
+            nlp4.add("Stanford NLP");
+            nlp4.add("scikit-learn");
+            nlp4.add("numpy");
+            nlp4.add("pandas");
+            techEnv4.addCategory(new TechnicalEnvironmentCategory("tech_env_nlp_ml", nlp4));
+
+            // Semantic Web
+            List<String> semanticWeb4 = new ArrayList<>();
+            semanticWeb4.add("Resource Description Framework (RDF)");
+            semanticWeb4.add("Apache Jena");
+            techEnv4.addCategory(new TechnicalEnvironmentCategory("tech_env_semantic_web", semanticWeb4));
+
+            // UX/UI
+            List<String> uxui4 = new ArrayList<>();
+            uxui4.add("Supervision of work in : Zeplin, Sketch");
+            techEnv4.addCategory(new TechnicalEnvironmentCategory("tech_env_ux_ui", uxui4));
+
+            we4.setTechnicalEnvironment(techEnv4);
         }
 
         // Work Experience 5: Cosys
@@ -530,12 +739,84 @@ public class CV_java_to_PDF_Generator {
         we7.setCompanyContext(isFrench ?
             "Eptica fournit des solutions propulsées par l'IA pour les centres d'appels multicanal, en exploitant des technologies propriétaires de traitement du langage naturel (NLP) et d'intelligence collaborative." :
             "Eptica provides AI-powered solutions for multichannel call centers exploiting proprietary natural language processing (NLP) technologies and collaborative intelligence.");
-        if (isFrench) {
-            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Maven, plusieurs frameworks JS, base de données Oracle, PostgreSQL, SQLServer, Docker, Git, Jenkins, ElasticSearch, moteur NLP propriétaire.", true));
+
+        if (TECH_ENV_IS_ONE_LINE) {
+            if (isFrench) {
+                we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Maven, plusieurs frameworks JS, base de données Oracle, PostgreSQL, SQLServer, Docker, Git, Jenkins, ElasticSearch, moteur NLP propriétaire.", true));
+            } else {
+                we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Docker, Elasticsearch, PostgreSQL, SQLServer, Oracle DBMS PL/SQL, JBehave, GIT, Jenkins, SonarCube, Gatling, OWASP Zap, Wireshark, TestLink, SquashTM, JIRA, Confluence, proprietary NLP engine.", true));
+            }
         } else {
-            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Docker, Elasticsearch, PostgreSQL, SQLServer, Oracle DBMS PL/SQL, JBehave, GIT, Jenkins, SonarCube, Gatling, OWASP Zap, Wireshark, TestLink, SquashTM, JIRA, Confluence, proprietary NLP engine.", true));
-//            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Docker, JEE, Elasticsearch, PostgreSQL, SQLServer, Oracle DBMS PL/SQL, JBehave, GIT, Jenkins, SonarCube, Scala/Gatling, OWASP Zap, Wireshark, TestLink, SquashTM, JIRA, Confluence, proprietary NLP engine."));
-//            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Docker, JEE, Elasticsearch, PostgreSQL, SQLServer, Oracle DBMS PL/SQL, JBehave, GIT, Jenkins, SonarCube, Scala/Gatling, OWASP zap, Wireshark, TestLink, SquashTM, JIRA, Confluence, proprietary NLP engine, XSLT, jQuery."));
+            TechnicalEnvironment techEnv7 = new TechnicalEnvironment();
+
+            // Languages
+            List<String> languages7 = new ArrayList<>();
+            languages7.add("Java SE 8");
+            techEnv7.addCategory(new TechnicalEnvironmentCategory("tech_env_languages", languages7));
+
+            // Frameworks and Application Servers
+            List<String> frameworks7 = new ArrayList<>();
+            frameworks7.add("Spring");
+            frameworks7.add("Spring Boot");
+            frameworks7.add("Struts");
+            techEnv7.addCategory(new TechnicalEnvironmentCategory("tech_env_frameworks", frameworks7));
+
+            // Middleware and databases
+            List<String> middleware7 = new ArrayList<>();
+            middleware7.add("PostgreSQL");
+            middleware7.add("MS SQL Server");
+            middleware7.add("Oracle DBMS PL/SQL");
+            middleware7.add("Elasticsearch");
+            techEnv7.addCategory(new TechnicalEnvironmentCategory("tech_env_middleware_db", middleware7));
+
+            // Testing
+            List<String> testing7 = new ArrayList<>();
+            testing7.add("Behavior Testing: JBehave, Selenium WebDriver, Gherkin Notation");
+            testing7.add("Integration Testing: Testcontainers");
+            testing7.add("Mock Testing:Mockito");
+            testing7.add("Load Testing: Gatling");
+            testing7.add("Unit Test: JUnit");
+            testing7.add("Squash TM");
+            techEnv7.addCategory(new TechnicalEnvironmentCategory("tech_env_testing", testing7));
+
+            // CI/CD
+            List<String> cicd7 = new ArrayList<>();
+            cicd7.add("Git");
+            cicd7.add("Jenkins");
+            cicd7.add("SonarQube");
+            cicd7.add("Sonar Quality Gates");
+            cicd7.add("automatic static analysis on local IDE");
+            cicd7.add("custom DORA-like metrics tracking");
+            cicd7.add("Metrics pack for SonarQube");
+            techEnv7.addCategory(new TechnicalEnvironmentCategory("tech_env_ci_cd", cicd7));
+
+            // Security
+            List<String> security7 = new ArrayList<>();
+            security7.add("Dependency check sonar plugin");
+            security7.add("Security Assessment for SonarQube");
+            security7.add("OWASP ZAP");
+            security7.add("Wireshark");
+            security7.add("proprietary Auditing tool");
+            techEnv7.addCategory(new TechnicalEnvironmentCategory("tech_env_security", security7));
+
+            // Cloud
+            List<String> cloud7 = new ArrayList<>();
+            cloud7.add("Docker");
+            cloud7.add("(Mesos, Marathon)");
+            techEnv7.addCategory(new TechnicalEnvironmentCategory("tech_env_cloud", cloud7));
+
+            // Other
+            List<String> other7 = new ArrayList<>();
+            other7.add("JIRA");
+            other7.add("Confluence");
+            techEnv7.addCategory(new TechnicalEnvironmentCategory("tech_env_other", other7));
+
+            // NLP
+            List<String> nlp7 = new ArrayList<>();
+            nlp7.add("Usage of proprietary NLP engine and ElasticSearch");
+            techEnv7.addCategory(new TechnicalEnvironmentCategory("tech_env_nlp_ml", nlp7));
+
+            we7.setTechnicalEnvironment(techEnv7);
         }
 
 
@@ -561,7 +842,36 @@ public class CV_java_to_PDF_Generator {
         we8.setCompanyContext(isFrench ?
             "2Collaborate travaille dans des contextes socioculturels complexes tels que les projets des Nations Unies sur des thèmes mondiaux, en promouvant une méthodologie innovante appelée \"Action Intelligence\"." :
             "2Collaborate works in complex socio-cultural contexts such as United Nations projects on global themes, promoting an innovative methodology called \"Action Intelligence\".");
-        we8.setTechnicalEnvironment(new TechnicalEnvironment("IBM Watson NLU, Heroku, World Wind, Apache POI, graph libraries (Jung, Gephi, Ubigraph, Sigmajs), Java.", true));
+
+        if (TECH_ENV_IS_ONE_LINE) {
+            we8.setTechnicalEnvironment(new TechnicalEnvironment("IBM Watson NLU, Heroku, World Wind, Apache POI, graph libraries (Jung, Gephi, Ubigraph, Sigmajs), Java.", true));
+        } else {
+            TechnicalEnvironment techEnv8 = new TechnicalEnvironment();
+
+            // Language
+            List<String> languages8 = new ArrayList<>();
+            languages8.add("Java SE 7");
+            techEnv8.addCategory(new TechnicalEnvironmentCategory("tech_env_languages", languages8));
+
+            // Cloud
+            List<String> cloud8 = new ArrayList<>();
+            cloud8.add("Heroku");
+            techEnv8.addCategory(new TechnicalEnvironmentCategory("tech_env_cloud", cloud8));
+
+            // NLP
+            List<String> nlp8 = new ArrayList<>();
+            nlp8.add("IBM Watson NLU");
+            techEnv8.addCategory(new TechnicalEnvironmentCategory("tech_env_nlp_ml", nlp8));
+
+            // Other
+            List<String> other8 = new ArrayList<>();
+            other8.add("World Wind");
+            other8.add("Apache POI");
+            other8.add("graph libraries (Jung, Gephi, Ubigraph, sigmajs)");
+            techEnv8.addCategory(new TechnicalEnvironmentCategory("tech_env_other", other8));
+
+            we8.setTechnicalEnvironment(techEnv8);
+        }
 
 
         // Work Experience 9: Terabee
@@ -588,16 +898,29 @@ public class CV_java_to_PDF_Generator {
         we9.setCompanyContext(isFrench ?
             "Terabee collabore avec le CERN dans le domaine des drones et des capteurs innovants." :
             "Terabee collaborates with CERN in the market of drones and advanced sensors.");
-        if (isFrench) {
-            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, outils et bibliothèques pour la manipulation de nuages de points, de maillages, de données de photogrammétrie ainsi que de données géographiques et géospatiales, Real-Time Kinematics, ainsi que des capteurs avancés à temps de vol, Precision GPS.", true));
-            //
-            //Outils et bibliothèques pour la manipulation de nuages de points, de maillages, de données de photogrammétrie ainsi que de données géographiques et géospatiales, incluant des outils tels que Pix4D, Photoscan, ArcGIS et Global Mapper, ainsi que des capteurs avancés à temps de vol (Time-of-Flight).
-            //Outils liés aux drones, notamment les planificateurs de mission.
+
+        if (TECH_ENV_IS_ONE_LINE) {
+            if (isFrench) {
+                we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, outils et bibliothèques pour la manipulation de nuages de points, de maillages, de données de photogrammétrie ainsi que de données géographiques et géospatiales, Real-Time Kinematics, ainsi que des capteurs avancés à temps de vol, Precision GPS.", true));
+            } else {
+                we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, tools and libraries for manipulation of point clouds, meshes, photogrammetry, geographical and geospatial data, Time-of-flight sensors. Precision GPS. Mission planners for drones.", true));
+            }
         } else {
-            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, tools and libraries for manipulation of point clouds, meshes, photogrammetry, geographical and geospatial data, Time-of-flight sensors. Precision GPS. Mission planners for drones.", true));
-//            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, tools and libraries for manipulation of point clouds, meshes, photogrammetry, geographical and geospatial data, Advanced time-of-flight sensors. Precision GPS, Real-Time Kinematics. Drones related tools (mission planners)."));
-            //GeoTools, JSSC/java-comm, JFreeChart, Jama, GDAL.
-            //            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, GeoTools, JSSC/java-comm, JFreeChart, Jama, GDAL. Drones related tools (mission planners). Tools and libraries for manipulation of point-clouds, meshes, photogrammetry, geographical and geospatial data, including tools like Pix4D, Photoscan, ArcGIS, advanced time-of-flight sensors."));
+            TechnicalEnvironment techEnv9 = new TechnicalEnvironment();
+
+            // Languages (in this case includes all tools)
+            List<String> tools9 = new ArrayList<>();
+            tools9.add("Java SE 7");
+            tools9.add("Python");
+            tools9.add("Photoscan/Metashape");
+            tools9.add("Pix4D");
+            tools9.add("Meshlab");
+            tools9.add("ArcGIS");
+            tools9.add("QGIS");
+            tools9.add("drone mission planners");
+            techEnv9.addCategory(new TechnicalEnvironmentCategory("tech_env_languages", tools9));
+
+            we9.setTechnicalEnvironment(techEnv9);
         }
 
         // Work Experience 10: italianaSoftware
@@ -630,10 +953,56 @@ public class CV_java_to_PDF_Generator {
         we10.setCompanyContext(isFrench ?
             "ItalianaSoftware est spécialisée dans les microservices et l'intégration de systèmes; l'entreprise collabore avec des centres d'excellence (INRIA, SDU) et une communauté internationale." :
             "ItalianaSoftware is specialized in microservices and systems integration. They collaborate with centers of excellence (INRIA, SDU) and an international community.");
-        if (isFrench) {
-            we10.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, Maven, Postgresql, Github, Microsoft Dynamics, Aqualogic Service Bus.", true));
+
+        if (TECH_ENV_IS_ONE_LINE) {
+            if (isFrench) {
+                we10.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, Maven, Postgresql, Github, Microsoft Dynamics, Aqualogic Service Bus.", true));
+            } else {
+                we10.setTechnicalEnvironment(new TechnicalEnvironment("Java, Nexus artifact repository, Web Services, SOAP, MS Dynamics, SQLServer, Tomcat, GWT, Swing, SoapUI, PostgreSQL, Jolie-lang, custom API Gateway, Enterprise Service Buses, EDI Standards.", true));
+            }
         } else {
-            we10.setTechnicalEnvironment(new TechnicalEnvironment("Java, Nexus artifact repository, Web Services, SOAP, MS Dynamics, SQLServer, Tomcat, GWT, Swing, SoapUI, PostgreSQL, Jolie-lang, custom API Gateway, Enterprise Service Buses, EDI Standards.", true));
+            TechnicalEnvironment techEnv10 = new TechnicalEnvironment();
+
+            // Languages
+            List<String> languages10 = new ArrayList<>();
+            languages10.add("Java SE 6-7");
+            languages10.add("jolie-lang");
+            techEnv10.addCategory(new TechnicalEnvironmentCategory("tech_env_languages", languages10));
+
+            // Middleware and Databases
+            List<String> middleware10 = new ArrayList<>();
+            middleware10.add("Web Services");
+            middleware10.add("SOAP");
+            middleware10.add("WSDL");
+            middleware10.add("Oracle Service Bus");
+            middleware10.add("Aqualogic");
+            middleware10.add("MS SQL Server");
+            middleware10.add("Tomcat");
+            middleware10.add("PostgreSQL");
+            techEnv10.addCategory(new TechnicalEnvironmentCategory("tech_env_middleware_db", middleware10));
+
+            // Testing
+            List<String> testing10 = new ArrayList<>();
+            testing10.add("JUnit");
+            testing10.add("SoapUI");
+            testing10.add("proprietary tools for jolie-lang languages");
+            techEnv10.addCategory(new TechnicalEnvironmentCategory("tech_env_testing", testing10));
+
+            // Front
+            List<String> front10 = new ArrayList<>();
+            front10.add("GWT");
+            front10.add("jQuery");
+            front10.add("Swing");
+            techEnv10.addCategory(new TechnicalEnvironmentCategory("tech_env_front", front10));
+
+            // Others
+            List<String> others10 = new ArrayList<>();
+            others10.add("MS Dynamics");
+            others10.add("EDI/EDIFact standards");
+            others10.add("SAP iDOC");
+            techEnv10.addCategory(new TechnicalEnvironmentCategory("tech_env_other", others10));
+
+            we10.setTechnicalEnvironment(techEnv10);
         }
 
         // Work Experience 11: GemBB
@@ -659,10 +1028,23 @@ public class CV_java_to_PDF_Generator {
             "GemBB est actif dans le secteur de la sécurité au travail et intègre des systèmes existants." :
             "GemBB provides technical consulting and compliance services in workplace and industrial machinery safety.");
         we11.setContractType("Freelance");
-        if (isFrench) {
-            we11.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, Maven, bibliothèques pour IBM AS400 et l'interopérabilité java-COM.", true));
+
+        if (TECH_ENV_IS_ONE_LINE) {
+            if (isFrench) {
+                we11.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, Maven, bibliothèques pour IBM AS400 et l'interopérabilité java-COM.", true));
+            } else {
+                we11.setTechnicalEnvironment(new TechnicalEnvironment("Microsoft COM/Jacob libraries, JTOpen, AS400, Java, Swing.", true));
+            }
         } else {
-            we11.setTechnicalEnvironment(new TechnicalEnvironment("Microsoft COM/Jacob libraries, JTOpen, AS400, Java, Swing.", true));
+            TechnicalEnvironment techEnv11 = new TechnicalEnvironment();
+
+            // Languages
+            List<String> languages11 = new ArrayList<>();
+            languages11.add("Java SE 6");
+            languages11.add("Java libraries to connect with legacy technologies like: AS400, MS COM");
+            techEnv11.addCategory(new TechnicalEnvironmentCategory("tech_env_languages", languages11));
+
+            we11.setTechnicalEnvironment(techEnv11);
         }
 
         // Work Experience 12: Gheotech
@@ -691,11 +1073,70 @@ public class CV_java_to_PDF_Generator {
         we12.setCompanyContext(isFrench ?
             "Gheotech intervient dans la gestion des infrastructures urbaines (distribution d'eau, de gaz et de fibre)." :
             "Gheotech operates in the field of public utility distribution (water, optical fiber, gas), leveraging its proprietary Geographic Information System (GIS), distributed documentation systems and video surveillance server.");
-        if (isFrench) {
-            we12.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, EJB, JBPM, PostgreSQL, bibliothèque pour vidéo-surveillance.", true));
+
+        if (TECH_ENV_IS_ONE_LINE) {
+            if (isFrench) {
+                we12.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, EJB, JBPM, PostgreSQL, bibliothèque pour vidéo-surveillance.", true));
+            } else {
+                we12.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, WebServices, PostgreSQL, Rackspace, VirtualBox, PostGIS. Video streaming libs tools and protocols (VLC, Red5, ffmpeg), various types of IP cameras.", true));
+            }
         } else {
-            we12.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, WebServices, PostgreSQL, Rackspace, VirtualBox, PostGIS. Video streaming libs tools and protocols (VLC, Red5, ffmpeg), various types of IP cameras.", true));
-//            we12.setTechnicalEnvironment(new TechnicalEnvironment("JBoss, EJB3, jBPM, Tomcat, JSF, JPA/Hibernate, JAX-WS, PostgreSQL, GWT/GXT, dojo toolkit, Batik, JasperReports, BIRT, Rackspace, VirtualBox, PostGIS. Video streaming libs tools and protocols (VLC, Red5, ffmpeg), various types of IP cameras."));
+            TechnicalEnvironment techEnv12 = new TechnicalEnvironment();
+
+            // Languages
+            List<String> languages12 = new ArrayList<>();
+            languages12.add("Java SE 6");
+            techEnv12.addCategory(new TechnicalEnvironmentCategory("tech_env_languages", languages12));
+
+            // Application Layer
+            List<String> appLayer12 = new ArrayList<>();
+            appLayer12.add("Spring");
+            appLayer12.add("JBoss");
+            appLayer12.add("J2EE/EJB2");
+            appLayer12.add("EJB3");
+            appLayer12.add("JAX-RS");
+            appLayer12.add("jBPM");
+            appLayer12.add("Drools");
+            techEnv12.addCategory(new TechnicalEnvironmentCategory("tech_env_application_layer", appLayer12));
+
+            // Middleware and databases
+            List<String> middleware12 = new ArrayList<>();
+            middleware12.add("Proprietary GIS");
+            middleware12.add("PostgreSQL");
+            middleware12.add("PostGIS");
+            techEnv12.addCategory(new TechnicalEnvironmentCategory("tech_env_middleware_db", middleware12));
+
+            // Front / Presentation
+            List<String> front12 = new ArrayList<>();
+            front12.add("GWT");
+            front12.add("Ext.js");
+            front12.add("jQuery");
+            front12.add("JavaServer Faces (JSF)");
+            techEnv12.addCategory(new TechnicalEnvironmentCategory("tech_env_front", front12));
+
+            // Cloud providers
+            List<String> cloud12 = new ArrayList<>();
+            cloud12.add("Rackspace");
+            cloud12.add("VMware");
+            techEnv12.addCategory(new TechnicalEnvironmentCategory("tech_env_cloud_providers", cloud12));
+
+            // Libraries and protocols for video streaming
+            List<String> video12 = new ArrayList<>();
+            video12.add("VLC");
+            video12.add("Red5");
+            video12.add("ffmpeg");
+            video12.add("Real Time Protocol");
+            video12.add("Real Time Control Protocol");
+            techEnv12.addCategory(new TechnicalEnvironmentCategory("tech_env_video_streaming", video12));
+
+            // Others
+            List<String> others12 = new ArrayList<>();
+            others12.add("C++");
+            others12.add("BIRT (Business Intelligence Reporting Tool)");
+            others12.add("VirtualBox");
+            techEnv12.addCategory(new TechnicalEnvironmentCategory("tech_env_other", others12));
+
+            we12.setTechnicalEnvironment(techEnv12);
         }
 
         // Add all work experiences
@@ -890,20 +1331,27 @@ public class CV_java_to_PDF_Generator {
                     parExperiences.add(techEnvTitle);
 
                     // Categories
-                    for (TechnicalEnvironmentCategory category : techEnv.getCategories()) {
-                        Paragraph categoryPar = new Paragraph();
-                        categoryPar.setIndentationLeft(10);
+                    if (techEnv.getCategories().isEmpty() && !techEnv.getOneLineText().isEmpty()) {
+                        // Fallback: if no categories defined, use oneLineText as paragraph
+                        Paragraph techText = new Paragraph(techEnv.getOneLineText(), font_10);
+                        techText.setIndentationLeft(10);
+                        parExperiences.add(techText);
+                    } else {
+                        for (TechnicalEnvironmentCategory category : techEnv.getCategories()) {
+                            Paragraph categoryPar = new Paragraph();
+                            categoryPar.setIndentationLeft(10);
 
-                        // Category title in blue (no bold)
-                        Chunk categoryTitle = new Chunk(translations.get(category.getTitle()) + ": ", font_blue_10);
-                        categoryPar.add(categoryTitle);
+                            // Category title in blue (no bold)
+                            Chunk categoryTitle = new Chunk(translations.get(category.getTitle()) + ": ", font_blue_10);
+                            categoryPar.add(categoryTitle);
 
-                        // Technologies in normal font
-                        String techList = String.join(", ", category.getTechnologies());
-                        Chunk technologies = new Chunk(techList + ".", font_10);
-                        categoryPar.add(technologies);
+                            // Technologies in normal font
+                            String techList = String.join(", ", category.getTechnologies());
+                            Chunk technologies = new Chunk(techList + ".", font_10);
+                            categoryPar.add(technologies);
 
-                        parExperiences.add(categoryPar);
+                            parExperiences.add(categoryPar);
+                        }
                     }
                 }
             }
