@@ -52,8 +52,9 @@ public class CV_java_to_PDF_Generator {
     public static final boolean TARGET_COMPANY_IS_FROM_SCRATCH = false; // true = The target company is a startup from scratch, or it's valuable to highlight my work in startups from scratch;false if it is not valuable for that company job description
     public static final boolean TARGET_SECTOR_IS_EDUCATION_OR_EMPLOYABILITY_OR_SKILLS = true; // true = The target sector is someway related to education, employability or reskilling, upskilling or human resources; false if it is not valuable for that company job description
 
-    public static final boolean INTRO_ENABLED = true; // true = Show introduction section, false = hide it
-    public static final boolean PROFILE_ENABLED = true; // true = Show Profile section, false = hide it
+    public static final boolean PITCH_ENABLED = true; // true = Show pitch section, false = hide it
+    public static final boolean INTRO_ENABLED = false; // true = Show introduction section, false = hide it
+    public static final boolean PROFILE_ENABLED = false; // true = Show Profile section, false = hide it
     public static final boolean COMPETENCE_SECTION_ENABLED = false; // true = Show Key Competencies section, false = hide it
     public static final boolean DISPLAY_BUSINESS_SECTOR_ENABLED = false; // true = Show company business sector, false = hide it
     public static final boolean DUTIES_ENABLED = false; // true = Show Duties for work experiences, false = hide it
@@ -195,6 +196,31 @@ public class CV_java_to_PDF_Generator {
         phr1.setFont(font_10);
         par1_intro.add(phr1);
 
+        // Pitch
+        Paragraph par1_pitch = new Paragraph();
+        Phrase phr_pitch = new Phrase();
+        for (int i = 1; i <= 10; i++) {
+            String key = "pitch_" + i;
+            String translation = translations.get(key);
+            // Add the chunk only if the translation exists and is not the key itself
+            if (translation != null && !translation.equals(key)  && !translation.trim().isEmpty()) {
+                if (translation.contains("**")) {
+                    String[] parts = translation.split("\\*\\*");
+                    for (int j = 0; j < parts.length; j++) {
+                        if (j % 2 == 1) {
+                            phr_pitch.add(new Chunk(parts[j], font_bold_10));
+                        } else {
+                            phr_pitch.add(new Chunk(parts[j], font_10));
+                        }
+                    }
+                } else {
+                    phr_pitch.add(new Chunk(translation, font_10));
+                }
+            }
+        }
+        phr_pitch.setFont(font_10);
+        par1_pitch.add(phr_pitch);
+
         // Profile
         Paragraph par2_title = new Paragraph(translations.get("profile_title"), font_bold_12);
         applyTitleStyle(par2_title);
@@ -318,9 +344,9 @@ public class CV_java_to_PDF_Generator {
             "Agenticity propose des prestations de conseil en IA et IT, en concevant et en livrant des solutions sur mesure pour des assistants IA spécialisés par domaine et des systèmes multi-agents." :
             "Agenticity provides AI and IT consulting, designing and delivering custom solutions for domain-specialized AI assistants and multi-agent systems.");
         if (isFrench) {
-            we1.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Java, python, Docker, agentic frameworks and \"Al specific” clouds (RunPod, HuggingFace, Mistral Al, Vertex Al, AWS bedrock), protocoles pour les agents (Model Context Protocol, Agent-2-Agent, AG-UI), ChromaDB, RabbitMQ, Nginx, Firebase, websocket, Next.js."));
+            we1.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Java, python, Docker, agentic frameworks and \"Al specific” clouds (RunPod, HuggingFace, Mistral Al, Vertex Al, AWS bedrock), protocoles pour les agents (Model Context Protocol, Agent-2-Agent, AG-UI), ChromaDB, RabbitMQ, Nginx, Firebase, websocket, Next.js.", true));
         } else {
-            we1.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Java, Python, Docker, agent frameworks and protocols (Model Context Protocol, Agent-to-Agent, AG-UI), agentic RAG systems, Al-dedicated cloud services (like RunPod, Hugging Face, AnyScale, Vertex AI), ChromaDB, RabbitMQ, Nginx, Firebase, websocket, Next.js."));
+            we1.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Java, Python, Docker, agent frameworks and protocols (Model Context Protocol, Agent-to-Agent, AG-UI), agentic RAG systems, Al-dedicated cloud services (like RunPod, Hugging Face, AnyScale, Vertex AI), ChromaDB, RabbitMQ, Nginx, Firebase, websocket, Next.js.", true));
         }
 
         // Work Experience 2: EU Project D-Reskill
@@ -351,9 +377,9 @@ public class CV_java_to_PDF_Generator {
             "\"D-Reskill at Universities\" est un projet financé par la Commission européenne visant à concevoir et élaborer une plateforme logicielle pour la reconversion des travailleurs, fondée sur une approche explicite des compétences." :
             "\"D-Reskill at Universities\" is a project funded by the European Commission to envision and design a software platform for reskilling workers using an explicit skill-based approach and ESCO ontology.");
         if (isFrench) {
-            we2.setTechnicalEnvironment(new TechnicalEnvironment("Figma, Figma flow, Google Workplace Suite."));
+            we2.setTechnicalEnvironment(new TechnicalEnvironment("Figma, Figma flow, Google Workplace Suite.", true));
         } else {
-            we2.setTechnicalEnvironment(new TechnicalEnvironment("Java, Resource Definition Framework (RDF), SKOS ontologies, Neo4j, Figma, Figma flow."));
+            we2.setTechnicalEnvironment(new TechnicalEnvironment("Java, Resource Definition Framework (RDF), SKOS ontologies, Neo4j, Figma, Figma flow.", true));
         }
 
         // Work Experience 3: Open University of Catalonia
@@ -386,9 +412,9 @@ public class CV_java_to_PDF_Generator {
             "L'UOC est l'une des premières universités européennes entièrement numériques et dispense des cours à des étudiants internationaux depuis plus de 20 ans." :
             "UOC is one of the first European universities fully digital and provides courses to international students for more than 20 years.");
         if (isFrench) {
-            we3.setTechnicalEnvironment(new TechnicalEnvironment("Bubble.io, PowerBI, Snowflake, Azure."));
+            we3.setTechnicalEnvironment(new TechnicalEnvironment("Bubble.io, PowerBI, Snowflake, Azure.", true));
         } else {
-            we3.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Run, Power BI, Azure AD, Adobe Cloud (Adobe AEM DXP), Snowflake, Bubble.io, Whimsical."));
+            we3.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Run, Power BI, Azure AD, Adobe Cloud (Adobe AEM DXP), Snowflake, Bubble.io, Whimsical.", true));
         }
 
         // Work Experience 4: Pixis
@@ -421,9 +447,9 @@ public class CV_java_to_PDF_Generator {
             "Pixis fournit des solutions SaaS en marque blanche dans le secteur de l'éducation et de l'orientation professionnelle, en utilisant l'ontologie ESCO et les Objectifs de Développement Durable (ODD)." :
             "Pixis provides white-label SaaS solutions in the career advice and coaching sector using ontologies for skills, Sustainable Development Goals and a chatbot that guides the user in interacting with the application.");
         if (isFrench) {
-            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Python, Docker, Microservices, Github Actions, PostgreSQL, MySQL, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform, Google Analytics, Google Tag Manager, Firebase."));
+            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Python, Docker, Microservices, Github Actions, PostgreSQL, MySQL, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform, Google Analytics, Google Tag Manager, Firebase.", true));
         } else {
-            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Python, Docker, Microservices, Github Actions, PostgreSQL, MySQL, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform, Google Analytics, Google Tag Manager, Firebase."));
+            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Python, Docker, Microservices, Github Actions, PostgreSQL, MySQL, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform, Google Analytics, Google Tag Manager, Firebase.", true));
 //            we4.setTechnicalEnvironment(new TechnicalEnvironment("Google Cloud Platform, Azure, Java, Docker, Microservices, Google Colab, Jupyter Notebooks, Python, Github Actions, PostgreSQL, MySQL, Neo4J, OpenAPI, OAuth 2.0, OIDC, JWT, MS Authentication Libraries; Angular 10, Nexus Repository, traditional NLP libraries, semantic-web/RDF, Terraform; Google Analytics, Google Tag Manager, Sketch, Zeplin, Firebase."));
         }
 
@@ -451,9 +477,9 @@ public class CV_java_to_PDF_Generator {
             "The Flexup project proposes a SaaS product to implement a model for building and managing companies based on shared risk between participants.");
         we5.setContractType("Freelance");
         if (isFrench) {
-            we5.setTechnicalEnvironment(new TechnicalEnvironment("Vue.js, Storybook, Keycloak, Json-server, Github, DigitalOcean droplets, Pulumi, Traefik."));
+            we5.setTechnicalEnvironment(new TechnicalEnvironment("Vue.js, Storybook, Keycloak, Json-server, Github, DigitalOcean droplets, Pulumi, Traefik.", true));
         } else {
-            we5.setTechnicalEnvironment(new TechnicalEnvironment("Vue.js, StoryBook, Keycloak, Traefik, Json-server, DigitalOcean droplets, Pulumi, Vagrant, Confluence."));
+            we5.setTechnicalEnvironment(new TechnicalEnvironment("Vue.js, StoryBook, Keycloak, Traefik, Json-server, DigitalOcean droplets, Pulumi, Vagrant, Confluence.", true));
         }
 
         // Work Experience 6: Stealth mode startup
@@ -476,7 +502,7 @@ public class CV_java_to_PDF_Generator {
         we6.setCompanyContext(isFrench ?
             "Participation à la conception d'une startup dans le secteur bancaire." :
             "Participation in the conception of a startup in the banking sector.");
-        we6.setTechnicalEnvironment(new TechnicalEnvironment("Google Kubernetes Engine, Minikube, Docker, Java, Spring Boot."));
+        we6.setTechnicalEnvironment(new TechnicalEnvironment("Google Kubernetes Engine, Minikube, Docker, Java, Spring Boot.", true));
 
 
         // Work Experience 7: Eptica
@@ -486,14 +512,14 @@ public class CV_java_to_PDF_Generator {
         boolean useOneLineSummary7 = true;
 
         if (isFrench) {
-            duties7.add(new Duty("►Amélioration et maintenance d'applications JEE pour centres d'appels multicanal."));
-            achievements7.add(new Achievement("►Amélioration et maintenance, au sein d'une équipe SCRUM, d'une suite d'applications JEE représentant environ 80% du chiffre d'affaires.", false));
+            duties7.add(new Duty("►Amélioration et maintenance d'applications pour centres d'appels multicanal."));
+            achievements7.add(new Achievement("►Amélioration et maintenance, au sein d'une équipe SCRUM, d'une suite d'applications représentant environ 80% du chiffre d'affaires.", false));
             achievements7.add(new Achievement("►Conception de l'architecture et preuves de concept pour l'introduction de fonctionnalités linguistiques sur un CRM, comme le routage sémantique des messages.", false));
             achievements7.add(new Achievement("►Direction d'un projet transversal pour améliorer la sécurité des applications selon les recommandations OWASP et RGPD.", false));
             oneLineSummary7 = "►Modernisation, sécurisation et maintien de la continuité opérationnelle d'applications stratégiques représentant environ 80% du chiffre d'affaires.";
         } else {
-            duties7.add(new Duty("►Improve and maintain JEE applications for AI-powered multichannel call centers."));
-            achievements7.add(new Achievement("►Improved and maintained, within a Scrum team, a suite of interacting JEE applications, that constitutes about 80% of the enterprise revenue.", false));
+            duties7.add(new Duty("►Improve and maintain applications for AI-powered multichannel call centers."));
+            achievements7.add(new Achievement("►Improved and maintained, within a Scrum team, a suite of interacting applications, that constitutes about 80% of the enterprise revenue.", false));
             achievements7.add(new Achievement("►Designed architecture, user stories and proof of concept for the introduction of linguistic-aware features on a CRM, like the Semantic Routing of messages.", false));
             achievements7.add(new Achievement("►Led a cross-department project to improve security of applications, aligning them with OWASP recommendations and GDPR.", false));
             oneLineSummary7 = "►Modernized and secured mission-critical applications representing ~80% of company revenue, ensuring operational continuity for enterprise clients in banking, insurance, and retail sectors across millions of daily customer interactions.";
@@ -505,9 +531,9 @@ public class CV_java_to_PDF_Generator {
             "Eptica fournit des solutions propulsées par l'IA pour les centres d'appels multicanal, en exploitant des technologies propriétaires de traitement du langage naturel (NLP) et d'intelligence collaborative." :
             "Eptica provides AI-powered solutions for multichannel call centers exploiting proprietary natural language processing (NLP) technologies and collaborative intelligence.");
         if (isFrench) {
-            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Maven, plusieurs frameworks JS, base de données Oracle, PostgreSQL, SQLServer, Docker, Git, Jenkins, ElasticSearch, moteur NLP propriétaire."));
+            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Maven, plusieurs frameworks JS, base de données Oracle, PostgreSQL, SQLServer, Docker, Git, Jenkins, ElasticSearch, moteur NLP propriétaire.", true));
         } else {
-            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Docker, JEE, Elasticsearch, PostgreSQL, SQLServer, Oracle DBMS PL/SQL, JBehave, GIT, Jenkins, SonarCube, Gatling, OWASP Zap, Wireshark, TestLink, SquashTM, JIRA, Confluence, proprietary NLP engine."));
+            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Docker, Elasticsearch, PostgreSQL, SQLServer, Oracle DBMS PL/SQL, JBehave, GIT, Jenkins, SonarCube, Gatling, OWASP Zap, Wireshark, TestLink, SquashTM, JIRA, Confluence, proprietary NLP engine.", true));
 //            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Docker, JEE, Elasticsearch, PostgreSQL, SQLServer, Oracle DBMS PL/SQL, JBehave, GIT, Jenkins, SonarCube, Scala/Gatling, OWASP Zap, Wireshark, TestLink, SquashTM, JIRA, Confluence, proprietary NLP engine."));
 //            we7.setTechnicalEnvironment(new TechnicalEnvironment("Java, Spring Boot, Docker, JEE, Elasticsearch, PostgreSQL, SQLServer, Oracle DBMS PL/SQL, JBehave, GIT, Jenkins, SonarCube, Scala/Gatling, OWASP zap, Wireshark, TestLink, SquashTM, JIRA, Confluence, proprietary NLP engine, XSLT, jQuery."));
         }
@@ -535,7 +561,7 @@ public class CV_java_to_PDF_Generator {
         we8.setCompanyContext(isFrench ?
             "2Collaborate travaille dans des contextes socioculturels complexes tels que les projets des Nations Unies sur des thèmes mondiaux, en promouvant une méthodologie innovante appelée \"Action Intelligence\"." :
             "2Collaborate works in complex socio-cultural contexts such as United Nations projects on global themes, promoting an innovative methodology called \"Action Intelligence\".");
-        we8.setTechnicalEnvironment(new TechnicalEnvironment("IBM Watson NLU, Heroku, World Wind, Apache POI, graph libraries (Jung, Gephi, Ubigraph, Sigmajs), Java."));
+        we8.setTechnicalEnvironment(new TechnicalEnvironment("IBM Watson NLU, Heroku, World Wind, Apache POI, graph libraries (Jung, Gephi, Ubigraph, Sigmajs), Java.", true));
 
 
         // Work Experience 9: Terabee
@@ -563,12 +589,12 @@ public class CV_java_to_PDF_Generator {
             "Terabee collabore avec le CERN dans le domaine des drones et des capteurs innovants." :
             "Terabee collaborates with CERN in the market of drones and advanced sensors.");
         if (isFrench) {
-            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, outils et bibliothèques pour la manipulation de nuages de points, de maillages, de données de photogrammétrie ainsi que de données géographiques et géospatiales, Real-Time Kinematics, ainsi que des capteurs avancés à temps de vol, Precision GPS."));
+            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, outils et bibliothèques pour la manipulation de nuages de points, de maillages, de données de photogrammétrie ainsi que de données géographiques et géospatiales, Real-Time Kinematics, ainsi que des capteurs avancés à temps de vol, Precision GPS.", true));
             //
             //Outils et bibliothèques pour la manipulation de nuages de points, de maillages, de données de photogrammétrie ainsi que de données géographiques et géospatiales, incluant des outils tels que Pix4D, Photoscan, ArcGIS et Global Mapper, ainsi que des capteurs avancés à temps de vol (Time-of-Flight).
             //Outils liés aux drones, notamment les planificateurs de mission.
         } else {
-            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, tools and libraries for manipulation of point clouds, meshes, photogrammetry, geographical and geospatial data, Time-of-flight sensors. Precision GPS. Mission planners for drones."));
+            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, tools and libraries for manipulation of point clouds, meshes, photogrammetry, geographical and geospatial data, Time-of-flight sensors. Precision GPS. Mission planners for drones.", true));
 //            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, tools and libraries for manipulation of point clouds, meshes, photogrammetry, geographical and geospatial data, Advanced time-of-flight sensors. Precision GPS, Real-Time Kinematics. Drones related tools (mission planners)."));
             //GeoTools, JSSC/java-comm, JFreeChart, Jama, GDAL.
             //            we9.setTechnicalEnvironment(new TechnicalEnvironment("Java, Python, GeoTools, JSSC/java-comm, JFreeChart, Jama, GDAL. Drones related tools (mission planners). Tools and libraries for manipulation of point-clouds, meshes, photogrammetry, geographical and geospatial data, including tools like Pix4D, Photoscan, ArcGIS, advanced time-of-flight sensors."));
@@ -605,9 +631,9 @@ public class CV_java_to_PDF_Generator {
             "ItalianaSoftware est spécialisée dans les microservices et l'intégration de systèmes; l'entreprise collabore avec des centres d'excellence (INRIA, SDU) et une communauté internationale." :
             "ItalianaSoftware is specialized in microservices and systems integration. They collaborate with centers of excellence (INRIA, SDU) and an international community.");
         if (isFrench) {
-            we10.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, Maven, Postgresql, Github, Microsoft Dynamics, Aqualogic Service Bus."));
+            we10.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, Maven, Postgresql, Github, Microsoft Dynamics, Aqualogic Service Bus.", true));
         } else {
-            we10.setTechnicalEnvironment(new TechnicalEnvironment("Java, Nexus artifact repository, Web Services, SOAP, MS Dynamics, SQLServer, Tomcat, GWT, Swing, SoapUI, PostgreSQL, Jolie-lang, custom API Gateway, Enterprise Service Buses, EDI Standards."));
+            we10.setTechnicalEnvironment(new TechnicalEnvironment("Java, Nexus artifact repository, Web Services, SOAP, MS Dynamics, SQLServer, Tomcat, GWT, Swing, SoapUI, PostgreSQL, Jolie-lang, custom API Gateway, Enterprise Service Buses, EDI Standards.", true));
         }
 
         // Work Experience 11: GemBB
@@ -634,9 +660,9 @@ public class CV_java_to_PDF_Generator {
             "GemBB provides technical consulting and compliance services in workplace and industrial machinery safety.");
         we11.setContractType("Freelance");
         if (isFrench) {
-            we11.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, Maven, bibliothèques pour IBM AS400 et l'interopérabilité java-COM."));
+            we11.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, Maven, bibliothèques pour IBM AS400 et l'interopérabilité java-COM.", true));
         } else {
-            we11.setTechnicalEnvironment(new TechnicalEnvironment("Microsoft COM/Jacob libraries, JTOpen, AS400, Java, Swing."));
+            we11.setTechnicalEnvironment(new TechnicalEnvironment("Microsoft COM/Jacob libraries, JTOpen, AS400, Java, Swing.", true));
         }
 
         // Work Experience 12: Gheotech
@@ -666,9 +692,9 @@ public class CV_java_to_PDF_Generator {
             "Gheotech intervient dans la gestion des infrastructures urbaines (distribution d'eau, de gaz et de fibre)." :
             "Gheotech operates in the field of public utility distribution (water, optical fiber, gas), leveraging its proprietary Geographic Information System (GIS), distributed documentation systems and video surveillance server.");
         if (isFrench) {
-            we12.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, EJB, JBPM, PostgreSQL, bibliothèque pour vidéo-surveillance."));
+            we12.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, EJB, JBPM, PostgreSQL, bibliothèque pour vidéo-surveillance.", true));
         } else {
-            we12.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, WebServices, PostgreSQL, Rackspace, VirtualBox, PostGIS. Video streaming libs tools and protocols (VLC, Red5, ffmpeg), various types of IP cameras."));
+            we12.setTechnicalEnvironment(new TechnicalEnvironment("Java ecosystem, WebServices, PostgreSQL, Rackspace, VirtualBox, PostGIS. Video streaming libs tools and protocols (VLC, Red5, ffmpeg), various types of IP cameras.", true));
 //            we12.setTechnicalEnvironment(new TechnicalEnvironment("JBoss, EJB3, jBPM, Tomcat, JSF, JPA/Hibernate, JAX-WS, PostgreSQL, GWT/GXT, dojo toolkit, Batik, JasperReports, BIRT, Rackspace, VirtualBox, PostGIS. Video streaming libs tools and protocols (VLC, Red5, ffmpeg), various types of IP cameras."));
         }
 
@@ -923,6 +949,9 @@ public class CV_java_to_PDF_Generator {
         document.add(par1_title);
         if (INTRO_ENABLED) {
             document.add(par1_intro);
+        }
+        if (PITCH_ENABLED) {
+            document.add(par1_pitch);
         }
 
         // Profile section with bookmark
